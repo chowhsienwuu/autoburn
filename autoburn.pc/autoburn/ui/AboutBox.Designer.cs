@@ -1,4 +1,4 @@
-﻿namespace autoburn.ui
+﻿namespace autoburn.Ui
 {
     partial class AboutBox
     {

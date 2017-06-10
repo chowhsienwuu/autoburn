@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using autoburn.net;
+using autoburn.Net;
 
-namespace autoburn.msghandler
+namespace autoburn.MsgHandler
 {
     public class RxMsgDispatch
     {

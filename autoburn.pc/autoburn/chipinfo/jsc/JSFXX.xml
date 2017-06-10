@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<chipinfo vendor="jsc" series="JSFXX">
+  <chip name="JSFA9A2N73ABB-450" type="emmc" package="bma107" burner="ZY-DB107A0-A01" note="">  </chip>
+  <chip name="JSFA9B2N73ABB-450" type="emmc" package="bma107" burner="ZY-DB107A0-A01" note="">  </chip>
+  <chip name="JSFA8A2N73ABB-450" type="emmc" package="bma107" burner="ZY-DB107A0-A01" note="">  </chip>
+  <chip name="JSFA8B2N73ABB-450" type="emmc" package="bma107" burner="ZY-DB107A0-A01" note="">  </chip>
+</chipinfo>

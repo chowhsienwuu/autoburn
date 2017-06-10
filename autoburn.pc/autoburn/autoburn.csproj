@@ -98,45 +98,47 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DeviceManager\DevicesManager.cs" />
-    <Compile Include="ftp\FtpInstanceServer.cs" />
-    <Compile Include="ui\AboutBox.cs">
+    <Compile Include="Manager\ChipInfo.cs" />
+    <Compile Include="Manager\ChipSupportManager.cs" />
+    <Compile Include="Manager\DeviceManager.cs" />
+    <Compile Include="Ftp\FtpInstanceServer.cs" />
+    <Compile Include="Ui\AboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ui\AboutBox.Designer.cs">
+    <Compile Include="Ui\AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="ui\ChooseChipFrom.cs">
+    <Compile Include="Ui\ChooseChipFrom.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ui\ChooseChipFrom.Designer.cs">
+    <Compile Include="Ui\ChooseChipFrom.Designer.cs">
       <DependentUpon>ChooseChipFrom.cs</DependentUpon>
     </Compile>
-    <Compile Include="ui\MainWindow.cs">
+    <Compile Include="Ui\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ui\MainWindow.Designer.cs">
+    <Compile Include="Ui\MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="msghandler\RxMsgDispatch.cs" />
-    <Compile Include="msghandler\RxMsgHandlerBase.cs" />
-    <Compile Include="msghandler\RxMsgHandlerTest.cs" />
-    <Compile Include="msghandler\RxMsgHandlerInfo.cs" />
-    <Compile Include="msghandler\MsgBase.cs" />
-    <Compile Include="msghandler\TxMsgBase.cs" />
-    <Compile Include="net\BeatHeat.cs" />
-    <Compile Include="net\DeviceNetManager.cs" />
-    <Compile Include="net\TcpClient.cs" />
+    <Compile Include="Msghandler\RxMsgDispatch.cs" />
+    <Compile Include="Msghandler\RxMsgHandlerBase.cs" />
+    <Compile Include="Msghandler\RxMsgHandlerTest.cs" />
+    <Compile Include="Msghandler\RxMsgHandlerInfo.cs" />
+    <Compile Include="Msghandler\MsgBase.cs" />
+    <Compile Include="Msghandler\TxMsgBase.cs" />
+    <Compile Include="Net\BeatHeat.cs" />
+    <Compile Include="Net\DeviceNetManager.cs" />
+    <Compile Include="Net\TcpClient.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProgramInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ui\AboutBox.resx">
+    <EmbeddedResource Include="Ui\AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ui\ChooseChipFrom.resx">
+    <EmbeddedResource Include="Ui\ChooseChipFrom.resx">
       <DependentUpon>ChooseChipFrom.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ui\MainWindow.resx">
+    <EmbeddedResource Include="Ui\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -183,8 +185,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="chipinfo\eon\chip23983.xml" />
-    <Content Include="chipinfo\jsc\jsc23983.xml" />
+    <Content Include="chipinfo\eon\EN25.xml" />
+    <Content Include="chipinfo\eon\EN27XX.xml" />
+    <Content Include="chipinfo\jsc\JSFXX.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="chipinfo\hynix\" />

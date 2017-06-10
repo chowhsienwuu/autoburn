@@ -35,8 +35,8 @@ namespace autoburn
             }
         }
 
-        public static string CHIPINFODIR = "chip";
-        public static string CHIPINFODIRPATH = CurrentPath + CHIPINFODIR;
+        public static string CHIPINFODIR = "chipinfo";
+        public static string CHIPINFODIRPATH = CurrentPath +"\\" + CHIPINFODIR;
 
         /*
         discovery message.

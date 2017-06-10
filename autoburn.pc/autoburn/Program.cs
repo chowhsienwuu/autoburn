@@ -1,5 +1,5 @@
-﻿using autoburn.ftp;
-using autoburn.net;
+﻿using autoburn.Ftp;
+using autoburn.Net;
 using autoburn.util;
 using System;
 using System.Collections.Generic;
@@ -7,8 +7,9 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using autoburn.msghandler;
+using autoburn.MsgHandler;
 using System.Threading;
+using autoburn.Manager;
 
 namespace autoburn
 {
@@ -52,11 +53,12 @@ namespace autoburn
                 return;
             }
 
+            DeviceManager.Instance.Init();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainWindow());
         }
-
 
         static bool EnSureOnlyOneInstance()
         {

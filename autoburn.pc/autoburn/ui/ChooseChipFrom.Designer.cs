@@ -1,4 +1,4 @@
-﻿namespace autoburn.ui
+﻿namespace autoburn.Ui
 {
     partial class ChooseChipFrom
     {
@@ -69,6 +69,7 @@
             // 
             // ChipTreeView
             // 
+            this.ChipTreeView.BackColor = System.Drawing.SystemColors.Info;
             this.ChipTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ChipTreeView.Location = new System.Drawing.Point(13, 68);
             this.ChipTreeView.Margin = new System.Windows.Forms.Padding(3, 2, 10, 2);
@@ -82,6 +83,7 @@
             // 
             // ChipInfoListView
             // 
+            this.ChipInfoListView.BackColor = System.Drawing.SystemColors.Info;
             this.ChipInfoListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,

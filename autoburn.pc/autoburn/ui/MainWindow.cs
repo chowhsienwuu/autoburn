@@ -1,5 +1,5 @@
-﻿using autoburn.net;
-using autoburn.ui;
+﻿using autoburn.Net;
+using autoburn.Ui;
 using autoburn.util;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static autoburn.net.DeviceNetManager;
+using static autoburn.Net.DeviceNetManager;
 
 namespace autoburn
 {

@@ -1,10 +1,10 @@
-﻿using autoburn.ftp;
-using autoburn.msghandler;
+﻿using autoburn.Ftp;
+using autoburn.MsgHandler;
 using autoburn.util;
 using System.Net;
 using System.Threading;
 
-namespace autoburn.net
+namespace autoburn.Net
 {
     public class DeviceNetManager
     {

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<chipinfo vendor="eon" series="EN27XX">
+  <chip name="EN27LN1G08-25TIP" type="emmc" package="TSOP48" burner="ZY-DB048C0" note="">  </chip>
+  <chip name="EN27LN2G08-25TIP" type="emmc" package="TSOP48" burner="ZY-DB048C0" note="">  </chip>
+  <chip name="EN27LN2G08-25TIP" type="emmc" package="BGA63" burner="ZY-DB048C0" note="">  </chip>
+  <chip name="EN27LN2G08-25TIP" type="emmc" package="BGA63" burner="ZY-DB107A0-A01" note="">  </chip>
+</chipinfo>

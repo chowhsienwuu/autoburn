@@ -1,4 +1,5 @@
-﻿using System;
+﻿using autoburn.Manager;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,14 +9,35 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace autoburn.ui
+namespace autoburn.Ui
 {
     public partial class ChooseChipFrom : Form
     {
         public ChooseChipFrom()
         {
             InitializeComponent();
-            InitlizeComPonet2();
+            // InitlizeComPonet2();
+               LoadFile2UI();
+        }
+
+        private void LoadFile2UI()
+        {
+            Dictionary<string, object[]> _venderseriesDictionary =
+                DeviceManager.Instance.ChipSupportManager.VenderseriesDictionary;
+
+            List<TreeNode> vendertreenodelist = new List<TreeNode>();
+            foreach(KeyValuePair<string, object[]> kvp in _venderseriesDictionary)
+           {
+                List<TreeNode> seriesTreeNodelist = new List<TreeNode>();
+                foreach(object series in kvp.Value)
+                {
+                    seriesTreeNodelist.Add(new TreeNode(series.ToString()));
+                }
+                TreeNode tn = new TreeNode(kvp.Key, seriesTreeNodelist.ToArray());
+                vendertreenodelist.Add(tn);
+            }
+
+            ChipTreeView.Nodes.AddRange(vendertreenodelist.ToArray());
         }
 
         private void InitlizeComPonet2()
@@ -23,8 +45,6 @@ namespace autoburn.ui
             // ser
             string[] history = { "283", ".sdks", "9238888" };
             searchComBox.Items.AddRange(history);
-
-
             TreeNode[] tnarray = new TreeNode[8];
                
             for (int i = 0; i < tnarray.Length; i++)
@@ -59,7 +79,6 @@ namespace autoburn.ui
                 lvi.Text = "item " + i;
                 lvi.SubItems.Add("第2列,第" + i + "行");
                 lvi.SubItems.Add("第3列,第" + i + "行");
-
                 this.ChipInfoListView.Items.Add(lvi);
             }
 
@@ -81,7 +100,29 @@ namespace autoburn.ui
             TreeView tv = sender as TreeView;
             TreeNode tn = tv.SelectedNode;
             Console.WriteLine("ChipTreeView_AfterSelect.." + tn.Text + 
-                " " + tn.Index);
+                " " + tn.Index + "--" + tn.FullPath + " " );
+            if (tn.FullPath.Contains(@"\"))
+            {
+                List<ChipInfo> chipinfolist = 
+                    DeviceManager.Instance.ChipSupportManager.GetChipInfo(tn.Parent.Text, tn.Text);
+                LoadChipList2UI(chipinfolist);
+            }
+        }
+
+        private void LoadChipList2UI(List<ChipInfo> list)
+        {
+            this.ChipInfoListView.BeginUpdate();   
+            ChipInfoListView.Items.Clear();
+            foreach (ChipInfo chip in list)
+            {
+                ListViewItem lvi = new ListViewItem();
+                lvi.Text = chip.name;
+                lvi.SubItems.Add(chip.package);
+                lvi.SubItems.Add(chip.burner);
+                lvi.SubItems.Add(chip.note);
+                ChipInfoListView.Items.Add(lvi);
+            }
+            this.ChipInfoListView.EndUpdate();  
         }
 
         private void ChipInfoListView_SelectedIndexChanged(object sender, EventArgs e)

@@ -7,9 +7,9 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using static autoburn.net.DeviceNetManager;
+using static autoburn.Net.DeviceNetManager;
 
-namespace autoburn.net
+namespace autoburn.Net
 {
     public class TcpCmdClient
     {

@@ -1,4 +1,4 @@
-﻿using autoburn.net;
+﻿using autoburn.Net;
 using autoburn.util;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace autoburn.msghandler
+namespace autoburn.MsgHandler
 {
     public abstract class RxMsgHandlerBase :MsgBase
     {

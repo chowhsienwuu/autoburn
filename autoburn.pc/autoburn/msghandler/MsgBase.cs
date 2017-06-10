@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace autoburn.msghandler
+namespace autoburn.MsgHandler
 {
    public abstract class MsgBase
     {
