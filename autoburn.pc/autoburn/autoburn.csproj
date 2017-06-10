@@ -100,6 +100,8 @@
   <ItemGroup>
     <Compile Include="Manager\ChipInfo.cs" />
     <Compile Include="Manager\ChipSupportManager.cs" />
+    <Compile Include="Manager\ConfigInfo.cs" />
+    <Compile Include="Manager\ConfigManager.cs" />
     <Compile Include="Manager\DeviceManager.cs" />
     <Compile Include="Ftp\FtpInstanceServer.cs" />
     <Compile Include="Ui\AboutBox.cs">

@@ -66,6 +66,7 @@
             this.searchComBox.Size = new System.Drawing.Size(574, 23);
             this.searchComBox.TabIndex = 2;
             this.searchComBox.SelectedIndexChanged += new System.EventHandler(this.searchComBox_SelectedIndexChanged);
+            this.searchComBox.TextChanged += new System.EventHandler(this.searchComBox_TextChanged);
             // 
             // ChipTreeView
             // 

@@ -1,4 +1,5 @@
 ﻿using autoburn.Manager;
+using autoburn.util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -38,6 +39,10 @@ namespace autoburn.Ui
             }
 
             ChipTreeView.Nodes.AddRange(vendertreenodelist.ToArray());
+
+            searchComBox.Items.Clear();
+           List<string> history =  DeviceManager.Instance.ConfigManager.GetSavedChooseChipHistory();
+           searchComBox.Items.AddRange(history.ToArray());
         }
 
         private void InitlizeComPonet2()
@@ -87,7 +92,7 @@ namespace autoburn.Ui
 
         private void searchComBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            ProgLog.D("", "searchComBox_SelectedIndexChanged");
         }
 
         private void ChipTreeView_Click(object sender, EventArgs e)
@@ -130,6 +135,11 @@ namespace autoburn.Ui
             var ci = sender as ListView;
             var itm = ci.SelectedItems;
            // Console.WriteLine("ListView " + itm.ToString() + itm.);
+        }
+
+        private void searchComBox_TextChanged(object sender, EventArgs e)
+        {
+            ProgLog.D("", "searchComBox_TextChanged");
         }
     }
 }

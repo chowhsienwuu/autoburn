@@ -47,14 +47,14 @@ namespace autoburn
 
             //return;
 
-
+            SystemLog.I("程序", "准备启动");
             if (!EnSureOnlyOneInstance())
             {
+                SystemLog.E("程序", "已有程序在运行,本次启动失败");
                 return;
             }
 
             DeviceManager.Instance.Init();
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainWindow());

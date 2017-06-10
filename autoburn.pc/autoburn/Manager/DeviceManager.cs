@@ -16,9 +16,12 @@ namespace autoburn.Manager
         public void Init()
         {
             // init all manager .
-
-            _ChipSupportManager = new ChipSupportManager();
-            _uaseAble = true;
+            for (int i = 0; i < 30; i++)
+            {
+               // _ConfigManager.PutChooseChipHistoryItem("lanlan" + i);
+            }
+            _ConfigManager.GetSavedChooseChipHistory();
+             _uaseAble = true;
         }
         
         private bool _uaseAble = false;
@@ -30,8 +33,7 @@ namespace autoburn.Manager
             }
         }
 
-        private ChipSupportManager _ChipSupportManager;
-        
+        private ChipSupportManager _ChipSupportManager = new ChipSupportManager();
         public ChipSupportManager ChipSupportManager
         {
             get
@@ -40,6 +42,13 @@ namespace autoburn.Manager
             }
         }
 
-
+        private ConfigManager _ConfigManager = new ConfigManager();
+        public ConfigManager ConfigManager
+        {
+            get
+            {
+                return _ConfigManager;
+            }
+        }
     }
 }

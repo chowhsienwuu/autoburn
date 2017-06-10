@@ -17,7 +17,6 @@ namespace autoburn.Manager
             LoadVendor();
         }
 
-       
         public Dictionary<string, object[]> VenderseriesDictionary
         {
             get
@@ -50,8 +49,6 @@ namespace autoburn.Manager
 
         public List<ChipInfo> GetChipInfo(string vendor, string serise)
         {
-
-            XmlDocument xmlDoc = new XmlDocument();
             XmlReaderSettings settings = new XmlReaderSettings();
             settings.IgnoreComments = true;//忽略文档里面的注释
 

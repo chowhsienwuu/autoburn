@@ -38,6 +38,9 @@ namespace autoburn
         public static string CHIPINFODIR = "chipinfo";
         public static string CHIPINFODIRPATH = CurrentPath +"\\" + CHIPINFODIR;
 
+        public static string CONFIGDIR = "cfg";
+        public static string CONFIGDIRPATH = CurrentPath + @"\" + CONFIGDIR;
+        public static string CONFIGFILE = CONFIGDIRPATH + @"\" + "save.xml";
         /*
         discovery message.
                 {
