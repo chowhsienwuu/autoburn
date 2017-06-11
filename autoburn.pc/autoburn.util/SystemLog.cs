@@ -15,7 +15,7 @@ namespace autoburn.util
         public static void I(object tag, object msg)
         {
             _logger.Info(tag.ToString() + msg.ToString());
-
+            //_logger.
             //this is for debug
             ProgLog.D(TAG + tag.ToString(), msg);
         }

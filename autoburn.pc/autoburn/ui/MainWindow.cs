@@ -43,41 +43,33 @@ namespace autoburn
             {
                 case CONNECT_STATUS.DISCOVERY_INIT_OK:
                     Invoke((MethodInvoker)delegate () {
-                        discovery.Text = "discovery 初始化成功";
+                        statusdiscovery.Text = "discovery 初始化成功";
                     });
                     break;
                 case CONNECT_STATUS.DISCOVERY_INIT_ERROR:
                     Invoke((MethodInvoker)delegate () {
-                        discovery.Text = "discovery 初始化失败";
+                        statusdiscovery.Text = "discovery 初始化失败";
                     });
                     break;
                 case CONNECT_STATUS.DISCOVERY_GET_PCB:
                     IPEndPoint ip = (IPEndPoint)o[0];
                     Invoke((MethodInvoker)delegate(){
-                        discovery.Text = "板子网络连接: " + ip.Address;
+                        statusdiscovery.Text = "连接: " + ip.Address;
                     });
                     break;
                 case CONNECT_STATUS.TCP_CONNECT_OK:
                     Invoke((MethodInvoker)delegate () {
-                        tcpstatus.Text = "tcp 已经初始化成功";
+                        statusTcpStatus.Text = "tcp 已经初始化成功";
                     });
                     break;
                 case CONNECT_STATUS.TCP_CONNECT_ERROR:
                 case CONNECT_STATUS.TCP_SEND_MSG_ERROR:
                 case CONNECT_STATUS.TCP_RECV_MSG_ERROR:
                     Invoke((MethodInvoker)delegate () {
-                        tcpstatus.Text = "tcp 连接断开";
+                        statusTcpStatus.Text = "tcp 连接断开";
                     });
                     break;
                 case CONNECT_STATUS.TCP_RECEIVE_MSG:
-                    string msg = (string)o[0];
-                    Invoke((MethodInvoker)delegate () {
-                        if (receivemsgstring.TextLength > 2000)
-                        {
-                            receivemsgstring.Clear();
-                        }
-                        receivemsgstring.AppendText("\n-------------\n" + msg + "\n");
-                    });
                     break;
                 default:
                     break;
@@ -90,15 +82,6 @@ namespace autoburn
            
         }
 
-        private void sendtcpcmd_Click(object sender, EventArgs e)
-        {
-            if (sendmsgstring.TextLength < 1 )
-            {
-                return;
-            }
-            _DeviceNetManager.TcpSendMsg(sendmsgstring.Text);
-            D("click send string");
-        }
 
         private bool _HasWindowShow = false;
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)

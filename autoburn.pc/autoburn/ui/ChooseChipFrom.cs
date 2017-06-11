@@ -42,9 +42,6 @@ namespace autoburn.Ui
 
             ChipTreeView.Nodes.AddRange(vendertreenodelist.ToArray());
 
-           //searchComBox.Items.Clear();
-           //List<string> history =  DeviceManager.Instance.ConfigManager.GetSavedChooseChipHistory();
-           //searchComBox.Items.AddRange(history.ToArray());
             _AllChipList = DeviceManager.Instance.ChipSupportManager.GetAllChipInfo();
         }
 
@@ -185,6 +182,11 @@ namespace autoburn.Ui
                 List<string> history = DeviceManager.Instance.ConfigManager.GetSavedChooseChipHistory();
                 searchComBox.Items.AddRange(history.ToArray());
             }
+        }
+
+        private void exit_Click(object sender, EventArgs e)
+        {
+            Hide();
         }
     }
 }
