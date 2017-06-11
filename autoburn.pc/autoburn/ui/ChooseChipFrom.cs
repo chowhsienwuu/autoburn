@@ -23,6 +23,8 @@ namespace autoburn.Ui
 
         private void LoadFile2UI()
         {
+            this.columnHeader1.Width = 200;
+
             Dictionary<string, object[]> _venderseriesDictionary =
                 DeviceManager.Instance.ChipSupportManager.VenderseriesDictionary;
 
@@ -40,11 +42,13 @@ namespace autoburn.Ui
 
             ChipTreeView.Nodes.AddRange(vendertreenodelist.ToArray());
 
-            searchComBox.Items.Clear();
-           List<string> history =  DeviceManager.Instance.ConfigManager.GetSavedChooseChipHistory();
-           searchComBox.Items.AddRange(history.ToArray());
+           //searchComBox.Items.Clear();
+           //List<string> history =  DeviceManager.Instance.ConfigManager.GetSavedChooseChipHistory();
+           //searchComBox.Items.AddRange(history.ToArray());
+            _AllChipList = DeviceManager.Instance.ChipSupportManager.GetAllChipInfo();
         }
 
+        List<ChipInfo> _AllChipList;
         private void InitlizeComPonet2()
         {
             // ser
@@ -130,16 +134,57 @@ namespace autoburn.Ui
             this.ChipInfoListView.EndUpdate();  
         }
 
-        private void ChipInfoListView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var ci = sender as ListView;
-            var itm = ci.SelectedItems;
-           // Console.WriteLine("ListView " + itm.ToString() + itm.);
-        }
-
         private void searchComBox_TextChanged(object sender, EventArgs e)
         {
             ProgLog.D("", "searchComBox_TextChanged");
+        }
+
+        private void ChipInfoListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            var ci = sender as ListView;
+            var itm = ci.SelectedItems;
+            foreach (ListViewItem lvi in itm)
+            {
+                ProgLog.D("", "ChipInfoListView_ItemSelectionChanged lvi " + lvi.Name + " lvi " + lvi.Text);
+                searchComBox.Text = lvi.Text;
+                foreach (ChipInfo chip in _AllChipList)
+                {
+                    if (chip.name.Equals(lvi.Text))
+                    {
+                        _CurrentChooseChip = chip;
+                    }
+                }
+            }
+           // ProgLog.D("", "ChipInfoListView_ItemSelectionChanged " + e.IsSelected + " " + e.Item.Name + ".." + e.Item.Text);
+        }
+
+        ChipInfo _CurrentChooseChip = null;
+        ChipInfo currentChooseChip {
+            get
+            {
+                return _CurrentChooseChip;
+            }
+        }
+
+        private void Ok_Click(object sender, EventArgs e)
+        {
+            if (_CurrentChooseChip != null)
+            {
+                DeviceManager.Instance.ConfigManager.PutChooseChipHistoryItem(_CurrentChooseChip.name);
+            }
+
+            this.Hide();
+        }
+
+        private void ChooseChipFrom_VisibleChanged(object sender, EventArgs e)
+        {
+            ProgLog.D("", "ChooseChipFrom_VisibleChanged  visable: " + Visible);
+            if (Visible)
+            {
+                searchComBox.Items.Clear();
+                List<string> history = DeviceManager.Instance.ConfigManager.GetSavedChooseChipHistory();
+                searchComBox.Items.AddRange(history.ToArray());
+            }
         }
     }
 }

@@ -80,14 +80,15 @@ namespace autoburn.Manager
             {
                 if (i < historyitemlist.Count - 10)
                 { //去多.
-                    _xmlDocument.RemoveChild(historyitemlist[i]);
+                    chiphistorynode.RemoveChild(historyitemlist[i]);
+                    //_xmlDocument.RemoveChild(historyitemlist[i]);
                 }
                 else
                 {//去重
                     var itemel = historyitemlist[i] as XmlElement;
                     if (history.Equals(itemel.GetAttribute(ConfigInfo.TYPE_A_CHIPCHOOSEHISTORYNAME)))
                     {
-                        _xmlDocument.RemoveChild(itemel);
+                        chiphistorynode.RemoveChild(itemel);
                     }
                 }
             }

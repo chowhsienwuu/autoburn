@@ -95,18 +95,19 @@
             this.ChipInfoListView.GridLines = true;
             this.ChipInfoListView.Location = new System.Drawing.Point(218, 68);
             this.ChipInfoListView.Margin = new System.Windows.Forms.Padding(10, 2, 3, 2);
+            this.ChipInfoListView.MultiSelect = false;
             this.ChipInfoListView.Name = "ChipInfoListView";
             this.tableLayoutPanel1.SetRowSpan(this.ChipInfoListView, 8);
             this.ChipInfoListView.Size = new System.Drawing.Size(582, 444);
             this.ChipInfoListView.TabIndex = 6;
             this.ChipInfoListView.UseCompatibleStateImageBehavior = false;
             this.ChipInfoListView.View = System.Windows.Forms.View.Details;
-            this.ChipInfoListView.SelectedIndexChanged += new System.EventHandler(this.ChipInfoListView_SelectedIndexChanged);
+            this.ChipInfoListView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.ChipInfoListView_ItemSelectionChanged);
             // 
             // columnHeader1
             // 
             this.columnHeader1.Text = "芯片型号";
-            this.columnHeader1.Width = 100;
+            this.columnHeader1.Width = 200;
             // 
             // columnHeader2
             // 
@@ -132,13 +133,14 @@
             // 
             // Ok
             // 
-            this.Ok.Location = new System.Drawing.Point(137, 21);
+            this.Ok.Location = new System.Drawing.Point(115, 21);
             this.Ok.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Ok.Name = "Ok";
             this.Ok.Size = new System.Drawing.Size(75, 38);
             this.Ok.TabIndex = 1;
             this.Ok.Text = "确定";
             this.Ok.UseVisualStyleBackColor = true;
+            this.Ok.Click += new System.EventHandler(this.Ok_Click);
             // 
             // exit
             // 
@@ -205,6 +207,7 @@
             this.Name = "ChooseChipFrom";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "选择芯片";
+            this.VisibleChanged += new System.EventHandler(this.ChooseChipFrom_VisibleChanged);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);

@@ -15,6 +15,17 @@ namespace autoburn.Manager
          internal ChipSupportManager()
         {
             LoadVendor();
+
+            foreach (KeyValuePair<string, object[]> kvp in _venderseriesDictionary)
+            {
+                // TreeNode tn = new TreeNode(kvp.Key, seriesTreeNodelist.ToArray());
+                foreach (object series in kvp.Value)
+                {
+                    //seriesTreeNodelist.Add(new TreeNode(series.ToString()));
+                    var chipinfolist = DoGetChipInfo(kvp.Key, series.ToString());
+                    _allchipvendorlistDic.Add(new KeyValuePair<string, string>(kvp.Key, series.ToString()), chipinfolist);
+                }
+            }
         }
 
         public Dictionary<string, object[]> VenderseriesDictionary
@@ -25,6 +36,7 @@ namespace autoburn.Manager
             }
         }
 
+        //key-value vendor文件夹, - 文件夹中的文件列表. 
         private Dictionary<string, object[]> _venderseriesDictionary = new Dictionary<string, object[]>();
         private void LoadVendor()
         {
@@ -47,7 +59,31 @@ namespace autoburn.Manager
             }
         }
 
+        private Dictionary<KeyValuePair<string, string>, List<ChipInfo>> _allchipvendorlistDic = 
+            new Dictionary<KeyValuePair<string, string>, List<ChipInfo>>();
+
         public List<ChipInfo> GetChipInfo(string vendor, string serise)
+        {
+            foreach (KeyValuePair<KeyValuePair<string, string>, List<ChipInfo>> kvp in _allchipvendorlistDic)
+            {
+                if (kvp.Key.Key.Equals(vendor) && kvp.Key.Value.Equals(serise))
+                {
+                    return kvp.Value;
+                }
+            }
+            return null;
+        }
+        public List<ChipInfo> GetAllChipInfo()
+        {
+            List<ChipInfo> alllistinfo = new List<ChipInfo>();
+            foreach (KeyValuePair<KeyValuePair<string, string>, List<ChipInfo>> kvp in _allchipvendorlistDic)
+            {
+                alllistinfo.AddRange(kvp.Value);
+            }
+            return alllistinfo;
+        }
+
+        public List<ChipInfo> DoGetChipInfo(string vendor, string serise)
         {
             XmlReaderSettings settings = new XmlReaderSettings();
             settings.IgnoreComments = true;//忽略文档里面的注释
