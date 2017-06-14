@@ -21,6 +21,10 @@ namespace autoburn.Ui
                LoadFile2UI();
         }
 
+        #region Events
+
+        public event EventHandler StateChanged;
+        #endregion
         private void LoadFile2UI()
         {
             this.columnHeader1.Width = 200;
@@ -156,7 +160,7 @@ namespace autoburn.Ui
         }
 
         ChipInfo _CurrentChooseChip = null;
-        ChipInfo currentChooseChip {
+        public ChipInfo CurrentChooseChip {
             get
             {
                 return _CurrentChooseChip;
@@ -171,6 +175,7 @@ namespace autoburn.Ui
             }
 
             this.Hide();
+            StateChanged?.Invoke(this, null);
         }
 
         private void ChooseChipFrom_VisibleChanged(object sender, EventArgs e)
@@ -187,6 +192,7 @@ namespace autoburn.Ui
         private void exit_Click(object sender, EventArgs e)
         {
             Hide();
+            StateChanged?.Invoke(this, null);
         }
     }
 }

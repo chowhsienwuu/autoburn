@@ -30,6 +30,15 @@ namespace autoburn
             _DeviceNetManager.Start(); //start discovery.
 
             _HasWindowShow = true;
+
+
+            _ChooseChipFrom.StateChanged += delegate {
+                accordionPanel1.ChipinfoVendor = _ChooseChipFrom.CurrentChooseChip.vendor;
+                accordionPanel1.ChipinforName = _ChooseChipFrom.CurrentChooseChip.name;
+                accordionPanel1.ChipinforPackage = _ChooseChipFrom.CurrentChooseChip.package;
+                accordionPanel1.ChipinforCapcity = "-";
+                accordionPanel1.ChipinforBurner = _ChooseChipFrom.CurrentChooseChip.burner;
+            };
         }
 
         private void UpdateUi(CONNECT_STATUS c, object[] o)

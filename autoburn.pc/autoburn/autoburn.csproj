@@ -104,17 +104,34 @@
     <Compile Include="Manager\ConfigManager.cs" />
     <Compile Include="Manager\DeviceManager.cs" />
     <Compile Include="Ftp\FtpInstanceServer.cs" />
+    <Compile Include="Ressources\Pictureres.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Pictureres.resx</DependentUpon>
+    </Compile>
     <Compile Include="Ui\AboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Ui\AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ui\AccordionPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ui\AccordionPanel.Designer.cs">
+      <DependentUpon>AccordionPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ui\ChooseChipFrom.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Ui\ChooseChipFrom.Designer.cs">
       <DependentUpon>ChooseChipFrom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\Expander.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ui\Expander.Designer.cs">
+      <DependentUpon>Expander.cs</DependentUpon>
     </Compile>
     <Compile Include="Ui\MainWindow.cs">
       <SubType>Form</SubType>
@@ -134,8 +151,15 @@
     <Compile Include="Program.cs" />
     <Compile Include="ProgramInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Ressources\Pictureres.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Pictureres.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ui\AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ui\AccordionPanel.resx">
+      <DependentUpon>AccordionPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ui\ChooseChipFrom.resx">
       <DependentUpon>ChooseChipFrom.cs</DependentUpon>
@@ -190,6 +214,8 @@
     <Content Include="chipinfo\eon\EN25.xml" />
     <Content Include="chipinfo\eon\EN27XX.xml" />
     <Content Include="chipinfo\jsc\JSFXX.xml" />
+    <None Include="Ressources\Expand.png" />
+    <None Include="Ressources\Collapse.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="chipinfo\hynix\" />

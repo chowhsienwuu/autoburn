@@ -54,10 +54,12 @@
             this.statusTcpStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.statustableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.accordionPanel1 = new ConsoleApplication1.AccordionPanel();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.StatusStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.statustableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -283,18 +285,33 @@
             // 
             // statustableLayoutPanel2
             // 
-            this.statustableLayoutPanel2.ColumnCount = 2;
+            this.statustableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel1.SetColumnSpan(this.statustableLayoutPanel2, 2);
             this.statustableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.statustableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.statustableLayoutPanel2.Controls.Add(this.accordionPanel1, 0, 0);
             this.statustableLayoutPanel2.Location = new System.Drawing.Point(811, 3);
             this.statustableLayoutPanel2.Name = "statustableLayoutPanel2";
-            this.statustableLayoutPanel2.RowCount = 2;
+            this.statustableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel1.SetRowSpan(this.statustableLayoutPanel2, 10);
             this.statustableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.statustableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.statustableLayoutPanel2.Size = new System.Drawing.Size(202, 574);
             this.statustableLayoutPanel2.TabIndex = 0;
+            // 
+            // accordionPanel1
+            // 
+            this.accordionPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.accordionPanel1.ChipinforBurner = null;
+            this.accordionPanel1.ChipinforCapcity = null;
+            this.accordionPanel1.ChipinforName = null;
+            this.accordionPanel1.ChipinforPackage = null;
+            this.accordionPanel1.ChipinfoVendor = null;
+            this.accordionPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.accordionPanel1.Location = new System.Drawing.Point(3, 3);
+            this.accordionPanel1.Name = "accordionPanel1";
+            this.accordionPanel1.Size = new System.Drawing.Size(196, 568);
+            this.accordionPanel1.TabIndex = 0;
             // 
             // MainWindow
             // 
@@ -319,6 +336,7 @@
             this.StatusStrip.ResumeLayout(false);
             this.StatusStrip.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.statustableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -350,6 +368,7 @@
         private System.Windows.Forms.ToolStripStatusLabel statusTcpStatus;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel statustableLayoutPanel2;
+        private ConsoleApplication1.AccordionPanel accordionPanel1;
     }
 }
 

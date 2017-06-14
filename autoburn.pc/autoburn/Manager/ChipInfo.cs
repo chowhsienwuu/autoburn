@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace autoburn.Manager
 {
-    class ChipInfo
+    public class ChipInfo
     {
         //      <chipinfo vendor = "jsc" series="JSFXX">
         //<chip name = "JSFA9A2N73ABB-450" type="emmc" package="bma107" burner="ZY-DB107A0-A01" note="">  </chip>
