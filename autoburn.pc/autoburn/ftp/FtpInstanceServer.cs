@@ -9,9 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using static autoburn.Net.DeviceNetManager;
+using static Autoburn.Net.DeviceNetManager;
 
-namespace autoburn.Ftp
+namespace Autoburn.Ftp
 {
     public class FtpInstanceServer
     {

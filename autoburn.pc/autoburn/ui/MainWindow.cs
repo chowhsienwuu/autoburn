@@ -1,19 +1,20 @@
-﻿using autoburn.Net;
-using autoburn.Ui;
-using autoburn.util;
+﻿using Autoburn.Net;
+using Autoburn.Ui;
+using Autoburn.util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static autoburn.Net.DeviceNetManager;
+using static Autoburn.Net.DeviceNetManager;
 
-namespace autoburn
+namespace Autoburn.Ui
 {
     public partial class MainWindow : Form
     {
@@ -111,6 +112,62 @@ namespace autoburn
         private void ChooseChipMenuItem_Click(object sender, EventArgs e)
         {
             _ChooseChipFrom.ShowDialog();
+        }
+
+        private void NewProjectStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Stream myStream;
+            SaveFileDialog savefileDialog = new SaveFileDialog();
+
+            savefileDialog.Title = "新建工程";
+            savefileDialog.Filter = "工程文件|*.ccp";
+            savefileDialog.RestoreDirectory = true;
+
+            if (savefileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if ((myStream = savefileDialog.OpenFile()) != null)
+                {
+                    filename = savefileDialog.FileName;
+                    // Code to write the stream goes here.
+                    myStream.Write(Encoding.ASCII.GetBytes(savefileDialog.FileName), 0, savefileDialog.FileName.Length);
+                    myStream.Close();
+                }
+            }
+        }
+        public string filename = "";
+        private void OpenProjectStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Stream myStream = null;
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+          //  openFileDialog1.InitialDirectory = "c:\\";
+            openFileDialog1.Title = "保存工程";
+            openFileDialog1.Filter = "工程文件|*.ccp";
+            openFileDialog1.FilterIndex = 2;
+            openFileDialog1.RestoreDirectory = true;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    if ((myStream = openFileDialog1.OpenFile()) != null)
+                    {
+                        using (myStream)
+                        {
+                            // Insert code to read the stream here.
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+                }
+            }
+        }
+
+        private void ProjecthistorytoolStripMenuItem_MouseHover(object sender, EventArgs e)
+        {
+
         }
     }
 }

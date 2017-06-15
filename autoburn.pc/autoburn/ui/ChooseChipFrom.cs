@@ -1,5 +1,5 @@
-﻿using autoburn.Manager;
-using autoburn.util;
+﻿using Autoburn.Manager;
+using Autoburn.util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace autoburn.Ui
+namespace Autoburn.Ui
 {
     public partial class ChooseChipFrom : Form
     {

@@ -5,7 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace autoburn
+namespace Autoburn
 {
     class ProgramInfo
     {
@@ -41,11 +41,10 @@ namespace autoburn
         public static string CONFIGDIR = "cfg";
         public static string CONFIGDIRPATH = CurrentPath + @"\" + CONFIGDIR;
         public static string CONFIGFILE = CONFIGDIRPATH + @"\" + "save.xml";
-        /*
-        discovery message.
-                {
-            "msgtype": "broadcast"
-        }
-        */
+
+        public static string PROJECTFILE_EXTENDSNAME = ".ccp";
+
+
+
     }
 }

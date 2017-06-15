@@ -1,4 +1,8 @@
-﻿namespace autoburn
+﻿
+
+using Autoburn.Ui;
+
+namespace Autoburn.Ui
 {
     partial class MainWindow
     {
@@ -28,14 +32,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.MainmenuItem = new System.Windows.Forms.MenuStrip();
+            this.FileStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ProjectStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.NewProjectStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpenProjectStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ProjecthistorytoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ChipStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ChooseChipMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,45 +62,49 @@
             this.statusTcpStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.statustableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.accordionPanel1 = new ConsoleApplication1.AccordionPanel();
-            this.menuStrip1.SuspendLayout();
+            this.accordionPanel1 = new AccordionPanel();
+            this.mainWindowBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.MainmenuItem.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.StatusStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.statustableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mainWindowBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // MainmenuItem
             // 
-            this.menuStrip1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
-            this.toolStripMenuItem2,
-            this.toolStripMenuItem3,
+            this.MainmenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.MainmenuItem.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.MainmenuItem.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.FileStripMenuItem,
+            this.ProjectStripMenuItem,
+            this.ChipStripMenuItem,
             this.设置ToolStripMenuItem,
             this.HelpMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.menuStrip1.Size = new System.Drawing.Size(1016, 28);
-            this.menuStrip1.TabIndex = 5;
-            this.menuStrip1.Text = "menuStrip1";
+            this.MainmenuItem.Location = new System.Drawing.Point(0, 0);
+            this.MainmenuItem.Name = "MainmenuItem";
+            this.MainmenuItem.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.MainmenuItem.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.MainmenuItem.Size = new System.Drawing.Size(762, 25);
+            this.MainmenuItem.TabIndex = 5;
+            this.MainmenuItem.Text = "menuStrip1";
             // 
-            // toolStripMenuItem1
+            // FileStripMenuItem
             // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.FileStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem5,
             this.toolStripMenuItem6});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(51, 24);
-            this.toolStripMenuItem1.Text = "文件";
+            this.FileStripMenuItem.Name = "FileStripMenuItem";
+            this.FileStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
+            this.FileStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.FileStripMenuItem.Text = "文件";
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(120, 26);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(104, 22);
             this.toolStripMenuItem5.Text = "1558";
             // 
             // toolStripMenuItem6
@@ -100,40 +112,65 @@
             this.toolStripMenuItem6.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem7});
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(120, 26);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(104, 22);
             this.toolStripMenuItem6.Text = "44";
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(102, 26);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(90, 22);
             this.toolStripMenuItem7.Text = "44";
             // 
-            // toolStripMenuItem2
+            // ProjectStripMenuItem
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(51, 24);
-            this.toolStripMenuItem2.Text = "工程";
+            this.ProjectStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.NewProjectStripMenuItem,
+            this.OpenProjectStripMenuItem,
+            this.ProjecthistorytoolStripMenuItem});
+            this.ProjectStripMenuItem.Name = "ProjectStripMenuItem";
+            this.ProjectStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.ProjectStripMenuItem.Text = "工程";
             // 
-            // toolStripMenuItem3
+            // NewProjectStripMenuItem
             // 
-            this.toolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.NewProjectStripMenuItem.Name = "NewProjectStripMenuItem";
+            this.NewProjectStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.NewProjectStripMenuItem.Text = "新建工程";
+            this.NewProjectStripMenuItem.Click += new System.EventHandler(this.NewProjectStripMenuItem_Click);
+            // 
+            // OpenProjectStripMenuItem
+            // 
+            this.OpenProjectStripMenuItem.Name = "OpenProjectStripMenuItem";
+            this.OpenProjectStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.OpenProjectStripMenuItem.Text = "打开工程";
+            this.OpenProjectStripMenuItem.Click += new System.EventHandler(this.OpenProjectStripMenuItem_Click);
+            // 
+            // ProjecthistorytoolStripMenuItem
+            // 
+            this.ProjecthistorytoolStripMenuItem.Name = "ProjecthistorytoolStripMenuItem";
+            this.ProjecthistorytoolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.ProjecthistorytoolStripMenuItem.Text = "最近打开的工程";
+            this.ProjecthistorytoolStripMenuItem.MouseHover += new System.EventHandler(this.ProjecthistorytoolStripMenuItem_MouseHover);
+            // 
+            // ChipStripMenuItem
+            // 
+            this.ChipStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ChooseChipMenuItem});
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(51, 24);
-            this.toolStripMenuItem3.Text = "芯片";
+            this.ChipStripMenuItem.Name = "ChipStripMenuItem";
+            this.ChipStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.ChipStripMenuItem.Text = "芯片";
             // 
             // ChooseChipMenuItem
             // 
             this.ChooseChipMenuItem.Name = "ChooseChipMenuItem";
-            this.ChooseChipMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.ChooseChipMenuItem.Size = new System.Drawing.Size(124, 22);
             this.ChooseChipMenuItem.Text = "选择芯片";
             this.ChooseChipMenuItem.Click += new System.EventHandler(this.ChooseChipMenuItem_Click);
             // 
             // 设置ToolStripMenuItem
             // 
             this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
-            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
+            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.设置ToolStripMenuItem.Text = "设置";
             // 
             // HelpMenuItem
@@ -141,13 +178,13 @@
             this.HelpMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AboutMenuItem});
             this.HelpMenuItem.Name = "HelpMenuItem";
-            this.HelpMenuItem.Size = new System.Drawing.Size(51, 24);
+            this.HelpMenuItem.Size = new System.Drawing.Size(44, 21);
             this.HelpMenuItem.Text = "帮助";
             // 
             // AboutMenuItem
             // 
             this.AboutMenuItem.Name = "AboutMenuItem";
-            this.AboutMenuItem.Size = new System.Drawing.Size(114, 26);
+            this.AboutMenuItem.Size = new System.Drawing.Size(100, 22);
             this.AboutMenuItem.Text = "关于";
             this.AboutMenuItem.Click += new System.EventHandler(this.AboutMenuItem_Click);
             // 
@@ -162,9 +199,9 @@
             this.toolStripButton4,
             this.toolStripButton5,
             this.toolStripSplitButton1});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 28);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 25);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1016, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(762, 27);
             this.toolStrip1.TabIndex = 6;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -224,7 +261,7 @@
             this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
             this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSplitButton1.Name = "toolStripSplitButton1";
-            this.toolStripSplitButton1.Size = new System.Drawing.Size(39, 24);
+            this.toolStripSplitButton1.Size = new System.Drawing.Size(36, 24);
             this.toolStripSplitButton1.Text = "toolStripSplitButton1";
             // 
             // StatusStrip
@@ -233,22 +270,23 @@
             this.StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusdiscovery,
             this.statusTcpStatus});
-            this.StatusStrip.Location = new System.Drawing.Point(0, 635);
+            this.StatusStrip.Location = new System.Drawing.Point(0, 506);
             this.StatusStrip.Name = "StatusStrip";
-            this.StatusStrip.Size = new System.Drawing.Size(1016, 25);
+            this.StatusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 10, 0);
+            this.StatusStrip.Size = new System.Drawing.Size(762, 22);
             this.StatusStrip.TabIndex = 7;
             this.StatusStrip.Text = "statusStrip1";
             // 
             // statusdiscovery
             // 
             this.statusdiscovery.Name = "statusdiscovery";
-            this.statusdiscovery.Size = new System.Drawing.Size(167, 20);
+            this.statusdiscovery.Size = new System.Drawing.Size(131, 17);
             this.statusdiscovery.Text = "toolStripStatusLabel1";
             // 
             // statusTcpStatus
             // 
             this.statusTcpStatus.Name = "statusTcpStatus";
-            this.statusTcpStatus.Size = new System.Drawing.Size(167, 20);
+            this.statusTcpStatus.Size = new System.Drawing.Size(131, 17);
             this.statusTcpStatus.Text = "toolStripStatusLabel1";
             // 
             // tableLayoutPanel1
@@ -267,7 +305,8 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.Controls.Add(this.statustableLayoutPanel2, 8, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 55);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 52);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 10;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
@@ -280,7 +319,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1016, 580);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(762, 454);
             this.tableLayoutPanel1.TabIndex = 8;
             // 
             // statustableLayoutPanel2
@@ -290,13 +329,14 @@
             this.statustableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.statustableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.statustableLayoutPanel2.Controls.Add(this.accordionPanel1, 0, 0);
-            this.statustableLayoutPanel2.Location = new System.Drawing.Point(811, 3);
+            this.statustableLayoutPanel2.Location = new System.Drawing.Point(610, 2);
+            this.statustableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.statustableLayoutPanel2.Name = "statustableLayoutPanel2";
             this.statustableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel1.SetRowSpan(this.statustableLayoutPanel2, 10);
             this.statustableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.statustableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.statustableLayoutPanel2.Size = new System.Drawing.Size(202, 574);
+            this.statustableLayoutPanel2.Size = new System.Drawing.Size(150, 450);
             this.statustableLayoutPanel2.TabIndex = 0;
             // 
             // accordionPanel1
@@ -308,48 +348,49 @@
             this.accordionPanel1.ChipinforPackage = null;
             this.accordionPanel1.ChipinfoVendor = null;
             this.accordionPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.accordionPanel1.Location = new System.Drawing.Point(3, 3);
+            this.accordionPanel1.Location = new System.Drawing.Point(2, 2);
+            this.accordionPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.accordionPanel1.Name = "accordionPanel1";
-            this.accordionPanel1.Size = new System.Drawing.Size(196, 568);
+            this.accordionPanel1.Size = new System.Drawing.Size(146, 446);
             this.accordionPanel1.TabIndex = 0;
             // 
             // MainWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1016, 660);
+            this.ClientSize = new System.Drawing.Size(762, 528);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.StatusStrip);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Controls.Add(this.MainmenuItem);
+            this.MainMenuStrip = this.MainmenuItem;
             this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.MainmenuItem.ResumeLayout(false);
+            this.MainmenuItem.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.StatusStrip.ResumeLayout(false);
             this.StatusStrip.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.statustableLayoutPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.mainWindowBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.MenuStrip MainmenuItem;
+        private System.Windows.Forms.ToolStripMenuItem FileStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem7;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem ProjectStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ChipStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 设置ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem HelpMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AboutMenuItem;
@@ -368,7 +409,12 @@
         private System.Windows.Forms.ToolStripStatusLabel statusTcpStatus;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel statustableLayoutPanel2;
-        private ConsoleApplication1.AccordionPanel accordionPanel1;
+        private AccordionPanel accordionPanel1;
+        private System.Windows.Forms.ToolStripMenuItem NewProjectStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem OpenProjectStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ProjecthistorytoolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.BindingSource mainWindowBindingSource;
     }
 }
 

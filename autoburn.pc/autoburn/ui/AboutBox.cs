@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace autoburn.Ui
+namespace Autoburn.Ui
 {
     partial class AboutBox : Form
     {

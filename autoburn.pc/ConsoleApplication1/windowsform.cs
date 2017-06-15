@@ -1,4 +1,4 @@
-﻿using ExpanderApp;
+﻿using Autoburn;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,6 +31,24 @@ namespace ConsoleApplication1
             labelContent.Size = new System.Drawing.Size(expander.Width, 80);
             expander.Content = labelContent;
             this.Controls.Add(expander);
+
+
+
+            Binding b = new Binding
+                ("Text", this, ds);
+            // Add the delegates to the event.
+            //b.Format += new ConvertEventHandler(DecimalToCurrencyString);
+            //b.Parse += new ConvertEventHandler(CurrencyStringToDecimal);
+          //  labelContent.DataBindings.Add(b);
+       
+        }
+
+        string ds = "yaoyao";
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            ds = textBox1.Text + "666";
+            Console.WriteLine("ds " + ds);
         }
     }
 }

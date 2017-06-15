@@ -1,4 +1,4 @@
-﻿using autoburn.util;
+﻿using Autoburn.util;
 using System;
 using System.Linq;
 using System.Net;
@@ -7,9 +7,9 @@ using System.Text;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.Threading;
-using static autoburn.Net.DeviceNetManager;
+using static Autoburn.Net.DeviceNetManager;
 
-namespace autoburn.Net
+namespace Autoburn.Net
 {
     //监听UDP UDP_LISTEN_PORT = 18000 端口, 可以收到PCM板子发送的心跳包 即可发现板子.
     class BeatHeat

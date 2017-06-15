@@ -1,11 +1,10 @@
-﻿using autoburn.Ressources;
-using ConsoleApplication1;
+﻿using Autoburn.Ressources;
 using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace ExpanderApp
+namespace Autoburn.Ui
 {
     public partial class Expander : UserControl
     {

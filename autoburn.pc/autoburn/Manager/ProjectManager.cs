@@ -9,11 +9,11 @@ using System.Xml;
 
 namespace Autoburn.Manager
 {
-    class ConfigManager
+    class ProjectManager
     {
 
         private string _configDir = ProgramInfo.CONFIGDIRPATH;
-        public ConfigManager()
+        public ProjectManager()
         {
             Init();
         }

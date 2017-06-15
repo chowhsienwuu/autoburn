@@ -1,4 +1,4 @@
-﻿namespace ExpanderApp
+﻿namespace Autoburn.Ui
 {
     partial class Expander
     {

@@ -1,21 +1,21 @@
-﻿using autoburn.Ftp;
-using autoburn.Net;
-using autoburn.util;
+﻿using Autoburn.Ftp;
+using Autoburn.Net;
+using Autoburn.util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using autoburn.MsgHandler;
+using Autoburn.MsgHandler;
 using System.Threading;
-using autoburn.Manager;
+using Autoburn.Manager;
+using Autoburn.Ui;
 
-namespace autoburn
+namespace Autoburn
 {
     static class Program
     {
-
         public static string mCurrentPath = "";
         static int index = 0;
         static void test()
@@ -32,7 +32,7 @@ namespace autoburn
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
-    //    [STAThread]
+        [STAThread]
         static void Main()
         {
 

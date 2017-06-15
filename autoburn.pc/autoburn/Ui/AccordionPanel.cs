@@ -7,9 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ExpanderApp;
+using Autoburn;
+using Autoburn.Ui;
 
-namespace ConsoleApplication1
+namespace Autoburn.Ui
 {
     public partial class AccordionPanel : UserControl
     {

@@ -1,4 +1,4 @@
-﻿using autoburn.util;
+﻿using Autoburn.util;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace autoburn.MsgHandler
+namespace Autoburn.MsgHandler
 {
      public class TxMsgBase :MsgBase
     {

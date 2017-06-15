@@ -1,11 +1,11 @@
-﻿using autoburn.Net;
+﻿using Autoburn.Net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace autoburn.MsgHandler
+namespace Autoburn.MsgHandler
 {
     class RxMsgHandlerTest : RxMsgHandlerBase
     {

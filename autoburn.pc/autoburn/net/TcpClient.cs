@@ -1,4 +1,4 @@
-﻿using autoburn.util;
+﻿using Autoburn.util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +7,9 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using static autoburn.Net.DeviceNetManager;
+using static Autoburn.Net.DeviceNetManager;
 
-namespace autoburn.Net
+namespace Autoburn.Net
 {
     public class TcpCmdClient
     {

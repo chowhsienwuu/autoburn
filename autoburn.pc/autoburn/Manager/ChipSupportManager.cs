@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace autoburn.Manager
+namespace Autoburn.Manager
 {
     class ChipSupportManager
     {

@@ -1,4 +1,4 @@
-﻿using autoburn.util;
+﻿using Autoburn.util;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -6,14 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace autoburn.MsgHandler
+namespace Autoburn.MsgHandler
 {
    public abstract class MsgBase
     {
         // const  发送接收json数据包要用到的常量
         public const string MSG_TYPE_STRING = "msgtype";
         public const string MSG_INDEX = "msgindex";
-
 
         //
         public const string MSG_TYPE_INFO = "info";

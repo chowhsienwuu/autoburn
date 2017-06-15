@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace autoburn.util
+namespace Autoburn.util
 {
     public class SystemLog
     {

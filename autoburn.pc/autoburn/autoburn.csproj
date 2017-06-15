@@ -7,7 +7,7 @@
     <ProjectGuid>{E308BB76-7B9E-43D0-A005-E38DECA17F08}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>autoburn</RootNamespace>
+    <RootNamespace>Autoburn</RootNamespace>
     <AssemblyName>autoburn</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -98,9 +98,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Manager\ProjectInfo.cs" />
     <Compile Include="Manager\ChipInfo.cs" />
     <Compile Include="Manager\ChipSupportManager.cs" />
     <Compile Include="Manager\ConfigInfo.cs" />
+    <Compile Include="Manager\ProjectManager.cs" />
     <Compile Include="Manager\ConfigManager.cs" />
     <Compile Include="Manager\DeviceManager.cs" />
     <Compile Include="Ftp\FtpInstanceServer.cs" />
@@ -177,8 +179,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\autobrun.ui.ChooseChipFrom.datasource" />
+    <None Include="Properties\DataSources\MainWindow.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

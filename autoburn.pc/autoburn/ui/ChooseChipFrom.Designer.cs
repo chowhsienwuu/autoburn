@@ -1,4 +1,4 @@
-﻿namespace autoburn.Ui
+﻿namespace Autoburn.Ui
 {
     partial class ChooseChipFrom
     {

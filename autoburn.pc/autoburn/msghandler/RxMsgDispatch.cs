@@ -1,4 +1,4 @@
-﻿using autoburn.util;
+﻿using Autoburn.util;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using autoburn.Net;
+using Autoburn.Net;
 
-namespace autoburn.MsgHandler
+namespace Autoburn.MsgHandler
 {
     public class RxMsgDispatch
     {

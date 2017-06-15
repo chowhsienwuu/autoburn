@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace autoburn.Manager
+namespace Autoburn.Manager
 {
     class DeviceManager
     {
@@ -50,5 +50,20 @@ namespace autoburn.Manager
                 return _ConfigManager;
             }
         }
+
+        public ProjectManager ProjectManager
+        {
+            get
+            {
+                return projectManager;
+            }
+
+            set
+            {
+                projectManager = value;
+            }
+        }
+
+        private ProjectManager projectManager = new ProjectManager();
     }
 }

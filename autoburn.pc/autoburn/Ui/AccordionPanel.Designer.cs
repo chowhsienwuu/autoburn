@@ -1,4 +1,4 @@
-﻿namespace ConsoleApplication1
+﻿namespace Autoburn.Ui
 {
     partial class AccordionPanel
     {
