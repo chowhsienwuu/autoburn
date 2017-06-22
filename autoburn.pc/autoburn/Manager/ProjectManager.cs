@@ -15,7 +15,7 @@ namespace Autoburn.Manager
         private string _configDir = ProgramInfo.CONFIGDIRPATH;
         public ProjectManager()
         {
-            Init();
+           // Init();
         }
 
         private void Init()
