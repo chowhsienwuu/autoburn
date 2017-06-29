@@ -44,7 +44,9 @@ namespace Autoburn
 
         public static string PROJECTFILE_EXTENDSNAME = ".ccp";
 
-
+        public static string DBFILE = "raw.db";
+        public static string DBFILEPATH = CurrentPath + @"\" + CONFIGDIR;
+        public static string DBFILEFULLPATHFILE = DBFILEPATH + @"\" + DBFILE;
 
     }
 }

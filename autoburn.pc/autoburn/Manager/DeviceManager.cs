@@ -11,6 +11,10 @@ namespace Autoburn.Manager
         public static readonly DeviceManager Instance = new DeviceManager();
         private DeviceManager()
         {
+            _dataBaseManager = new DataBaseManager(this);
+            _ChipSupportManager = new ChipSupportManager();
+            _ConfigManager = new ConfigManager();
+            _projectManager = new ProjectManager();
         }
 
         public void Init()
@@ -21,9 +25,19 @@ namespace Autoburn.Manager
                // _ConfigManager.PutChooseChipHistoryItem("lanlan" + i);
             }
             _ConfigManager.GetSavedChooseChipHistory();
-             _uaseAble = true;
+            _uaseAble = true;
         }
-        
+
+        private DataBaseManager _dataBaseManager = null;
+        internal DataBaseManager DataBaseManager
+        {
+            get
+            {
+                return _dataBaseManager;
+            }
+        }
+
+
         private bool _uaseAble = false;
         public bool UseAble
         {
@@ -33,7 +47,7 @@ namespace Autoburn.Manager
             }
         }
 
-        private ChipSupportManager _ChipSupportManager = new ChipSupportManager();
+        private ChipSupportManager _ChipSupportManager = null;
         public ChipSupportManager ChipSupportManager
         {
             get
@@ -42,7 +56,7 @@ namespace Autoburn.Manager
             }
         }
 
-        private ConfigManager _ConfigManager = new ConfigManager();
+        private ConfigManager _ConfigManager = null;
         public ConfigManager ConfigManager
         {
             get
@@ -55,15 +69,16 @@ namespace Autoburn.Manager
         {
             get
             {
-                return projectManager;
+                return _projectManager;
             }
 
             set
             {
-                projectManager = value;
+                _projectManager = value;
             }
         }
 
-        private ProjectManager projectManager = new ProjectManager();
+        private ProjectManager _projectManager = null;
+
     }
 }
