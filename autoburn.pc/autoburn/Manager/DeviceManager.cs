@@ -12,19 +12,19 @@ namespace Autoburn.Manager
         private DeviceManager()
         {
             _dataBaseManager = new DataBaseManager(this);
-            _ChipSupportManager = new ChipSupportManager();
-            _ConfigManager = new ConfigManager();
+            _ChipSupportManager = new ChipSupportManager(this);
+            _ConfigManager = new ConfigManager(this);
             _projectManager = new ProjectManager();
         }
 
         public void Init()
         {
             // init all manager .
-            for (int i = 0; i < 30; i++)
-            {
-               // _ConfigManager.PutChooseChipHistoryItem("lanlan" + i);
-            }
-            _ConfigManager.GetSavedChooseChipHistory();
+            //for (int i = 0; i < 30; i++)
+            //{
+            //   // _ConfigManager.PutChooseChipHistoryItem("lanlan" + i);
+            //}
+            //_ConfigManager.GetSavedChooseChipHistory();
             _uaseAble = true;
         }
 

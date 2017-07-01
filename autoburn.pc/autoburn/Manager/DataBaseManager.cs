@@ -17,13 +17,32 @@ namespace Autoburn.Manager
         {
             _DeviceManager = manager;
 
-            if (File.Exists(ProgramInfo.DBFILEFULLPATHFILE))
+            if (File.Exists(ProgramInfo.DBFILE))
             {
-                var connect = "Data Source=" + ProgramInfo.DBFILEFULLPATHFILE + "; Version=3;";
+                var connect = "Data Source=" + ProgramInfo.DBFILE + "; Version=3;";
                 _dbConnection = new SQLiteConnection(connect);
+                _dbConnection.Open();
             }
+          //  test();         
         }
 
+        private void test()
+        {
+            printHighscores();
+          //  throw new NotImplementedException();
+        }
+
+        public SQLiteDataReader ExeGetReader(string sqlstring)
+        {
+            if (_dbConnection == null || sqlstring == null)
+            {
+                return null;
+            }
+            var sql = sqlstring + ";";
+
+            SQLiteCommand command = new SQLiteCommand(sql, _dbConnection);
+            return command.ExecuteReader();
+        }
 
         ////插入一些数据
         //void fillTable()
@@ -42,15 +61,25 @@ namespace Autoburn.Manager
         //}
 
         ////使用sql查询语句，并显示结果
-        //void printHighscores()
-        //{
-        //    string sql = "select * from highscores order by score desc";
-        //    SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
-        //    SQLiteDataReader reader = command.ExecuteReader();
-        //    while (reader.Read())
-        //        Console.WriteLine("Name: " + reader["name"] + "\tScore: " + reader["score"]);
-        //    Console.ReadLine();
-        //}
+        void printHighscores()
+        {
+            if (_dbConnection == null)
+            {
+                return;
+            }
+
+            string sql = "select * from " + ChipInfo.TYPE_TABLE_NAME_CHIPINFO + ";";
+            SQLiteCommand command = new SQLiteCommand(sql, _dbConnection);
+            SQLiteDataReader reader = command.ExecuteReader();
+            Console.Out.WriteLine("--" + reader.HasRows);
+            while (reader.Read())
+            {
+                Console.WriteLine("read:  " + reader["vendor"]);
+            }
+
+            reader.Close(); 
+           // Console.ReadLine();
+        }
 
     }
 

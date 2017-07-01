@@ -31,9 +31,9 @@ namespace Autoburn.Manager
                 XmlTextWriter InitXmlTextWriter = new XmlTextWriter(ProgramInfo.CONFIGFILE, null);
                 InitXmlTextWriter.Formatting = Formatting.Indented;
                 InitXmlTextWriter.WriteStartDocument(true);
-                InitXmlTextWriter.WriteStartElement(ConfigInfo.TYPE_E_CONFIG);
-                InitXmlTextWriter.WriteAttributeString(ConfigInfo.TYPE_A_CREATETIME, DateTime.Now.ToString());
-                InitXmlTextWriter.WriteAttributeString(ConfigInfo.TYPE_A_VERSION, Assembly.GetExecutingAssembly().GetName().Version.ToString());
+                InitXmlTextWriter.WriteStartElement(ConfigInfo.TYPE_TABLENAME);
+                InitXmlTextWriter.WriteAttributeString(ConfigInfo.TYPE_CREATETIME, DateTime.Now.ToString());
+                InitXmlTextWriter.WriteAttributeString(ConfigInfo.TYPE_VERSION, Assembly.GetExecutingAssembly().GetName().Version.ToString());
 
                 InitXmlTextWriter.WriteEndElement();
                 InitXmlTextWriter.Flush();
@@ -49,7 +49,7 @@ namespace Autoburn.Manager
         {
             List<string> historyname = new List<string>();
             var chiphistorynode = _xmlDocument.SelectSingleNode(_chiphistoryel);
-            var historyitem = chiphistorynode?.SelectNodes(_chiphistoryel + "/" + ConfigInfo.TYPE_E_CHIPCHOOSEHISTORYITEM);
+            var historyitem = chiphistorynode?.SelectNodes(_chiphistoryel + "/" + ConfigInfo.TYPE_CHIPCHOOSEHISTORYITEM);
             if (historyitem != null)
             {
                 foreach (XmlNode itemnode in historyitem)
@@ -62,7 +62,7 @@ namespace Autoburn.Manager
             return historyname;
         }
 
-        private string _chiphistoryel = "/" + ConfigInfo.TYPE_E_CONFIG + "/" + ConfigInfo.TYPE_E_CHIPCHOOSEHISTORY;
+        private string _chiphistoryel = "/" + ConfigInfo.TYPE_TABLENAME + "/" + ConfigInfo.TYPE_CHIPCHOOSEHISTORY;
         public void PutChooseChipHistoryItem(string history)
         {
             if (String.IsNullOrEmpty(history))
@@ -72,13 +72,13 @@ namespace Autoburn.Manager
             var chiphistorynode = _xmlDocument.SelectSingleNode(_chiphistoryel);
             if (chiphistorynode == null)
             { //not exist create a node .
-                var rootnode = _xmlDocument.SelectSingleNode(ConfigInfo.TYPE_E_CONFIG);
-                var historyroot = _xmlDocument.CreateElement(ConfigInfo.TYPE_E_CHIPCHOOSEHISTORY);
+                var rootnode = _xmlDocument.SelectSingleNode(ConfigInfo.TYPE_TABLENAME);
+                var historyroot = _xmlDocument.CreateElement(ConfigInfo.TYPE_CHIPCHOOSEHISTORY);
                 rootnode?.AppendChild(historyroot);
             }
             chiphistorynode = _xmlDocument.SelectSingleNode(_chiphistoryel);
 
-            var historyitemlist = chiphistorynode?.SelectNodes(_chiphistoryel + "/" + ConfigInfo.TYPE_E_CHIPCHOOSEHISTORYITEM);
+            var historyitemlist = chiphistorynode?.SelectNodes(_chiphistoryel + "/" + ConfigInfo.TYPE_CHIPCHOOSEHISTORYITEM);
             for (int i = 0; i < historyitemlist.Count; i++)
             {
                 if (i < historyitemlist.Count - 10)
@@ -98,7 +98,7 @@ namespace Autoburn.Manager
             //  historyitemlist = chiphistorynode?.SelectNodes(_chiphistoryel + "/" + ConfigInfo.TYPE_E_CHIPCHOOSEHISTORYITEM);
             //     forea
 
-            var historyitem = _xmlDocument.CreateElement(ConfigInfo.TYPE_E_CHIPCHOOSEHISTORYITEM);
+            var historyitem = _xmlDocument.CreateElement(ConfigInfo.TYPE_CHIPCHOOSEHISTORYITEM);
             var historyitemname = _xmlDocument.CreateAttribute(ConfigInfo.TYPE_A_CHIPCHOOSEHISTORYNAME);
             historyitemname.Value = history;
             historyitem.Attributes.Append(historyitemname);

@@ -17,8 +17,8 @@ namespace Autoburn.Ui
         public ChooseChipFrom()
         {
             InitializeComponent();
-            // InitlizeComPonet2();
-               LoadFile2UI();
+             //InitlizeComPonet2();
+            LoadFile2UI();
         }
 
         #region Events
@@ -27,72 +27,95 @@ namespace Autoburn.Ui
         #endregion
         private void LoadFile2UI()
         {
-            this.columnHeader1.Width = 200;
+            //  this.columnHeader1.Width = 200;
 
-            Dictionary<string, object[]> _venderseriesDictionary =
-                DeviceManager.Instance.ChipSupportManager.VenderseriesDictionary;
 
-            List<TreeNode> vendertreenodelist = new List<TreeNode>();
-            foreach(KeyValuePair<string, object[]> kvp in _venderseriesDictionary)
-           {
-                List<TreeNode> seriesTreeNodelist = new List<TreeNode>();
-                foreach(object series in kvp.Value)
-                {
-                    seriesTreeNodelist.Add(new TreeNode(series.ToString()));
-                }
-                TreeNode tn = new TreeNode(kvp.Key, seriesTreeNodelist.ToArray());
-                vendertreenodelist.Add(tn);
+            //Dictionary<string, object[]> _venderseriesDictionary =
+            //    DeviceManager.Instance.ChipSupportManager.VenderseriesDictionary;
+
+            //List<TreeNode> vendertreenodelist = new List<TreeNode>();
+            //foreach (KeyValuePair<string, object[]> kvp in _venderseriesDictionary)
+            //{
+            //    List<TreeNode> seriesTreeNodelist = new List<TreeNode>();
+            //    foreach (object series in kvp.Value)
+            //    {
+            //        seriesTreeNodelist.Add(new TreeNode(series.ToString()));
+            //    }
+            //    TreeNode tn = new TreeNode(kvp.Key, seriesTreeNodelist.ToArray());
+            //    tn.Text = "999";
+            //    vendertreenodelist.Add(tn);
+            //}
+
+            //ChipTreeView.Nodes.AddRange(vendertreenodelist.ToArray());
+
+            //
+
+            _AllChipList = DeviceManager.Instance.ChipSupportManager.AllChipInfo;
+            var venderset = new HashSet<string>();
+            foreach (ChipInfo chip in _AllChipList)
+            {
+                venderset.Add(chip.vendor);
             }
 
-            ChipTreeView.Nodes.AddRange(vendertreenodelist.ToArray());
-
-            _AllChipList = DeviceManager.Instance.ChipSupportManager.GetAllChipInfo();
+            List<TreeNode> vendertreenodelist = new List<TreeNode>();
+            foreach (string vendorstring in venderset)
+            {
+                List<TreeNode> seriesTreeNodelist = new List<TreeNode>();
+                var seriesset = new HashSet<string>();
+                foreach (ChipInfo chip in _AllChipList)
+                {
+                    if (vendorstring.Equals(chip.vendor))
+                    {
+                        seriesset.Add(chip.series);
+                    }
+                }
+                foreach (string seriesstring in seriesset)
+                {
+                    seriesTreeNodelist.Add(new TreeNode(seriesstring));
+                }
+                TreeNode tn = new TreeNode(vendorstring, seriesTreeNodelist.ToArray<TreeNode>());
+                vendertreenodelist.Add(tn);
+            }
+            ChipTreeView.Nodes.AddRange(vendertreenodelist.ToArray<TreeNode>());
         }
 
-        List<ChipInfo> _AllChipList;
+        private List<ChipInfo> _AllChipList;
         private void InitlizeComPonet2()
         {
             // ser
-            string[] history = { "283", ".sdks", "9238888" };
-            searchComBox.Items.AddRange(history);
-            TreeNode[] tnarray = new TreeNode[8];
-               
-            for (int i = 0; i < tnarray.Length; i++)
-            {
-                TreeNode[] tnsub = new TreeNode[i];
-                for (int j = 0; j < tnsub.Length; j++)
-                {
-                    TreeNode tntemp = new TreeNode("sub : " + j);
-                    tnsub[j] = tntemp;
-                }
+            //string[] history = { "283", ".sdks", "9238888" };
+            //searchComBox.Items.AddRange(history);
+         //   TreeNode[] tnarray = new TreeNode[8];
+            List<TreeNode> tnarray = new List<TreeNode>();
+            //for (int i = 0; i < 8; i++)
+            //{
+            //    TreeNode[] tnsub = new TreeNode[i];
+            //    for (int j = 0; j < tnsub.Length; j++)
+            //    {
+            //        TreeNode tntemp = new TreeNode("sub : " + j);
+            //        tnsub[j] = tntemp;
+            //    }
 
-                TreeNode tn = new TreeNode("" , tnsub);
-                tn.Text = "root: " + i;
-                tnarray[i] = tn;
-            }
+            //    TreeNode tn = new TreeNode("" , tnsub);
+            //    tn.Text = "root: " + i;
+            //    tnarray.Add( tn);
+            //}
+            tnarray.Add(new TreeNode("999"));
+            ChipTreeView.Nodes.AddRange(tnarray.ToArray<TreeNode>());
 
-            ChipTreeView.Nodes.AddRange(tnarray);
 
-            //   ColumnHeader ch = new ColumnHeader();
 
-            //   ch.Text = "列标题1";   //设置列标题
+            //this.ChipInfoListView.BeginUpdate();   //数据更新，UI暂时挂起，直到EndUpdate绘制控件，可以有效避免闪烁并大大提高加载速度
+            //for (int i = 0; i < 10; i++)   //添加10行数据
+            //{
+            //    ListViewItem lvi = new ListViewItem();
+            //    lvi.Text = "item " + i;
+            //    lvi.SubItems.Add("第2列,第" + i + "行");
+            //    lvi.SubItems.Add("第3列,第" + i + "行");
+            //    this.ChipInfoListView.Items.Add(lvi);
+            //}
 
-            ////   ch.Width = 120;    //设置列宽度
-
-            //   ch.TextAlign = HorizontalAlignment.Left;   //设置列的对齐方式
-            //   ChipInfoListView.Columns.Add(ch);
-            //ChipInfoListView.Columns.
-            this.ChipInfoListView.BeginUpdate();   //数据更新，UI暂时挂起，直到EndUpdate绘制控件，可以有效避免闪烁并大大提高加载速度
-            for (int i = 0; i < 10; i++)   //添加10行数据
-            {
-                ListViewItem lvi = new ListViewItem();
-                lvi.Text = "item " + i;
-                lvi.SubItems.Add("第2列,第" + i + "行");
-                lvi.SubItems.Add("第3列,第" + i + "行");
-                this.ChipInfoListView.Items.Add(lvi);
-            }
-
-            this.ChipInfoListView.EndUpdate();  //结束数据处理，UI界面一次性绘制。
+            //this.ChipInfoListView.EndUpdate();  //结束数据处理，UI界面一次性绘制。
         }
 
         private void searchComBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -113,8 +136,17 @@ namespace Autoburn.Ui
                 " " + tn.Index + "--" + tn.FullPath + " " );
             if (tn.FullPath.Contains(@"\"))
             {
-                List<ChipInfo> chipinfolist = 
-                    DeviceManager.Instance.ChipSupportManager.GetChipInfo(tn.Parent.Text, tn.Text);
+                //List<ChipInfo> chipinfolist = 
+                //    DeviceManager.Instance.ChipSupportManager.GetChipInfo(tn.Parent.Text, tn.Text);
+
+                var chipinfolist = new List<ChipInfo>();
+                foreach(ChipInfo chip in _AllChipList)
+                {
+                    if (tn.Parent.Text.Equals(chip.vendor) && tn.Text.Equals(chip.series))
+                    {
+                        chipinfolist.Add(chip);
+                    }
+                }
                 LoadChipList2UI(chipinfolist);
             }
         }
@@ -184,7 +216,10 @@ namespace Autoburn.Ui
             if (Visible)
             {
                 searchComBox.Items.Clear();
+
                 List<string> history = DeviceManager.Instance.ConfigManager.GetSavedChooseChipHistory();
+
+
                 searchComBox.Items.AddRange(history.ToArray());
             }
         }

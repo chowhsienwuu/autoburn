@@ -220,6 +220,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="ClassDiagram1.cd" />
+    <None Include="misc\raw.db" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\autobrun.ui.ChooseChipFrom.datasource" />
     <None Include="Properties\DataSources\MainWindow.datasource" />
@@ -259,6 +260,7 @@
     <Content Include="chipinfo\eon\EN27XX.xml" />
     <Content Include="chipinfo\jsc\JSFXX.xml" />
     <Content Include="Manager\projecttest.xml" />
+    <Content Include="misc\rawsql.txt" />
     <None Include="Ressources\Expand.png" />
     <None Include="Ressources\Collapse.png" />
   </ItemGroup>
@@ -272,7 +274,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>xcopy /s  /y  $(ProjectDir)chipinfo   $(TargetDir)chipinfo\</PreBuildEvent>
+    <PreBuildEvent>xcopy /s  /y  $(ProjectDir)chipinfo   $(TargetDir)chipinfo\
+xcopy /s  /y  $(ProjectDir)misc\raw.db   $(TargetDir)</PreBuildEvent>
   </PropertyGroup>
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

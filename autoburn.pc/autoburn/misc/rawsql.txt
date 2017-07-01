@@ -1,0 +1,18 @@
+﻿CREATE TABLE [chipinfo](
+    [index] INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, 
+    [vendor] VARCHAR NOT NULL, 
+    [series] VARCHAR, 
+    [name] VARCHAR NOT NULL UNIQUE, 
+    [type] VARCHAR, 
+    [package] VARCHAR, 
+    [burner] VARCHAR, 
+    [note] VARBINARY);
+
+
+
+CREATE TABLE "config"(
+    [index] INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, 
+    [key] NOT NULL, 
+    [value] NOT NULL, 
+    [time] TIMESTAMP);
+

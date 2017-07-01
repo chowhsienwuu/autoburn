@@ -9,13 +9,11 @@ namespace Autoburn.Manager
     class ConfigInfo
     {
         // head.
-        public const string TYPE_E_CONFIG = "config";
-        public const string TYPE_A_CREATETIME = "createtime";
-        public const string TYPE_A_VERSION = "version";
+        public const string TYPE_TABLENAME = "config";
+        public const string TYPE_CREATETIME = "createtime";
+        public const string TYPE_VERSION = "version";
 
         //记录选择芯片的历史记录
-        public const string TYPE_E_CHIPCHOOSEHISTORY = "chipchoosehistory";
-        public const string TYPE_E_CHIPCHOOSEHISTORYITEM = "chipchoosehistoryitem";
-        public const string TYPE_A_CHIPCHOOSEHISTORYNAME = "name";
+        public const string TYPE_CHIPCHOOSEHISTORY = "chipchoosehistory";
     }
 }

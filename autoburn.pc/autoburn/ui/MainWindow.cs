@@ -33,13 +33,7 @@ namespace Autoburn.Ui
             _HasWindowShow = true;
 
 
-            _ChooseChipFrom.StateChanged += delegate {
-                accordionPanel1.ChipinfoVendor = _ChooseChipFrom.CurrentChooseChip.vendor;
-                accordionPanel1.ChipinforName = _ChooseChipFrom.CurrentChooseChip.name;
-                accordionPanel1.ChipinforPackage = _ChooseChipFrom.CurrentChooseChip.package;
-                accordionPanel1.ChipinforCapcity = "-";
-                accordionPanel1.ChipinforBurner = _ChooseChipFrom.CurrentChooseChip.burner;
-            };
+
         }
 
         private void UpdateUi(CONNECT_STATUS c, object[] o)
@@ -108,9 +102,24 @@ namespace Autoburn.Ui
         
         }
 
-        ChooseChipFrom _ChooseChipFrom = new ChooseChipFrom();
+        ChooseChipFrom _ChooseChipFrom = null;
         private void ChooseChipMenuItem_Click(object sender, EventArgs e)
         {
+            if (_ChooseChipFrom == null)
+            {
+                _ChooseChipFrom = new ChooseChipFrom();
+                _ChooseChipFrom.StateChanged += delegate
+                {
+                    if (_ChooseChipFrom != null)
+                    {
+                        accordionPanel1.ChipinfoVendor = _ChooseChipFrom.CurrentChooseChip.vendor;
+                        accordionPanel1.ChipinforName = _ChooseChipFrom.CurrentChooseChip.name;
+                        accordionPanel1.ChipinforPackage = _ChooseChipFrom.CurrentChooseChip.package;
+                        accordionPanel1.ChipinforCapcity = "-";
+                        accordionPanel1.ChipinforBurner = _ChooseChipFrom.CurrentChooseChip.burner;
+                    }
+                };
+            }
             _ChooseChipFrom.ShowDialog();
         }
 
