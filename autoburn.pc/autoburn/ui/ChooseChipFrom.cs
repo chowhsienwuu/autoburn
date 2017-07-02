@@ -27,9 +27,7 @@ namespace Autoburn.Ui
         #endregion
         private void LoadFile2UI()
         {
-            //  this.columnHeader1.Width = 200;
-
-
+              this.columnHeader1.Width = 200;
             //Dictionary<string, object[]> _venderseriesDictionary =
             //    DeviceManager.Instance.ChipSupportManager.VenderseriesDictionary;
 
@@ -77,6 +75,8 @@ namespace Autoburn.Ui
                 vendertreenodelist.Add(tn);
             }
             ChipTreeView.Nodes.AddRange(vendertreenodelist.ToArray<TreeNode>());
+
+
         }
 
         private List<ChipInfo> _AllChipList;
@@ -218,7 +218,6 @@ namespace Autoburn.Ui
                 searchComBox.Items.Clear();
 
                 List<string> history = DeviceManager.Instance.ConfigManager.GetSavedChooseChipHistory();
-
 
                 searchComBox.Items.AddRange(history.ToArray());
             }

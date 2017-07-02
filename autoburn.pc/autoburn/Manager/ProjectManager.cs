@@ -18,6 +18,7 @@ namespace Autoburn.Manager
            // Init();
         }
 
+#if  USE_XML_CONFIG
         private void Init()
         {
             if (!Directory.Exists(_configDir))
@@ -105,5 +106,7 @@ namespace Autoburn.Manager
             chiphistorynode?.AppendChild(historyitem);
             _xmlDocument.Save(ProgramInfo.CONFIGFILE);
         }
+
+#endif
     }
 }

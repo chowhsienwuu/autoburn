@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Data.SQLite;
 using System.IO;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Autoburn.Manager
     class DataBaseManager
     {
         private DeviceManager _DeviceManager = null;
-
+        public const string MultStringSpitString = "$$$$$$";
         private SQLiteConnection _dbConnection;
         public DataBaseManager(DeviceManager manager)
         {
@@ -23,13 +24,17 @@ namespace Autoburn.Manager
                 _dbConnection = new SQLiteConnection(connect);
                 _dbConnection.Open();
             }
-          //  test();         
+         //  test();         
         }
 
         private void test()
         {
             printHighscores();
-          //  throw new NotImplementedException();
+            printHighscores();
+            //  throw new NotImplementedException();
+            //ExeSetKeyVal("9999999", "666");
+            //ExeSetKeyVal("999xxx", "666");
+            // ExeSetKeyVal("lao", "updatexx");
         }
 
         public SQLiteDataReader ExeGetReader(string sqlstring)
@@ -42,6 +47,85 @@ namespace Autoburn.Manager
 
             SQLiteCommand command = new SQLiteCommand(sql, _dbConnection);
             return command.ExecuteReader();
+        }
+
+        public string GetConfigValue(string key)
+        {
+            var value = "";
+            var sql = "select value from " + ConfigInfo.TYPE_TABLENAME + " where " + ConfigInfo.TYPE_COLUMN_KEY + 
+               " = '" + key + "';" ;
+            var read = ExeGetReader(sql);
+
+            while (read.Read())
+            {
+                try
+                {
+                    NameValueCollection nv = read.GetValues();
+                    value = nv.Get(ConfigInfo.TYPE_COLUMN_VALUE);
+                }
+                catch (Exception e)
+                {
+                    Console.Out.WriteLine(" excepiton " + e.ToString());
+                }
+            }
+
+         read.Close();
+
+            return value;
+        }
+
+
+        public void ExeSetKeyVal(string key, string value)
+        {
+            if (key == null || value == null)
+            {
+                return;
+            }
+            var count = ExeKeyNums(key);
+            if (count == 0)
+            {  // insert 1
+                ExeInsertKeyValue(key, value);
+            }else
+            {
+                UpdateKeyValue(key, value);
+            }
+        }
+
+        private void UpdateKeyValue(string key, string value)
+        {
+            var sql = "update " + ConfigInfo.TYPE_TABLENAME + " set " + ConfigInfo.TYPE_COLUMN_VALUE
+                     + "='" + value + "', time=datetime('now','localtime') where key='" + key + "';";
+
+            SQLiteCommand command = new SQLiteCommand(sql, _dbConnection);
+            command.ExecuteNonQuery();
+        }
+
+        private void ExeInsertKeyValue(string key, string value)
+        {
+            var sql = "insert into " + ConfigInfo.TYPE_TABLENAME + "(" + ConfigInfo.TYPE_COLUMN_KEY + "," + ConfigInfo.TYPE_COLUMN_VALUE
+                + "," + ConfigInfo.TYPE_COLUMN_TIME + ") values(" + "'" + key + "','" + value + "', datetime('now', 'localtime'));";
+            SQLiteCommand command = new SQLiteCommand(sql, _dbConnection);
+            command.ExecuteNonQuery();
+        }
+
+        private int ExeKeyNums(string key)
+        {
+            if (key == null)
+            {
+                return 0;
+            }
+            var count = 0;
+            var sql = "select count(" + ConfigInfo.TYPE_COLUMN_KEY + ") from " + ConfigInfo.TYPE_TABLENAME + " where " +
+                ConfigInfo.TYPE_COLUMN_KEY + " = '" + key + "' ;";
+            SQLiteCommand command = new SQLiteCommand(sql, _dbConnection);
+            SQLiteDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                  count = reader.GetInt32(0);
+            }
+            reader?.Close();
+            return count;
         }
 
         ////插入一些数据
@@ -74,7 +158,7 @@ namespace Autoburn.Manager
             Console.Out.WriteLine("--" + reader.HasRows);
             while (reader.Read())
             {
-                Console.WriteLine("read:  " + reader["vendor"]);
+                Console.WriteLine(" test read:  " + reader["vendor"]);
             }
 
             reader.Close(); 

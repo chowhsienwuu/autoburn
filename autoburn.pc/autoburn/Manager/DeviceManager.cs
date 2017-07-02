@@ -9,6 +9,8 @@ namespace Autoburn.Manager
     class DeviceManager
     {
         public static readonly DeviceManager Instance = new DeviceManager();
+
+
         private DeviceManager()
         {
             _dataBaseManager = new DataBaseManager(this);

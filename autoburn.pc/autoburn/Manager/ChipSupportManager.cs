@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,6 @@ namespace Autoburn.Manager
 
         private void InitDBmodul()
         {
-
             var sql = "select * from " + ChipInfo.TYPE_TABLE_NAME_CHIPINFO + ";";
             var read = _DeviceManager.DataBaseManager.ExeGetReader(sql);
             if (read == null || !read.HasRows)
@@ -33,23 +33,34 @@ namespace Autoburn.Manager
             _venderseriesDictionary.Clear();
             _allchipvendorlistDic.Clear();
             _allChipInfo.Clear();
+            //NameValueCollection nvc = read.GetValues();
+            //       foreach(Namev)
+
             while (read.Read())
             {
+                Console.Out.WriteLine(" read ");
                 try
                 {
                     var chipinfo = new ChipInfo();
-                 //   Console.Out.WriteLine(" " + read[ChipInfo.TYPE_VENDOR]);
-                    chipinfo.vendor = read[ChipInfo.TYPE_VENDOR].ToString();
-                    chipinfo.series = read[ChipInfo.TYPE_SERIES].ToString();
-                    chipinfo.name = read[ChipInfo.TYPE_NAME].ToString();
-                    chipinfo.type = read[ChipInfo.TYPE_TYPE].ToString();
-                    chipinfo.package = read[ChipInfo.TYPE_PACKAGE].ToString();
-                    chipinfo.burner = read[ChipInfo.TYPE_BURNER].ToString();
-                    chipinfo.note = read[ChipInfo.TYPE_NOTE].ToString();
+                    NameValueCollection nv = read.GetValues();
+                    //  Console.Out.WriteLine(" " + nv.Get(ChipInfo.TYPE_COLUMN_VENDOR));
+                    chipinfo.vendor = "" + nv.Get(ChipInfo.TYPE_COLUMN_VENDOR);
+                    var series = nv.Get(ChipInfo.TYPE_COLUMN_SERIES);
+
+                    chipinfo.series = "" + nv.Get(ChipInfo.TYPE_COLUMN_SERIES);
+                    chipinfo.name = nv.Get(ChipInfo.TYPE_COLUMN_NAME);
+                    chipinfo.type = nv.Get(ChipInfo.TYPE_COLUMN_TYPE);
+                    chipinfo.package = nv.Get(ChipInfo.TYPE_COLUMN_PACKAGE);
+                    chipinfo.burner = nv.Get(ChipInfo.TYPE_COLUMN_BURNER);
+                    chipinfo.note = nv.Get(ChipInfo.TYPE_COLUMN_NOTE);
                     _allChipInfo.Add(chipinfo);
                 }
-                catch { }
+                catch (Exception e)
+                {
+                    Console.Out.WriteLine(" excepiton " + e.ToString());
+                }
             }
+            read.Close();
         }
 
 
@@ -155,7 +166,7 @@ namespace Autoburn.Manager
                 doc.Load(_chipinfodir + @"\" + vendor + @"\" + serise + ".xml");
                 var chipinfosiglenode = doc.SelectSingleNode(ChipInfo.TYPE_TABLE_NAME_CHIPINFO);
                 var chipinfoElement = chipinfosiglenode as XmlElement;
-                chipinfoElement.GetAttribute(ChipInfo.TYPE_VENDOR);
+                chipinfoElement.GetAttribute(ChipInfo.TYPE_COLUMN_VENDOR);
 
                 // parse every chip. in the em
                 XmlNodeList xnl = chipinfosiglenode.ChildNodes;
@@ -166,11 +177,11 @@ namespace Autoburn.Manager
                     chipinfoobject.vendor = vendor;
                     chipinfoobject.series = serise;
 
-                    chipinfoobject.name = siglechipele.GetAttribute(ChipInfo.TYPE_NAME);
-                    chipinfoobject.type = siglechipele.GetAttribute(ChipInfo.TYPE_TYPE);
-                    chipinfoobject.package = siglechipele.GetAttribute(ChipInfo.TYPE_PACKAGE);
-                    chipinfoobject.burner = siglechipele.GetAttribute(ChipInfo.TYPE_BURNER);
-                    chipinfoobject.note = siglechipele.GetAttribute(ChipInfo.TYPE_NOTE);
+                    chipinfoobject.name = siglechipele.GetAttribute(ChipInfo.TYPE_COLUMN_NAME);
+                    chipinfoobject.type = siglechipele.GetAttribute(ChipInfo.TYPE_COLUMN_TYPE);
+                    chipinfoobject.package = siglechipele.GetAttribute(ChipInfo.TYPE_COLUMN_PACKAGE);
+                    chipinfoobject.burner = siglechipele.GetAttribute(ChipInfo.TYPE_COLUMN_BURNER);
+                    chipinfoobject.note = siglechipele.GetAttribute(ChipInfo.TYPE_COLUMN_NOTE);
                     infolist.Add(chipinfoobject);
                 }
             }

@@ -16,3 +16,13 @@ CREATE TABLE "config"(
     [value] NOT NULL, 
     [time] TIMESTAMP);
 
+
+	INSERT into config(key, value) values("baobao", "jiejie");
+
+	select key from config where key = '999'
+select count(key) from config where key = '999'
+
+
+insert into config(key,value,time) values('xx','xs', datetime('now'));
+
+update config set value='riri', time=datetime('now','localtime') where key='fuck'

@@ -11,7 +11,6 @@ namespace Autoburn.Manager
 {
     class ConfigManager
     {
-
         private string _configDir = ProgramInfo.CONFIGDIRPATH;
 
         private DeviceManager _DeviceManager = null;
@@ -27,19 +26,51 @@ namespace Autoburn.Manager
 
         }
 
+        public List<string> GetSavedChooseChipHistory()
+        {
+            List<string> historyname = new List<string>();
+
+            var allhistry = _DeviceManager.DataBaseManager.GetConfigValue(ConfigInfo.TYPE_KEY_CHIPCHOOSEHISTORY);
+            var histrylist = allhistry.Split(new[] { DataBaseManager.MultStringSpitString }, StringSplitOptions.None);
+
+            foreach (string item in histrylist)
+            {
+                if (item.Length > 1)
+                {
+                    historyname.Add(item);
+                }
+            }
+
+            historyname.Reverse();
+            return historyname;
+        }
+
+        public void PutChooseChipHistoryItem(string history)
+        {
+            var allhistry = _DeviceManager.DataBaseManager.GetConfigValue(ConfigInfo.TYPE_KEY_CHIPCHOOSEHISTORY);
+            var histrylist = allhistry.Split(new[] { DataBaseManager.MultStringSpitString }, StringSplitOptions.None);
+
+            List<string> historyname = new List<string>(histrylist);
+            while (historyname.Capacity > 10)
+            {
+                historyname.RemoveAt(0);
+            }
+            historyname.Add(history);
+
+            var newvalue = "";
+            foreach (string name in historyname)
+            {
+                if (name.Length > 1)
+                {
+                    newvalue += name + DataBaseManager.MultStringSpitString;
+                }
+            }
+
+            _DeviceManager.DataBaseManager.ExeSetKeyVal(ConfigInfo.TYPE_KEY_CHIPCHOOSEHISTORY, newvalue);
+        }
 
 
-
-
-
-
-
-
-
-
-
-
-
+#if USE_XML_CONFIG
         #region storeinxml not use by now. 
         private void InitXMLmodul()
         {
@@ -128,6 +159,8 @@ namespace Autoburn.Manager
             chiphistorynode?.AppendChild(historyitem);
             _xmlDocument.Save(ProgramInfo.CONFIGFILE);
         }
+        #endregion xmlmodel 
+#endif
     }
-    #endregion xmlmodel 
 }
+

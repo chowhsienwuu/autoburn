@@ -10,10 +10,12 @@ namespace Autoburn.Manager
     {
         // head.
         public const string TYPE_TABLENAME = "config";
-        public const string TYPE_CREATETIME = "createtime";
-        public const string TYPE_VERSION = "version";
+        public const string TYPE_COLUMN_KEY = "key";
+        public const string TYPE_COLUMN_VALUE = "value";
+        public const string TYPE_COLUMN_TIME = "time";
 
-        //记录选择芯片的历史记录
-        public const string TYPE_CHIPCHOOSEHISTORY = "chipchoosehistory";
+
+        public const string TYPE_ = "version";
+        public const string TYPE_KEY_CHIPCHOOSEHISTORY = "chipchoosehistory";
     }
 }
