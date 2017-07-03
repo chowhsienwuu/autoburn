@@ -125,24 +125,30 @@ namespace Autoburn.Ui
 
         private void NewProjectStripMenuItem_Click(object sender, EventArgs e)
         {
-            Stream myStream;
-            SaveFileDialog savefileDialog = new SaveFileDialog();
+            //Stream myStream;
+            //SaveFileDialog savefileDialog = new SaveFileDialog();
 
-            savefileDialog.Title = "新建工程";
-            savefileDialog.Filter = "工程文件|*.ccp";
-            savefileDialog.RestoreDirectory = true;
+            //savefileDialog.Title = "新建工程";
+            //savefileDialog.Filter = "工程文件|*.ccp";
+            //savefileDialog.RestoreDirectory = true;
 
-            if (savefileDialog.ShowDialog() == DialogResult.OK)
-            {
-                if ((myStream = savefileDialog.OpenFile()) != null)
-                {
-                    filename = savefileDialog.FileName;
-                    // Code to write the stream goes here.
-                    myStream.Write(Encoding.ASCII.GetBytes(savefileDialog.FileName), 0, savefileDialog.FileName.Length);
-                    myStream.Close();
-                }
-            }
+            //if (savefileDialog.ShowDialog() == DialogResult.OK)
+            //{
+            //    if ((myStream = savefileDialog.OpenFile()) != null)
+            //    {
+            //        filename = savefileDialog.FileName;
+            //        // Code to write the stream goes here.
+            //        myStream.Write(Encoding.ASCII.GetBytes(savefileDialog.FileName), 0, savefileDialog.FileName.Length);
+            //        myStream.Close();
+            //    }
+            //}
+            SaveProject sp = new SaveProject();
+            sp.ShowDialog();
+
         }
+
+
+
         public string filename = "";
         private void OpenProjectStripMenuItem_Click(object sender, EventArgs e)
         {
