@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml;
 
 namespace Autoburn.Manager
@@ -17,6 +20,121 @@ namespace Autoburn.Manager
         {
            // Init();
         }
+
+        public void ReSet()
+        {
+
+        }
+        private string _fuallpathdir = "";
+        private string _dbfile = "";
+        public void InitDir(string fullpath)
+        {
+            _fuallpathdir = fullpath;
+            _dbfile = fullpath + @"/" + ProjectInfo.PROJECT_DB_FILE_NAME;
+            // create a db. create table.
+            CreateDbFile();
+            connectToDatabase();
+            CreateTable();
+        }
+
+        SQLiteConnection _dbConnection;
+        private void connectToDatabase()
+        {
+            var sql = "Data Source=" + _dbfile + ";Version=3;";
+            _dbConnection = new SQLiteConnection(sql);
+            _dbConnection.Open();
+
+            //add a key create time.
+        }
+
+       private void CreateTable()
+        {
+            string sql = "CREATE TABLE \"project\"([index] INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,[key]NOT NULL, [value]);";
+            SQLiteCommand command = new SQLiteCommand(sql, _dbConnection);
+            command.ExecuteNonQuery();
+        }
+
+        private void CreateDbFile()
+        {
+            if (File.Exists(_dbfile))
+            {
+                DialogResult result = MessageBox.Show(null,
+                    "文件已存在,将被重写!", "文件已存在", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                File.Delete(_dbfile);
+            }
+            SQLiteConnection.CreateFile(_dbfile);
+        }
+
+
+        public void ExeSetKeyVal(Hashtable table)
+        {
+            foreach(string key in table.Keys){
+                var value = table[key] as string;
+                if (!string.IsNullOrEmpty(key) && !string.IsNullOrEmpty(value))
+                {
+                    ExeSetKeyVal(key, value);
+
+                }
+            }
+        }
+
+        public void ExeSetKeyVal(string key, string value)
+        {
+            if (key == null || value == null)
+            {
+                return;
+            }
+            var count = ExeKeyNums(key);
+            if (count == 0)
+            {  // insert 1
+                ExeInsertKeyValue(key, value);
+            }
+            else
+            {
+                UpdateKeyValue(key, value);
+            }
+        }
+
+        private void UpdateKeyValue(string key, string value)
+        {
+            var sql = "update " + ProjectInfo.TYPE_TABLE_NAME_PROJECT + " set " + ProjectInfo.TYPE_COLUMN_VALUE
+                     + "='" + value + " where key='" + key + "';";
+
+            SQLiteCommand command = new SQLiteCommand(sql, _dbConnection);
+            command.ExecuteNonQuery();
+        }
+
+        private void ExeInsertKeyValue(string key, string value)
+        {
+            var sql = "insert into " + ProjectInfo.TYPE_TABLE_NAME_PROJECT + "(" + ProjectInfo.TYPE_COLUMN_KEY + "," + ProjectInfo.TYPE_COLUMN_VALUE
+                + ") values(" + "'" + key + "','" + value + "');";
+            SQLiteCommand command = new SQLiteCommand(sql, _dbConnection);
+            command.ExecuteNonQuery();
+        }
+
+        private int ExeKeyNums(string key)
+        {
+            if (key == null)
+            {
+                return 0;
+            }
+            var count = 0;
+            var sql = "select count(" + ProjectInfo.TYPE_COLUMN_KEY + ") from " + ProjectInfo.TYPE_TABLE_NAME_PROJECT + " where " +
+                ProjectInfo.TYPE_COLUMN_KEY + " = '" + key + "' ;";
+            SQLiteCommand command = new SQLiteCommand(sql, _dbConnection);
+            SQLiteDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                count = reader.GetInt32(0);
+            }
+            reader?.Close();
+            return count;
+        }
+
+
+
+
 
 #if  USE_XML_CONFIG
         private void Init()

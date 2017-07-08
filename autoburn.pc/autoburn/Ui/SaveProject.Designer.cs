@@ -30,15 +30,16 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.TrayType = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.quitbutton = new System.Windows.Forms.Button();
             this.OKbutton = new System.Windows.Forms.Button();
+            this.quitbutton = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.saveprojecttext = new System.Windows.Forms.TextBox();
             this.choosepath = new System.Windows.Forms.Button();
+            this.saveprojecttext = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -79,17 +80,6 @@
             this.panel1.Size = new System.Drawing.Size(850, 47);
             this.panel1.TabIndex = 0;
             // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "选择料盘类型";
-            // 
             // TrayType
             // 
             this.TrayType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -102,6 +92,17 @@
             this.TrayType.Size = new System.Drawing.Size(121, 23);
             this.TrayType.TabIndex = 1;
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 6);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(97, 15);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "选择料盘类型";
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.OKbutton);
@@ -112,16 +113,6 @@
             this.panel2.Size = new System.Drawing.Size(850, 52);
             this.panel2.TabIndex = 1;
             // 
-            // quitbutton
-            // 
-            this.quitbutton.Location = new System.Drawing.Point(548, 20);
-            this.quitbutton.Name = "quitbutton";
-            this.quitbutton.Size = new System.Drawing.Size(75, 23);
-            this.quitbutton.TabIndex = 0;
-            this.quitbutton.Text = "取消";
-            this.quitbutton.UseVisualStyleBackColor = true;
-            this.quitbutton.Click += new System.EventHandler(this.quitbutton_Click);
-            // 
             // OKbutton
             // 
             this.OKbutton.Location = new System.Drawing.Point(707, 20);
@@ -131,6 +122,16 @@
             this.OKbutton.Text = "确定";
             this.OKbutton.UseVisualStyleBackColor = true;
             this.OKbutton.Click += new System.EventHandler(this.OKbutton_Click);
+            // 
+            // quitbutton
+            // 
+            this.quitbutton.Location = new System.Drawing.Point(548, 20);
+            this.quitbutton.Name = "quitbutton";
+            this.quitbutton.Size = new System.Drawing.Size(75, 23);
+            this.quitbutton.TabIndex = 0;
+            this.quitbutton.Text = "取消";
+            this.quitbutton.UseVisualStyleBackColor = true;
+            this.quitbutton.Click += new System.EventHandler(this.quitbutton_Click);
             // 
             // panel3
             // 
@@ -143,22 +144,6 @@
             this.panel3.Size = new System.Drawing.Size(850, 47);
             this.panel3.TabIndex = 3;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 22);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(97, 15);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "工程保存路径";
-            // 
-            // saveprojecttext
-            // 
-            this.saveprojecttext.Location = new System.Drawing.Point(121, 12);
-            this.saveprojecttext.Name = "saveprojecttext";
-            this.saveprojecttext.Size = new System.Drawing.Size(568, 25);
-            this.saveprojecttext.TabIndex = 4;
-            // 
             // choosepath
             // 
             this.choosepath.Location = new System.Drawing.Point(747, 14);
@@ -168,6 +153,22 @@
             this.choosepath.Text = "选择保存路径";
             this.choosepath.UseVisualStyleBackColor = true;
             this.choosepath.Click += new System.EventHandler(this.choosepath_Click);
+            // 
+            // saveprojecttext
+            // 
+            this.saveprojecttext.Location = new System.Drawing.Point(121, 12);
+            this.saveprojecttext.Name = "saveprojecttext";
+            this.saveprojecttext.Size = new System.Drawing.Size(568, 25);
+            this.saveprojecttext.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(97, 15);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "工程保存路径";
             // 
             // SaveProject
             // 
@@ -200,5 +201,6 @@
         private System.Windows.Forms.Button choosepath;
         private System.Windows.Forms.TextBox saveprojecttext;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }
