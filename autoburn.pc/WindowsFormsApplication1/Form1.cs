@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -18,6 +21,61 @@ namespace WindowsFormsApplication1
             InitializeComponent();
             InitializeChart();
             this.myChart.GetToolTipText += new EventHandler<ToolTipEventArgs>(myChart_GetToolTipText);
+
+            ///progressBar1.Value = 90;
+
+            this.backgroundWorker_Combo = new System.ComponentModel.BackgroundWorker();//定义一个backGroundWorker
+            this.backgroundWorker_Combo.WorkerSupportsCancellation = true;//设置能否取消任务
+            this.backgroundWorker_Combo.DoWork += new System.ComponentModel.DoWorkEventHandler(backgroundWorker_Combo_DoWork);//让backgroundWorker做的事
+            this.backgroundWorker_Combo.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(backgroundWorker_Combo_RunWorkerCompleted);//当backgroundWorker做完后发生的事件
+            this.backgroundWorker_Combo.ProgressChanged += new ProgressChangedEventHandler(
+            backgroundWorker1_ProgressChanged);
+            backgroundWorker_Combo.RunWorkerAsync();
+            backgroundWorker_Combo.WorkerReportsProgress = true;
+            progressBar1.Step = progressBar1.Maximum / 10;
+        }
+
+        private void t()
+        {
+            var filename = @"E:\系统镜像\EI Capitan 10.11 Install.cdr";
+            using (var md5 = new MD5CryptoServiceProvider())
+            {
+                using(var stream = File.OpenRead(filename))
+                {
+                    
+                var buffer = md5.ComputeHash(stream);
+                var sb = new StringBuilder();
+                for (int i = 0; i < buffer.Length; i++)
+                {
+                    sb.Append(buffer[i].ToString("x2"));
+                }
+                 sb.ToString();
+                Console.Out.WriteLine("..sb.1" + sb.ToString());
+                }
+            }
+        }
+        BackgroundWorker backgroundWorker_Combo;
+
+        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            var value = e.ProgressPercentage;
+            progressBar1.Value = value;
+        }
+
+        private void backgroundWorker_Combo_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            progressBar1.Value = progressBar1.Maximum;
+        }
+
+        private void backgroundWorker_Combo_DoWork(object sender, DoWorkEventArgs e)
+        {
+            while (progressBar1.Value < progressBar1.Maximum)
+            {
+                backgroundWorker_Combo.ReportProgress(progressBar1.Value + progressBar1.Maximum / 10);
+               
+               Thread.Sleep(1000);
+            }
+            t();
         }
 
         private void myChart_GetToolTipText(object sender, ToolTipEventArgs e)

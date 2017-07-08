@@ -184,5 +184,11 @@ namespace Autoburn.Ui
         {
 
         }
+
+        private void openFileDialog_Click(object sender, EventArgs e)
+        {
+            OpenImageBinFile openimagebinfile = new OpenImageBinFile();
+            openimagebinfile.ShowDialog();
+        }
     }
 }

@@ -28,34 +28,46 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.myChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.myChart)).BeginInit();
             this.SuspendLayout();
             // 
             // myChart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.myChart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.myChart.Legends.Add(legend1);
-            this.myChart.Location = new System.Drawing.Point(34, 12);
+            chartArea7.Name = "ChartArea1";
+            this.myChart.ChartAreas.Add(chartArea7);
+            legend7.Name = "Legend1";
+            this.myChart.Legends.Add(legend7);
+            this.myChart.Location = new System.Drawing.Point(720, 368);
             this.myChart.Name = "myChart";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.myChart.Series.Add(series1);
-            this.myChart.Size = new System.Drawing.Size(1072, 790);
+            series7.ChartArea = "ChartArea1";
+            series7.Legend = "Legend1";
+            series7.Name = "Series1";
+            this.myChart.Series.Add(series7);
+            this.myChart.Size = new System.Drawing.Size(386, 434);
             this.myChart.TabIndex = 0;
             this.myChart.Text = "chart1";
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.progressBar1.Cursor = System.Windows.Forms.Cursors.WaitCursor;
+            this.progressBar1.Location = new System.Drawing.Point(119, 85);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(526, 23);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar1.TabIndex = 1;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1118, 814);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.myChart);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -67,6 +79,7 @@
         #endregion
 
         private System.Windows.Forms.DataVisualization.Charting.Chart myChart;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 
