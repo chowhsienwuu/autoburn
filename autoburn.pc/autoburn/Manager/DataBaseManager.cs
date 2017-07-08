@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autoburn.util;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data.SQLite;
@@ -11,8 +12,9 @@ namespace Autoburn.Manager
 {
     class DataBaseManager
     {
+        public const string TAG = "DataBaseManager";
         private DeviceManager _DeviceManager = null;
-        public const string MultStringSpitString = "$$$$$$";
+
         private SQLiteConnection _dbConnection;
         public DataBaseManager(DeviceManager manager)
         {
@@ -23,18 +25,13 @@ namespace Autoburn.Manager
                 var connect = "Data Source=" + ProgramInfo.DBFILE + "; Version=3;";
                 _dbConnection = new SQLiteConnection(connect);
                 _dbConnection.Open();
+                SystemLog.I(TAG, " database " + ProgramInfo.DBFILE + ".opened");
+            }
+            else
+            {
+                SystemLog.E(TAG, " database " + ProgramInfo.DBFILE + ".not found");
             }
          //  test();         
-        }
-
-        private void test()
-        {
-            printHighscores();
-            printHighscores();
-            //  throw new NotImplementedException();
-            //ExeSetKeyVal("9999999", "666");
-            //ExeSetKeyVal("999xxx", "666");
-            // ExeSetKeyVal("lao", "updatexx");
         }
 
         public SQLiteDataReader ExeGetReader(string sqlstring)
@@ -69,11 +66,9 @@ namespace Autoburn.Manager
                 }
             }
 
-         read.Close();
-
+            read.Close();
             return value;
         }
-
 
         public void ExeSetKeyVal(string key, string value)
         {
@@ -85,7 +80,8 @@ namespace Autoburn.Manager
             if (count == 0)
             {  // insert 1
                 ExeInsertKeyValue(key, value);
-            }else
+            }
+            else
             {
                 UpdateKeyValue(key, value);
             }
@@ -96,16 +92,20 @@ namespace Autoburn.Manager
             var sql = "update " + ConfigInfo.TYPE_TABLENAME + " set " + ConfigInfo.TYPE_COLUMN_VALUE
                      + "='" + value + "', time=datetime('now','localtime') where key='" + key + "';";
 
-            SQLiteCommand command = new SQLiteCommand(sql, _dbConnection);
-            command.ExecuteNonQuery();
+            using (SQLiteCommand command = new SQLiteCommand(sql, _dbConnection))
+            {
+                command.ExecuteNonQuery();
+            }
         }
 
         private void ExeInsertKeyValue(string key, string value)
         {
             var sql = "insert into " + ConfigInfo.TYPE_TABLENAME + "(" + ConfigInfo.TYPE_COLUMN_KEY + "," + ConfigInfo.TYPE_COLUMN_VALUE
                 + "," + ConfigInfo.TYPE_COLUMN_TIME + ") values(" + "'" + key + "','" + value + "', datetime('now', 'localtime'));";
-            SQLiteCommand command = new SQLiteCommand(sql, _dbConnection);
-            command.ExecuteNonQuery();
+            using (SQLiteCommand command = new SQLiteCommand(sql, _dbConnection))
+            {
+                command.ExecuteNonQuery();
+            }
         }
 
         private int ExeKeyNums(string key)
@@ -117,14 +117,18 @@ namespace Autoburn.Manager
             var count = 0;
             var sql = "select count(" + ConfigInfo.TYPE_COLUMN_KEY + ") from " + ConfigInfo.TYPE_TABLENAME + " where " +
                 ConfigInfo.TYPE_COLUMN_KEY + " = '" + key + "' ;";
-            SQLiteCommand command = new SQLiteCommand(sql, _dbConnection);
-            SQLiteDataReader reader = command.ExecuteReader();
 
-            while (reader.Read())
+            using (SQLiteCommand command = new SQLiteCommand(sql, _dbConnection))
             {
-                  count = reader.GetInt32(0);
+                using (SQLiteDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        count = reader.GetInt32(0);
+                    }
+                    reader?.Close();
+                }
             }
-            reader?.Close();
             return count;
         }
 
@@ -145,7 +149,8 @@ namespace Autoburn.Manager
         //}
 
         ////使用sql查询语句，并显示结果
-        void printHighscores()
+        #region test
+        private void printHighscores()
         {
             if (_dbConnection == null)
             {
@@ -160,11 +165,18 @@ namespace Autoburn.Manager
             {
                 Console.WriteLine(" test read:  " + reader["vendor"]);
             }
-
             reader.Close(); 
            // Console.ReadLine();
         }
-
+        private void test()
+        {
+            printHighscores();
+            printHighscores();
+            //  throw new NotImplementedException();
+            //ExeSetKeyVal("9999999", "666");
+            //ExeSetKeyVal("999xxx", "666");
+            // ExeSetKeyVal("lao", "updatexx");
+        }
+        #endregion
     }
-
 }

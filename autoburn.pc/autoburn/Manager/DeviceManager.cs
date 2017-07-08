@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autoburn.util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,25 +9,29 @@ namespace Autoburn.Manager
 {
     class DeviceManager
     {
+        public const string TAG = "DeviceManager";
         public static readonly DeviceManager Instance = new DeviceManager();
-
+        public const string MultStringSpitString = "$$$$$$";
 
         private DeviceManager()
         {
+            var startpropt = "\n--------------------------------------------\n" +
+                                "--------------------------------------------\n" +
+                                "--------------------------------------------\n" +
+                                "--------------------------------------------\n";
+            SystemLog.I("程序", "准备启动");
+            SystemLog.I("程序", startpropt);
+
+            ProgLog.D(TAG, " DeviceManager init..");
             _dataBaseManager = new DataBaseManager(this);
             _ChipSupportManager = new ChipSupportManager(this);
             _ConfigManager = new ConfigManager(this);
             _projectManager = new ProjectManager();
+            ProgLog.D(TAG, " DeviceManager end..");
         }
 
         public void Init()
         {
-            // init all manager .
-            //for (int i = 0; i < 30; i++)
-            //{
-            //   // _ConfigManager.PutChooseChipHistoryItem("lanlan" + i);
-            //}
-            //_ConfigManager.GetSavedChooseChipHistory();
             _uaseAble = true;
         }
 
@@ -38,7 +43,6 @@ namespace Autoburn.Manager
                 return _dataBaseManager;
             }
         }
-
 
         private bool _uaseAble = false;
         public bool UseAble
@@ -81,6 +85,5 @@ namespace Autoburn.Manager
         }
 
         private ProjectManager _projectManager = null;
-
     }
 }

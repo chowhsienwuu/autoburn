@@ -14,6 +14,7 @@ namespace Autoburn.Ui
 {
     public partial class ChooseChipFrom : Form
     {
+        public const string TAG = "ChooseChipFrom";
         public ChooseChipFrom()
         {
             InitializeComponent();
@@ -22,7 +23,6 @@ namespace Autoburn.Ui
         }
 
         #region Events
-
         public event EventHandler StateChanged;
         #endregion
         private void LoadFile2UI()
@@ -45,8 +45,6 @@ namespace Autoburn.Ui
             //}
 
             //ChipTreeView.Nodes.AddRange(vendertreenodelist.ToArray());
-
-            //
 
             _AllChipList = DeviceManager.Instance.ChipSupportManager.AllChipInfo;
             var venderset = new HashSet<string>();
@@ -75,49 +73,9 @@ namespace Autoburn.Ui
                 vendertreenodelist.Add(tn);
             }
             ChipTreeView.Nodes.AddRange(vendertreenodelist.ToArray<TreeNode>());
-
-
         }
 
         private List<ChipInfo> _AllChipList;
-        private void InitlizeComPonet2()
-        {
-            // ser
-            //string[] history = { "283", ".sdks", "9238888" };
-            //searchComBox.Items.AddRange(history);
-         //   TreeNode[] tnarray = new TreeNode[8];
-            List<TreeNode> tnarray = new List<TreeNode>();
-            //for (int i = 0; i < 8; i++)
-            //{
-            //    TreeNode[] tnsub = new TreeNode[i];
-            //    for (int j = 0; j < tnsub.Length; j++)
-            //    {
-            //        TreeNode tntemp = new TreeNode("sub : " + j);
-            //        tnsub[j] = tntemp;
-            //    }
-
-            //    TreeNode tn = new TreeNode("" , tnsub);
-            //    tn.Text = "root: " + i;
-            //    tnarray.Add( tn);
-            //}
-            tnarray.Add(new TreeNode("999"));
-            ChipTreeView.Nodes.AddRange(tnarray.ToArray<TreeNode>());
-
-
-
-            //this.ChipInfoListView.BeginUpdate();   //数据更新，UI暂时挂起，直到EndUpdate绘制控件，可以有效避免闪烁并大大提高加载速度
-            //for (int i = 0; i < 10; i++)   //添加10行数据
-            //{
-            //    ListViewItem lvi = new ListViewItem();
-            //    lvi.Text = "item " + i;
-            //    lvi.SubItems.Add("第2列,第" + i + "行");
-            //    lvi.SubItems.Add("第3列,第" + i + "行");
-            //    this.ChipInfoListView.Items.Add(lvi);
-            //}
-
-            //this.ChipInfoListView.EndUpdate();  //结束数据处理，UI界面一次性绘制。
-        }
-
         private void searchComBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ProgLog.D("", "searchComBox_SelectedIndexChanged");
@@ -132,8 +90,7 @@ namespace Autoburn.Ui
         {
             TreeView tv = sender as TreeView;
             TreeNode tn = tv.SelectedNode;
-            Console.WriteLine("ChipTreeView_AfterSelect.." + tn.Text + 
-                " " + tn.Index + "--" + tn.FullPath + " " );
+            ProgLog.D("ChipTreeView_AfterSelect.." + tn.Text +   " " + tn.Index + "--" + tn.FullPath + " " );
             if (tn.FullPath.Contains(@"\"))
             {
                 //List<ChipInfo> chipinfolist = 
@@ -204,10 +161,13 @@ namespace Autoburn.Ui
             if (_CurrentChooseChip != null)
             {
                 DeviceManager.Instance.ConfigManager.PutChooseChipHistoryItem(_CurrentChooseChip.name);
+                SystemLog.I(TAG, "选择芯片" + _CurrentChooseChip.ToString());
             }
 
             this.Hide();
-            StateChanged?.Invoke(this, null);
+            var ChooseChipFromEventArgs = new ChooseChipFromEventArgs();
+            ChooseChipFromEventArgs.ChipInfo = _CurrentChooseChip;
+            StateChanged?.Invoke(this, ChooseChipFromEventArgs);
         }
 
         private void ChooseChipFrom_VisibleChanged(object sender, EventArgs e)
@@ -216,7 +176,6 @@ namespace Autoburn.Ui
             if (Visible)
             {
                 searchComBox.Items.Clear();
-
                 List<string> history = DeviceManager.Instance.ConfigManager.GetSavedChooseChipHistory();
 
                 searchComBox.Items.AddRange(history.ToArray());
@@ -226,7 +185,52 @@ namespace Autoburn.Ui
         private void exit_Click(object sender, EventArgs e)
         {
             Hide();
-            StateChanged?.Invoke(this, null);
+
+            var ChooseChipFromEventArgs = new ChooseChipFromEventArgs();
+            ChooseChipFromEventArgs.ChipInfo = _CurrentChooseChip;
+            StateChanged?.Invoke(this, ChooseChipFromEventArgs);
         }
+
+        public class ChooseChipFromEventArgs : EventArgs
+        {
+            public ChipInfo ChipInfo { get; set; }
+        }
+
+        #region not use 
+        private void InitlizeComPonet2()
+        {
+            // ser
+            //string[] history = { "283", ".sdks", "9238888" };
+            //searchComBox.Items.AddRange(history);
+            //   TreeNode[] tnarray = new TreeNode[8];
+            List<TreeNode> tnarray = new List<TreeNode>();
+            //for (int i = 0; i < 8; i++)
+            //{
+            //    TreeNode[] tnsub = new TreeNode[i];
+            //    for (int j = 0; j < tnsub.Length; j++)
+            //    {
+            //        TreeNode tntemp = new TreeNode("sub : " + j);
+            //        tnsub[j] = tntemp;
+            //    }
+
+            //    TreeNode tn = new TreeNode("" , tnsub);
+            //    tn.Text = "root: " + i;
+            //    tnarray.Add( tn);
+            //}
+            tnarray.Add(new TreeNode("999"));
+            ChipTreeView.Nodes.AddRange(tnarray.ToArray<TreeNode>());
+            //this.ChipInfoListView.BeginUpdate();   //数据更新，UI暂时挂起，直到EndUpdate绘制控件，可以有效避免闪烁并大大提高加载速度
+            //for (int i = 0; i < 10; i++)   //添加10行数据
+            //{
+            //    ListViewItem lvi = new ListViewItem();
+            //    lvi.Text = "item " + i;
+            //    lvi.SubItems.Add("第2列,第" + i + "行");
+            //    lvi.SubItems.Add("第3列,第" + i + "行");
+            //    this.ChipInfoListView.Items.Add(lvi);
+            //}
+
+            //this.ChipInfoListView.EndUpdate();  //结束数据处理，UI界面一次性绘制。
+        }
+        #endregion
     }
 }

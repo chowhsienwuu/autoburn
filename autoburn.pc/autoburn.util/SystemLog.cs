@@ -11,7 +11,7 @@ namespace Autoburn.util
     {
         public const string TAG = "systemlog";
         private static Logger _logger = LogManager.GetLogger(TAG);
-
+      //  工程运行的信息,打印debug等信息.
         public static void I(object tag, object msg)
         {
             _logger.Info(tag.ToString() + msg.ToString());

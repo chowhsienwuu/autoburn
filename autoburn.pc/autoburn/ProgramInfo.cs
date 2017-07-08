@@ -20,7 +20,6 @@ namespace Autoburn
         public static string PCIPaddr;
         public static IPEndPoint PCBIPAddrEndPoint;
 
-
         private void getIP()
         {
            var  mCurrentPath = System.Environment.CurrentDirectory;

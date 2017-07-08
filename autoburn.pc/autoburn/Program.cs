@@ -16,48 +16,28 @@ namespace Autoburn
 {
     static class Program
     {
-        public static string mCurrentPath = "";
-        static int index = 0;
-        static void test()
-        {
-            while (true)
-            {
-
-            Thread.Sleep(100);
-                ProgLog.D("test..", " +proglog_====" + index++);
-                SystemLog.I("test", "-system.-" + index++);
-            }
-
-        }
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
         [STAThread]
         static void Main()
         {
-
-            //RxMsgDispatch rd = new RxMsgDispatch();
-            //string str = "{\"msgtype\":\"Test\", \"gogo\":\"98\"}";
-            // rd.ProcessRxMsg(str);
-            //TxMsgBase t = new TxMsgBase("lan");
-            //Console.WriteLine("t.tosring " + t);
-
-            //Thread testThead = new Thread(new ThreadStart(test));
-            //testThead.Start();
-
-            //return;
-
-            SystemLog.I("程序", "准备启动");
             if (!EnSureOnlyOneInstance())
             {
                 SystemLog.E("程序", "已有程序在运行,本次启动失败");
                 return;
             }
 
+            SystemLog.I("程序", "信息准备初始化");
             DeviceManager.Instance.Init();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainWindow());
+            var endpropt = "\n***************************************************\n" +
+                 "***************************************************\n" +
+                  "***************************************************\n";
+            SystemLog.I("程序", "主程序退出");
+            SystemLog.I("程序", endpropt);
         }
 
         static bool EnSureOnlyOneInstance()

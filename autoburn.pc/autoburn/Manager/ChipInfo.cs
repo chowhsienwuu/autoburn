@@ -13,12 +13,25 @@ namespace Autoburn.Manager
         public const string TYPE_TABLE_NAME_CHIPINFO = "chipinfo";
         public const string TYPE_COLUMN_VENDOR = "vendor";
         public const string TYPE_COLUMN_SERIES = "series";
-        public const string TYPE_COLUMN_CHIP = "chip";
         public const string TYPE_COLUMN_NAME = "name";
         public const string TYPE_COLUMN_TYPE = "type";
         public const string TYPE_COLUMN_PACKAGE = "package";
         public const string TYPE_COLUMN_BURNER = "burner";
         public const string TYPE_COLUMN_NOTE = "note";
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(" vendor: " + vendor);
+            sb.Append(" series: " + series);
+            sb.Append(" name: " + name);
+            sb.Append(" type: " + type);
+            sb.Append(" package: " + package);
+            sb.Append(" burner: " + burner);
+            sb.Append(" note: " + note);
+
+            return sb.ToString();
+        }
 
         private string _vendor;
         public string vendor

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autoburn.util;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -14,17 +15,20 @@ namespace Autoburn.Manager
 {
     class ProjectManager
     {
-
+        public const string TAG = "ProjectManager";
         private string _configDir = ProgramInfo.CONFIGDIRPATH;
         public ProjectManager()
         {
-           // Init();
+            // Init();
+            SystemLog.I(TAG, "芯片列表信息开始初始化");
+            SystemLog.I(TAG, "芯片列表信息初始化完成");
         }
 
         public void ReSet()
         {
-
+            SystemLog.I(TAG, "ReSET工程");
         }
+
         private string _fuallpathdir = "";
         private string _dbfile = "";
         public void InitDir(string fullpath)
@@ -32,6 +36,9 @@ namespace Autoburn.Manager
             _fuallpathdir = fullpath;
             _dbfile = fullpath + @"/" + ProjectInfo.PROJECT_DB_FILE_NAME;
             // create a db. create table.
+            SystemLog.I(TAG, "工程路径: "　+ _fuallpathdir);
+            SystemLog.I(TAG, "工程database: " + _dbfile);
+
             CreateDbFile();
             connectToDatabase();
             CreateTable();
@@ -61,10 +68,11 @@ namespace Autoburn.Manager
                 DialogResult result = MessageBox.Show(null,
                     "文件已存在,将被重写!", "文件已存在", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 File.Delete(_dbfile);
+                SystemLog.I(TAG, "覆盖旧文件 " );
             }
             SQLiteConnection.CreateFile(_dbfile);
+            SystemLog.I(TAG, "新建  " + _dbfile);
         }
-
 
         public void ExeSetKeyVal(Hashtable table)
         {
@@ -73,7 +81,7 @@ namespace Autoburn.Manager
                 if (!string.IsNullOrEmpty(key) && !string.IsNullOrEmpty(value))
                 {
                     ExeSetKeyVal(key, value);
-
+                    SystemLog.I(TAG, " 设置工程属性: " + key + ": " + value);
                 }
             }
         }
@@ -131,10 +139,6 @@ namespace Autoburn.Manager
             reader?.Close();
             return count;
         }
-
-
-
-
 
 #if  USE_XML_CONFIG
         private void Init()

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autoburn.util;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -12,14 +13,17 @@ namespace Autoburn.Manager
 {
     class ChipSupportManager
     {
-        private string _chipinfodir =ProgramInfo.CHIPINFODIRPATH;
+        public const string TAG = "ChipSupportManager";
+        private string _chipinfodir = ProgramInfo.CHIPINFODIRPATH;
 
         private DeviceManager _DeviceManager = null;
         internal ChipSupportManager(DeviceManager manager)
         {
             _DeviceManager = manager;
             //InitXMLmodul();
+            SystemLog.I(TAG, "芯片列表信息开始初始化");
             InitDBmodul();
+            SystemLog.I(TAG, "芯片列表信息初始化完成");
         }
 
         private void InitDBmodul()
@@ -33,17 +37,13 @@ namespace Autoburn.Manager
             _venderseriesDictionary.Clear();
             _allchipvendorlistDic.Clear();
             _allChipInfo.Clear();
-            //NameValueCollection nvc = read.GetValues();
-            //       foreach(Namev)
 
             while (read.Read())
-            {
-                Console.Out.WriteLine(" read ");
+            {            
                 try
                 {
                     var chipinfo = new ChipInfo();
                     NameValueCollection nv = read.GetValues();
-                    //  Console.Out.WriteLine(" " + nv.Get(ChipInfo.TYPE_COLUMN_VENDOR));
                     chipinfo.vendor = "" + nv.Get(ChipInfo.TYPE_COLUMN_VENDOR);
                     var series = nv.Get(ChipInfo.TYPE_COLUMN_SERIES);
 
@@ -53,16 +53,18 @@ namespace Autoburn.Manager
                     chipinfo.package = nv.Get(ChipInfo.TYPE_COLUMN_PACKAGE);
                     chipinfo.burner = nv.Get(ChipInfo.TYPE_COLUMN_BURNER);
                     chipinfo.note = nv.Get(ChipInfo.TYPE_COLUMN_NOTE);
+
                     _allChipInfo.Add(chipinfo);
+
+                    ProgLog.D(TAG, chipinfo.ToString());
                 }
                 catch (Exception e)
                 {
-                    Console.Out.WriteLine(" excepiton " + e.ToString());
+                    SystemLog.E(TAG, " get chipinfo error " + e.ToString());
                 }
             }
             read.Close();
         }
-
 
         private List<ChipInfo> _allChipInfo = new List<ChipInfo>();
         public List<ChipInfo> AllChipInfo
@@ -82,11 +84,6 @@ namespace Autoburn.Manager
         }
         //key-value vendor文件夹, - 文件夹中的文件列表.  
         private Dictionary<string, object[]> _venderseriesDictionary = new Dictionary<string, object[]>();
-
-
-
-
-
 
 
 

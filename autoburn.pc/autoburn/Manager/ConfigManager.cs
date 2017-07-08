@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autoburn.util;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace Autoburn.Manager
 {
     class ConfigManager
     {
+        public const string TAG = "ConfigManager";
+
         private string _configDir = ProgramInfo.CONFIGDIRPATH;
 
         private DeviceManager _DeviceManager = null;
@@ -18,7 +21,9 @@ namespace Autoburn.Manager
         {
             _DeviceManager = manager;
             //  InitXMLmodul();
+            SystemLog.I(TAG, " 开始加载程序配置信息 ");
             LoadDataFromDataBase();
+            SystemLog.I(TAG, " 开始加载程序信息结束 ");
         }
 
         private void LoadDataFromDataBase()
@@ -31,7 +36,7 @@ namespace Autoburn.Manager
             List<string> historyname = new List<string>();
 
             var allhistry = _DeviceManager.DataBaseManager.GetConfigValue(ConfigInfo.TYPE_KEY_CHIPCHOOSEHISTORY);
-            var histrylist = allhistry.Split(new[] { DataBaseManager.MultStringSpitString }, StringSplitOptions.None);
+            var histrylist = allhistry.Split(new[] { DeviceManager.MultStringSpitString }, StringSplitOptions.None);
 
             foreach (string item in histrylist)
             {
@@ -48,7 +53,7 @@ namespace Autoburn.Manager
         public void PutChooseChipHistoryItem(string history)
         {
             var allhistry = _DeviceManager.DataBaseManager.GetConfigValue(ConfigInfo.TYPE_KEY_CHIPCHOOSEHISTORY);
-            var histrylist = allhistry.Split(new[] { DataBaseManager.MultStringSpitString }, StringSplitOptions.None);
+            var histrylist = allhistry.Split(new[] { DeviceManager.MultStringSpitString }, StringSplitOptions.None);
 
             List<string> historyname = new List<string>(histrylist);
             while (historyname.Capacity > 10)
@@ -62,7 +67,7 @@ namespace Autoburn.Manager
             {
                 if (name.Length > 1)
                 {
-                    newvalue += name + DataBaseManager.MultStringSpitString;
+                    newvalue += name + DeviceManager.MultStringSpitString;
                 }
             }
 

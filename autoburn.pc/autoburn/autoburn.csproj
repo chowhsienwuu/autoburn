@@ -14,6 +14,8 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -28,8 +30,6 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -49,6 +49,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logoicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -237,7 +240,6 @@
     <EmbeddedResource Include="Ui\SaveProject.resx">
       <DependentUpon>SaveProject.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="ClassDiagram1.cd" />
     <None Include="misc\raw.db" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\autobrun.ui.ChooseChipFrom.datasource" />
@@ -277,8 +279,10 @@
     <Content Include="chipinfo\eon\EN25.xml" />
     <Content Include="chipinfo\eon\EN27XX.xml" />
     <Content Include="chipinfo\jsc\JSFXX.xml" />
+    <Content Include="logoicon.ico" />
     <Content Include="Manager\projecttest.xml" />
     <Content Include="misc\rawsql.txt" />
+    <None Include="Ressources\logo.png" />
     <None Include="Ressources\Expand.png" />
     <None Include="Ressources\Collapse.png" />
   </ItemGroup>
