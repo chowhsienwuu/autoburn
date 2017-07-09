@@ -34,7 +34,8 @@
             // MainflowLayoutPanel
             // 
             this.MainflowLayoutPanel.AutoScroll = true;
-            this.MainflowLayoutPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.MainflowLayoutPanel.BackgroundImage = global::Autoburn.Properties.Resources.logo;
+            this.MainflowLayoutPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.MainflowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainflowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.MainflowLayoutPanel.Location = new System.Drawing.Point(0, 0);

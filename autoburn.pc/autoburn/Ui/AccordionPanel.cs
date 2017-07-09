@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Autoburn;
 using Autoburn.Ui;
 using Autoburn.util;
+using Autoburn.Ressources;
 
 namespace Autoburn.Ui
 {
@@ -19,6 +20,8 @@ namespace Autoburn.Ui
         {
             InitializeComponent();
             InitCustomerComponet();
+
+           // this.BackgroundImage = Pictureres.rightstatubackground;
             this.Resize += delegate
             {
                // ProgLog.D("..accordingpanel ", "AccordionPanel resize");
