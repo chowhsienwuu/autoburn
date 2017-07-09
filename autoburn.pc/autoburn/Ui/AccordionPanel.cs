@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Autoburn;
 using Autoburn.Ui;
+using Autoburn.util;
 
 namespace Autoburn.Ui
 {
@@ -18,6 +19,14 @@ namespace Autoburn.Ui
         {
             InitializeComponent();
             InitCustomerComponet();
+            this.Resize += delegate
+            {
+               // ProgLog.D("..accordingpanel ", "AccordionPanel resize");
+                foreach (Control c in MainflowLayoutPanel.Controls)
+                {
+                    c.Width = (int)(MainflowLayoutPanel.Width * 9.2 / 10);
+                }
+            };
         }
 
         private void InitCustomerComponet()
@@ -110,7 +119,6 @@ namespace Autoburn.Ui
         private void InitChipInfoComponet()
         {
             _ChipInfo = new Expander();
-          //   _ChipInfo.Width = (int)(Width * 8.5 / 10);
             ExpanderHelper.CreateLabelHeader(_ChipInfo, "芯片信息", SystemColors.ActiveBorder);
 
             Label labelContent = new Label();
@@ -139,7 +147,6 @@ namespace Autoburn.Ui
             // this.Controls.Add(_ChipInfo);
             this.MainflowLayoutPanel.Controls.Add(_FileInfo);
         }
-
 
         private void InitProductionInfoComponet()
         {

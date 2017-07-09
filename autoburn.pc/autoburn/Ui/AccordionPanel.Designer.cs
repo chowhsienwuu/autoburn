@@ -34,11 +34,12 @@
             // MainflowLayoutPanel
             // 
             this.MainflowLayoutPanel.AutoScroll = true;
+            this.MainflowLayoutPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.MainflowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainflowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.MainflowLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.MainflowLayoutPanel.Name = "MainflowLayoutPanel";
-            this.MainflowLayoutPanel.Size = new System.Drawing.Size(245, 289);
+            this.MainflowLayoutPanel.Size = new System.Drawing.Size(245, 731);
             this.MainflowLayoutPanel.TabIndex = 0;
             this.MainflowLayoutPanel.WrapContents = false;
             // 
@@ -48,7 +49,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.MainflowLayoutPanel);
             this.Name = "AccordionPanel";
-            this.Size = new System.Drawing.Size(245, 289);
+            this.Size = new System.Drawing.Size(245, 731);
             this.ResumeLayout(false);
 
         }

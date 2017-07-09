@@ -48,26 +48,24 @@ namespace Autoburn.Ui
             this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.StatusStrip = new System.Windows.Forms.StatusStrip();
-            this.statusdiscovery = new System.Windows.Forms.ToolStripStatusLabel();
-            this.statusTcpStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.wrapaccview = new System.Windows.Forms.TableLayoutPanel();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
+            this.StatusStrip = new System.Windows.Forms.StatusStrip();
+            this.statusdiscovery = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusTcpStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.mainWindowBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.AccordionPanel = new Autoburn.Ui.AccordionPanel();
             this.MainmenuItem.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.StatusStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.wrapaccview.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainWindowBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -168,7 +166,7 @@ namespace Autoburn.Ui
             // AboutMenuItem
             // 
             this.AboutMenuItem.Name = "AboutMenuItem";
-            this.AboutMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.AboutMenuItem.Size = new System.Drawing.Size(114, 26);
             this.AboutMenuItem.Text = "关于";
             this.AboutMenuItem.Click += new System.EventHandler(this.AboutMenuItem_Click);
             // 
@@ -189,87 +187,6 @@ namespace Autoburn.Ui
             this.toolStrip1.TabIndex = 6;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
-            // 
-            // StatusStrip
-            // 
-            this.StatusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.statusdiscovery,
-            this.statusTcpStatus});
-            this.StatusStrip.Location = new System.Drawing.Point(0, 712);
-            this.StatusStrip.Name = "StatusStrip";
-            this.StatusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 13, 0);
-            this.StatusStrip.Size = new System.Drawing.Size(1271, 25);
-            this.StatusStrip.TabIndex = 7;
-            this.StatusStrip.Text = "statusStrip1";
-            // 
-            // statusdiscovery
-            // 
-            this.statusdiscovery.Name = "statusdiscovery";
-            this.statusdiscovery.Size = new System.Drawing.Size(167, 20);
-            this.statusdiscovery.Text = "toolStripStatusLabel1";
-            // 
-            // statusTcpStatus
-            // 
-            this.statusTcpStatus.Name = "statusTcpStatus";
-            this.statusTcpStatus.Size = new System.Drawing.Size(167, 20);
-            this.statusTcpStatus.Text = "toolStripStatusLabel1";
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.AutoSize = true;
-            this.tableLayoutPanel1.ColumnCount = 10;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.Controls.Add(this.wrapaccview, 8, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 55);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 10;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1271, 657);
-            this.tableLayoutPanel1.TabIndex = 8;
-            // 
-            // wrapaccview
-            // 
-            this.wrapaccview.ColumnCount = 1;
-            this.tableLayoutPanel1.SetColumnSpan(this.wrapaccview, 2);
-            this.wrapaccview.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.wrapaccview.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.wrapaccview.Controls.Add(this.AccordionPanel, 0, 0);
-            this.wrapaccview.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wrapaccview.Location = new System.Drawing.Point(1019, 2);
-            this.wrapaccview.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.wrapaccview.Name = "wrapaccview";
-            this.wrapaccview.RowCount = 1;
-            this.tableLayoutPanel1.SetRowSpan(this.wrapaccview, 10);
-            this.wrapaccview.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.wrapaccview.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.wrapaccview.Size = new System.Drawing.Size(249, 653);
-            this.wrapaccview.TabIndex = 0;
-            // 
             // toolStripButton1
             // 
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -278,6 +195,11 @@ namespace Autoburn.Ui
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(24, 24);
             this.toolStripButton1.Text = "toolStripButton1";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // toolStripButton2
             // 
@@ -324,6 +246,65 @@ namespace Autoburn.Ui
             this.toolStripSplitButton1.Size = new System.Drawing.Size(39, 24);
             this.toolStripSplitButton1.Text = "toolStripSplitButton1";
             // 
+            // StatusStrip
+            // 
+            this.StatusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusdiscovery,
+            this.statusTcpStatus});
+            this.StatusStrip.Location = new System.Drawing.Point(0, 712);
+            this.StatusStrip.Name = "StatusStrip";
+            this.StatusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 13, 0);
+            this.StatusStrip.Size = new System.Drawing.Size(1271, 25);
+            this.StatusStrip.TabIndex = 7;
+            this.StatusStrip.Text = "statusStrip1";
+            // 
+            // statusdiscovery
+            // 
+            this.statusdiscovery.Name = "statusdiscovery";
+            this.statusdiscovery.Size = new System.Drawing.Size(167, 20);
+            this.statusdiscovery.Text = "toolStripStatusLabel1";
+            // 
+            // statusTcpStatus
+            // 
+            this.statusTcpStatus.Name = "statusTcpStatus";
+            this.statusTcpStatus.Size = new System.Drawing.Size(167, 20);
+            this.statusTcpStatus.Text = "toolStripStatusLabel1";
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.AutoSize = true;
+            this.tableLayoutPanel1.ColumnCount = 10;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.Controls.Add(this.AccordionPanel, 8, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 55);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 10;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1271, 657);
+            this.tableLayoutPanel1.TabIndex = 8;
+            // 
             // AccordionPanel
             // 
             this.AccordionPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -332,14 +313,14 @@ namespace Autoburn.Ui
             this.AccordionPanel.ChipinforName = null;
             this.AccordionPanel.ChipinforPackage = null;
             this.AccordionPanel.ChipinfoVendor = null;
-            this.wrapaccview.SetColumnSpan(this.AccordionPanel, 2);
+            this.tableLayoutPanel1.SetColumnSpan(this.AccordionPanel, 2);
             this.AccordionPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AccordionPanel.Location = new System.Drawing.Point(3, 2);
+            this.AccordionPanel.Location = new System.Drawing.Point(1019, 2);
             this.AccordionPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AccordionPanel.Name = "AccordionPanel";
-            this.wrapaccview.SetRowSpan(this.AccordionPanel, 2);
-            this.AccordionPanel.Size = new System.Drawing.Size(243, 649);
-            this.AccordionPanel.TabIndex = 0;
+            this.tableLayoutPanel1.SetRowSpan(this.AccordionPanel, 10);
+            this.AccordionPanel.Size = new System.Drawing.Size(249, 653);
+            this.AccordionPanel.TabIndex = 1;
             // 
             // MainWindow
             // 
@@ -365,7 +346,6 @@ namespace Autoburn.Ui
             this.StatusStrip.ResumeLayout(false);
             this.StatusStrip.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.wrapaccview.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mainWindowBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -395,13 +375,12 @@ namespace Autoburn.Ui
         private System.Windows.Forms.ToolStripStatusLabel statusdiscovery;
         private System.Windows.Forms.ToolStripStatusLabel statusTcpStatus;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TableLayoutPanel wrapaccview;
-        private AccordionPanel AccordionPanel;
         private System.Windows.Forms.ToolStripMenuItem NewProjectStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem OpenProjectStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ProjecthistorytoolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.BindingSource mainWindowBindingSource;
+        private AccordionPanel AccordionPanel;
     }
 }
 
