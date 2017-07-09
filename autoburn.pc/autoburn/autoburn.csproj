@@ -154,6 +154,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Pictureres.resx</DependentUpon>
     </Compile>
+    <Compile Include="Ressources\String.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>String.resx</DependentUpon>
+    </Compile>
     <Compile Include="Ui\AboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,6 +217,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Pictureres.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\String.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>String.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ui\AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -220,6 +229,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Ui\ChooseChipFrom.resx">
       <DependentUpon>ChooseChipFrom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ui\Expander.resx">
+      <DependentUpon>Expander.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ui\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>

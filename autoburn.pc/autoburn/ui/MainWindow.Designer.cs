@@ -53,8 +53,7 @@ namespace Autoburn.Ui
             this.statusdiscovery = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusTcpStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.statustableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.accordionPanel1 = new Autoburn.Ui.AccordionPanel();
+            this.wrapaccview = new System.Windows.Forms.TableLayoutPanel();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -63,11 +62,12 @@ namespace Autoburn.Ui
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.mainWindowBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.AccordionPanel = new Autoburn.Ui.AccordionPanel();
             this.MainmenuItem.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.StatusStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.statustableLayoutPanel2.SuspendLayout();
+            this.wrapaccview.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainWindowBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -85,7 +85,7 @@ namespace Autoburn.Ui
             this.MainmenuItem.Name = "MainmenuItem";
             this.MainmenuItem.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
             this.MainmenuItem.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.MainmenuItem.Size = new System.Drawing.Size(1016, 28);
+            this.MainmenuItem.Size = new System.Drawing.Size(1271, 28);
             this.MainmenuItem.TabIndex = 5;
             this.MainmenuItem.Text = "menuStrip1";
             // 
@@ -168,7 +168,7 @@ namespace Autoburn.Ui
             // AboutMenuItem
             // 
             this.AboutMenuItem.Name = "AboutMenuItem";
-            this.AboutMenuItem.Size = new System.Drawing.Size(114, 26);
+            this.AboutMenuItem.Size = new System.Drawing.Size(181, 26);
             this.AboutMenuItem.Text = "关于";
             this.AboutMenuItem.Click += new System.EventHandler(this.AboutMenuItem_Click);
             // 
@@ -185,7 +185,7 @@ namespace Autoburn.Ui
             this.toolStripSplitButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 28);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1016, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1271, 27);
             this.toolStrip1.TabIndex = 6;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -200,10 +200,10 @@ namespace Autoburn.Ui
             this.StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusdiscovery,
             this.statusTcpStatus});
-            this.StatusStrip.Location = new System.Drawing.Point(0, 635);
+            this.StatusStrip.Location = new System.Drawing.Point(0, 712);
             this.StatusStrip.Name = "StatusStrip";
             this.StatusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 13, 0);
-            this.StatusStrip.Size = new System.Drawing.Size(1016, 25);
+            this.StatusStrip.Size = new System.Drawing.Size(1271, 25);
             this.StatusStrip.TabIndex = 7;
             this.StatusStrip.Text = "statusStrip1";
             // 
@@ -233,7 +233,7 @@ namespace Autoburn.Ui
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.Controls.Add(this.statustableLayoutPanel2, 8, 0);
+            this.tableLayoutPanel1.Controls.Add(this.wrapaccview, 8, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 55);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -249,40 +249,26 @@ namespace Autoburn.Ui
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1016, 580);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1271, 657);
             this.tableLayoutPanel1.TabIndex = 8;
             // 
-            // statustableLayoutPanel2
+            // wrapaccview
             // 
-            this.statustableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel1.SetColumnSpan(this.statustableLayoutPanel2, 2);
-            this.statustableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.statustableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.statustableLayoutPanel2.Controls.Add(this.accordionPanel1, 0, 0);
-            this.statustableLayoutPanel2.Location = new System.Drawing.Point(811, 2);
-            this.statustableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.statustableLayoutPanel2.Name = "statustableLayoutPanel2";
-            this.statustableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel1.SetRowSpan(this.statustableLayoutPanel2, 10);
-            this.statustableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.statustableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.statustableLayoutPanel2.Size = new System.Drawing.Size(200, 562);
-            this.statustableLayoutPanel2.TabIndex = 0;
-            // 
-            // accordionPanel1
-            // 
-            this.accordionPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.accordionPanel1.ChipinforBurner = null;
-            this.accordionPanel1.ChipinforCapcity = null;
-            this.accordionPanel1.ChipinforName = null;
-            this.accordionPanel1.ChipinforPackage = null;
-            this.accordionPanel1.ChipinfoVendor = null;
-            this.accordionPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.accordionPanel1.Location = new System.Drawing.Point(3, 2);
-            this.accordionPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.accordionPanel1.Name = "accordionPanel1";
-            this.accordionPanel1.Size = new System.Drawing.Size(194, 558);
-            this.accordionPanel1.TabIndex = 0;
+            this.wrapaccview.ColumnCount = 1;
+            this.tableLayoutPanel1.SetColumnSpan(this.wrapaccview, 2);
+            this.wrapaccview.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.wrapaccview.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.wrapaccview.Controls.Add(this.AccordionPanel, 0, 0);
+            this.wrapaccview.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.wrapaccview.Location = new System.Drawing.Point(1019, 2);
+            this.wrapaccview.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.wrapaccview.Name = "wrapaccview";
+            this.wrapaccview.RowCount = 1;
+            this.tableLayoutPanel1.SetRowSpan(this.wrapaccview, 10);
+            this.wrapaccview.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.wrapaccview.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.wrapaccview.Size = new System.Drawing.Size(249, 653);
+            this.wrapaccview.TabIndex = 0;
             // 
             // toolStripButton1
             // 
@@ -338,11 +324,28 @@ namespace Autoburn.Ui
             this.toolStripSplitButton1.Size = new System.Drawing.Size(39, 24);
             this.toolStripSplitButton1.Text = "toolStripSplitButton1";
             // 
+            // AccordionPanel
+            // 
+            this.AccordionPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.AccordionPanel.ChipinforBurner = null;
+            this.AccordionPanel.ChipinforCapcity = null;
+            this.AccordionPanel.ChipinforName = null;
+            this.AccordionPanel.ChipinforPackage = null;
+            this.AccordionPanel.ChipinfoVendor = null;
+            this.wrapaccview.SetColumnSpan(this.AccordionPanel, 2);
+            this.AccordionPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AccordionPanel.Location = new System.Drawing.Point(3, 2);
+            this.AccordionPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.AccordionPanel.Name = "AccordionPanel";
+            this.wrapaccview.SetRowSpan(this.AccordionPanel, 2);
+            this.AccordionPanel.Size = new System.Drawing.Size(243, 649);
+            this.AccordionPanel.TabIndex = 0;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1016, 660);
+            this.ClientSize = new System.Drawing.Size(1271, 737);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.StatusStrip);
             this.Controls.Add(this.toolStrip1);
@@ -352,7 +355,7 @@ namespace Autoburn.Ui
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Form1";
+            this.Text = "自动烧录机";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.MainmenuItem.ResumeLayout(false);
@@ -362,7 +365,7 @@ namespace Autoburn.Ui
             this.StatusStrip.ResumeLayout(false);
             this.StatusStrip.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.statustableLayoutPanel2.ResumeLayout(false);
+            this.wrapaccview.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mainWindowBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -392,8 +395,8 @@ namespace Autoburn.Ui
         private System.Windows.Forms.ToolStripStatusLabel statusdiscovery;
         private System.Windows.Forms.ToolStripStatusLabel statusTcpStatus;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TableLayoutPanel statustableLayoutPanel2;
-        private AccordionPanel accordionPanel1;
+        private System.Windows.Forms.TableLayoutPanel wrapaccview;
+        private AccordionPanel AccordionPanel;
         private System.Windows.Forms.ToolStripMenuItem NewProjectStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem OpenProjectStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ProjecthistorytoolStripMenuItem;

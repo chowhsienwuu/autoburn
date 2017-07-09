@@ -58,11 +58,11 @@ namespace Autoburn.Ui
                 {
                     ChooseChipFrom.ChooseChipFromEventArgs args = e as ChooseChipFrom.ChooseChipFromEventArgs;
                     CurrentChooseChip = args.ChipInfo;
-                    accordionPanel1.ChipinfoVendor = CurrentChooseChip.vendor;
-                    accordionPanel1.ChipinforName = CurrentChooseChip.name;
-                    accordionPanel1.ChipinforPackage = CurrentChooseChip.package;
-                    accordionPanel1.ChipinforCapcity = "-";
-                    accordionPanel1.ChipinforBurner = CurrentChooseChip.burner;
+                    AccordionPanel.ChipinfoVendor = CurrentChooseChip.vendor;
+                    AccordionPanel.ChipinforName = CurrentChooseChip.name;
+                    AccordionPanel.ChipinforPackage = CurrentChooseChip.package;
+                    AccordionPanel.ChipinforCapcity = "-";
+                    AccordionPanel.ChipinforBurner = CurrentChooseChip.burner;
                 };
             }
             _ChooseChipFrom.ShowDialog();
