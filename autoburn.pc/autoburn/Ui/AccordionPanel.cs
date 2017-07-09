@@ -10,24 +10,23 @@ using System.Windows.Forms;
 using Autoburn;
 using Autoburn.Ui;
 using Autoburn.util;
-using Autoburn.Ressources;
 
 namespace Autoburn.Ui
 {
     public partial class AccordionPanel : UserControl
     {
+        public const string TAG = "AccordionPanel";
         public AccordionPanel()
         {
             InitializeComponent();
             InitCustomerComponet();
 
-           // this.BackgroundImage = Pictureres.rightstatubackground;
             this.Resize += delegate
             {
-               // ProgLog.D("..accordingpanel ", "AccordionPanel resize");
                 foreach (Control c in MainflowLayoutPanel.Controls)
                 {
-                    c.Width = (int)(MainflowLayoutPanel.Width * 9.2 / 10);
+                    c.Width = (int)(MainflowLayoutPanel.Width * 9.7 / 10);
+                  //  c.Height = 0;
                 }
             };
         }
@@ -37,8 +36,10 @@ namespace Autoburn.Ui
             BorderStyle = BorderStyle.FixedSingle;
             InitChipInfoComponet();
             InitFileInfoComponet();
-            InitProjectInfoComponet();
+         //   InitFileInfoComponet();
+
             InitProductionInfoComponet();
+            InitProjectInfoComponet(); 
         }
 
         private string _chipinfoVendor;
@@ -119,6 +120,7 @@ namespace Autoburn.Ui
             tmp += "芯片容量:" + _chipinfocapacity + System.Environment.NewLine;
             return tmp;
         }
+
         private void InitChipInfoComponet()
         {
             _ChipInfo = new Expander();
@@ -132,65 +134,63 @@ namespace Autoburn.Ui
             this.MainflowLayoutPanel.Controls.Add(_ChipInfo);
         }
 
+        public void SetFileInfo(string filename, long filesize, string filemd5)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("文件名称: " + filename + Environment.NewLine);
+            sb.Append("文件大小: " + filesize.ToString() + " Byte" + Environment.NewLine);
+            sb.Append("文件MD5: : " + filemd5 + Environment.NewLine);
+
+            ProgLog.D(TAG, sb.ToString());
+            _FileInfo.Content.Text = sb.ToString();
+        }
+
         private void InitFileInfoComponet()
         {
             _FileInfo = new Expander();
-            //expander.Size = new Size(250, 400);
-            //expander.Left = 350;
-            //expander.Top = 10;
-            //expander.BorderStyle = BorderStyle.FixedSingle;
 
             ExpanderHelper.CreateLabelHeader(_FileInfo, "文件信息", SystemColors.ActiveBorder);
 
             Label labelContent = new Label();
-            labelContent.Text = "This is the content  p, a CustomControl, basically, anything you want.";
-            //labelContent.Size = new System.Drawing.Size(_FileInfo.Width, 80);
             _FileInfo.Content = labelContent;
+            SetFileInfo(string.Empty, 20L, string.Empty);
+            labelContent.Height = 80;
 
-            // this.Controls.Add(_ChipInfo);
+          //  labelContent.Text = CalChipInfoString();
+
             this.MainflowLayoutPanel.Controls.Add(_FileInfo);
         }
 
         private void InitProductionInfoComponet()
         {
             _ProjectInfo = new Expander();
-            //expander.Size = new Size(250, 400);
-            //expander.Left = 350;
-            //expander.Top = 10;
-            //expander.BorderStyle = BorderStyle.FixedSingle;
-
             ExpanderHelper.CreateLabelHeader(_ProjectInfo, "工程信息", SystemColors.ActiveBorder);
 
             Label labelContent = new Label();
-            labelContent.Text = "This is the content part.\r\n\r\nYou can put any Controls here. You can use a Panel, a CustomControl, basically, anything you want.";
-         //   labelContent.Size = new System.Drawing.Size(_ProjectInfo.Width, 80);
+            labelContent.Text = "This is the content part. You can put any Controls here. You can use a Panel, a CustomControl, basically, anything you want.";
+             labelContent.Size = new System.Drawing.Size(_ProjectInfo.Width, 80);
             _ProjectInfo.Content = labelContent;
 
-            // this.Controls.Add(_ChipInfo);
-            this.MainflowLayoutPanel.Controls.Add(_ProjectInfo);
+            this.MainflowLayoutPanel.Controls.Add(_ProjectInfo); 
         }
 
         private void InitProjectInfoComponet()
         {
             _ProductionInfo = new Expander();
-            //expander.Size = new Size(250, 400);
-            //expander.Left = 350;
-            //expander.Top = 10;
-            //expander.BorderStyle = BorderStyle.FixedSingle;
 
             ExpanderHelper.CreateLabelHeader(_ProductionInfo, "量产信息", SystemColors.ActiveBorder);
 
             Label labelContent = new Label();
-            labelContent.Text = "This is the content part.\r\n\r\nYou can put any Controls here. You can use a Panel, a CustomControl, basically, anything you want.";
+            labelContent.Text = "This is the content part. You can put any Controls here. You can use a Panel, a CustomControl, basically, anything you want.";
             labelContent.Size = new System.Drawing.Size(_ProductionInfo.Width, 80);
             _ProductionInfo.Content = labelContent;
 
-            // this.Controls.Add(_ChipInfo);
             this.MainflowLayoutPanel.Controls.Add(_ProductionInfo);
         }
 
         private Expander _ChipInfo;
         private Expander _FileInfo;
+        private Expander _FileInfo2;
         private Expander _ProjectInfo;
         private Expander _ProductionInfo;
     }

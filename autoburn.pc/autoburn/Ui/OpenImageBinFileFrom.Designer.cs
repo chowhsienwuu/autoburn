@@ -1,6 +1,6 @@
 ﻿namespace Autoburn.Ui
 {
-    partial class OpenImageBinFile
+    partial class OpenImageBinFileFrom
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OpenImageBinFile));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OpenImageBinFileFrom));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.OpenFile = new System.Windows.Forms.Button();
@@ -79,7 +79,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(913, 563);
             this.tableLayoutPanel1.TabIndex = 0;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // label1
             // 
@@ -153,14 +152,7 @@
             this.okbutton.UseVisualStyleBackColor = true;
             this.okbutton.Click += new System.EventHandler(this.okbutton_Click);
             // 
-            // CalFileMD5work
-            // 
-            this.CalFileMD5work.WorkerReportsProgress = true;
-            this.CalFileMD5work.WorkerSupportsCancellation = true;
-            this.CalFileMD5work.DoWork += new System.ComponentModel.DoWorkEventHandler(this.CalFileMD5work_DoWork);
-            this.CalFileMD5work.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.CalFileMD5work_ProgressChanged);
-            this.CalFileMD5work.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.CalFileMD5work_RunWorkerCompleted);
-            // 
+
             // OpenImageBinFile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -183,7 +175,7 @@
         private System.Windows.Forms.TextBox openfiletext;
         private System.Windows.Forms.Button OpenFile;
         private System.Windows.Forms.ProgressBar progressBar1;
-        private System.ComponentModel.BackgroundWorker CalFileMD5work;
+
         private System.Windows.Forms.Label filemd5sumlab;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button chacelbutton;

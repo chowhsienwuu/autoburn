@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Autoburn.Ressources {
+namespace Autoburn.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Autoburn.Ressources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Autoburn.Ressources.Pictureres", typeof(Pictureres).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Autoburn.Resources.Pictureres", typeof(Pictureres).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

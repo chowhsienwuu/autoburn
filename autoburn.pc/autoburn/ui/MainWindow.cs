@@ -48,7 +48,7 @@ namespace Autoburn.Ui
 
         #region 选择芯片
         private ChooseChipFrom _ChooseChipFrom = null;
-        private ChipInfo CurrentChooseChip = null;
+        private ChipInfo CurrentChooseChip = null; //当前选择的芯片.
         private void ChooseChipMenuItem_Click(object sender, EventArgs e1)
         {
             if (_ChooseChipFrom == null)
@@ -129,14 +129,19 @@ namespace Autoburn.Ui
 
         }
 
+        private ImgBinFileInfo CurrentimgBintFileInfo = null;
         private void openFileDialog_Click(object sender, EventArgs e)
         {
-            OpenImageBinFile openimagebinfile = new OpenImageBinFile();
+            OpenImageBinFileFrom openimagebinfile = new OpenImageBinFileFrom();
+            openimagebinfile.StateChanged += delegate(object o, EventArgs e1)
+            {
+                CurrentimgBintFileInfo = e1 as ImgBinFileInfo;
+                AccordionPanel.SetFileInfo(CurrentimgBintFileInfo.ImageBinFileName,
+                    CurrentimgBintFileInfo.ImageBinFileLen, CurrentimgBintFileInfo.ImageBinFileMD5Sum);
+            };
+
             openimagebinfile.ShowDialog();
         }
-
-
-
 
         #region NOT changed 
         private void AboutMenuItem_Click(object sender, EventArgs e)

@@ -1,4 +1,4 @@
-﻿using Autoburn.Ressources;
+﻿using Autoburn.Resources;
 using System;
 using System.ComponentModel;
 using System.Drawing;

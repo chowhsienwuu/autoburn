@@ -63,9 +63,9 @@ namespace Autoburn.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap logo {
+        internal static System.Drawing.Bitmap rightstatubackground {
             get {
-                object obj = ResourceManager.GetObject("logo", resourceCulture);
+                object obj = ResourceManager.GetObject("rightstatubackground", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

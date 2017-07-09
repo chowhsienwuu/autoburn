@@ -28,14 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AccordionPanel));
             this.MainflowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
             // MainflowLayoutPanel
             // 
             this.MainflowLayoutPanel.AutoScroll = true;
-            this.MainflowLayoutPanel.BackgroundImage = global::Autoburn.Properties.Resources.logo;
-            this.MainflowLayoutPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.MainflowLayoutPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.MainflowLayoutPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("MainflowLayoutPanel.BackgroundImage")));
+            this.MainflowLayoutPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.MainflowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainflowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.MainflowLayoutPanel.Location = new System.Drawing.Point(0, 0);

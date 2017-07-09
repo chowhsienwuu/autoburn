@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Autoburn.Manager;
+using Autoburn.util;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,14 +14,17 @@ using System.Windows.Forms;
 
 namespace Autoburn.Ui
 {
-    public partial class OpenImageBinFile : Form
+    public partial class OpenImageBinFileFrom : Form
     {
-        public OpenImageBinFile()
+        public OpenImageBinFileFrom()
         {
             InitializeComponent();
           
         }
-
+        public const string TAG = "OpenImageBinFile";
+        #region Events
+        public event EventHandler StateChanged;
+        #endregion
         private void OpenFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -32,16 +37,43 @@ namespace Autoburn.Ui
             {
                 _openFilePath = ofd.FileName;
                 openfiletext.Text = _openFilePath;
+
+                ImgBinFileInfo.ImageBinFileFullPath = _openFilePath;
+                FileInfo fileinfo = new FileInfo(_openFilePath);
+                ImgBinFileInfo.ImageBinFileLen = fileinfo.Length;
+                ImgBinFileInfo.ImageBinFileName = fileinfo.Name;
+
+                InitCalFileMd5work();
+                // 
                 CalFileMD5work.RunWorkerAsync();
             }
         }
 
+        private void InitCalFileMd5work()
+        {
+            if (CalFileMD5work != null && CalFileMD5work.WorkerSupportsCancellation)
+            {
+                CalFileMD5work?.CancelAsync();
+            }
+            // CalFileMD5work
+            // 
+            CalFileMD5work = new BackgroundWorker();
+            this.CalFileMD5work.WorkerReportsProgress = true;
+            this.CalFileMD5work.WorkerSupportsCancellation = true;
+            this.CalFileMD5work.DoWork += new System.ComponentModel.DoWorkEventHandler(this.CalFileMD5work_DoWork);
+            this.CalFileMD5work.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.CalFileMD5work_ProgressChanged);
+            this.CalFileMD5work.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.CalFileMD5work_RunWorkerCompleted);
+        }
+        private System.ComponentModel.BackgroundWorker CalFileMD5work;
+
         private string _openFilePath = "";
         private string _md5sum = string.Empty;
+
+        private ImgBinFileInfo ImgBinFileInfo = new ImgBinFileInfo();
         private void CalFileMD5work_DoWork(object sender, DoWorkEventArgs e)
         {
-            CalFileMD5work.ReportProgress(1);
-            _md5sum = DoCalFileMd5(_openFilePath);
+            CalFileMD5work?.ReportProgress(1); //start to cal md5sum 
+            _md5sum = DoCalFileMd5(_openFilePath); // this function will last some times.
         }
 
         private void CalFileMD5work_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -50,7 +82,7 @@ namespace Autoburn.Ui
             {
                 case 1:
                     this.Cursor = Cursors.WaitCursor;
-
+                   // this. = false;
                     break;
                 default:
                     break;
@@ -59,8 +91,10 @@ namespace Autoburn.Ui
 
         private void CalFileMD5work_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            this.Enabled = true;
             this.Cursor = Cursors.Default;
             filemd5sumlab.Text = _md5sum;
+            ImgBinFileInfo.ImageBinFileMD5Sum = _md5sum;
         }
 
         private string DoCalFileMd5(string filename)
@@ -89,17 +123,28 @@ namespace Autoburn.Ui
 
         private void okbutton_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(ImgBinFileInfo.ImageBinFileMD5Sum))
+            {
+                StateChanged?.Invoke(this, ImgBinFileInfo); // 
+                SystemLog.I(TAG, ImgBinFileInfo);
+            }
 
+            if (CalFileMD5work != null && CalFileMD5work.WorkerSupportsCancellation)
+            {
+                CalFileMD5work?.CancelAsync();
+            }
+            Dispose();
         }
 
         private void chacelbutton_Click(object sender, EventArgs e)
         {
-
+            // StateChanged?.Invoke(this, ImgBinFileInfo); // 
+            if (CalFileMD5work != null && CalFileMD5work.WorkerSupportsCancellation)
+            {
+                CalFileMD5work?.CancelAsync();
+            }
+            Dispose();
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }
