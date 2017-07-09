@@ -172,6 +172,7 @@ namespace Autoburn.Ui
             _ProjectInfo.Content = labelContent;
 
             this.MainflowLayoutPanel.Controls.Add(_ProjectInfo); 
+           
         }
 
         private void InitProjectInfoComponet()

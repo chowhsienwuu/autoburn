@@ -139,11 +139,13 @@ namespace Autoburn.Ui
         private void chacelbutton_Click(object sender, EventArgs e)
         {
             // StateChanged?.Invoke(this, ImgBinFileInfo); // 
-            if (CalFileMD5work != null && CalFileMD5work.WorkerSupportsCancellation)
-            {
-                CalFileMD5work?.CancelAsync();
-            }
-            Dispose();
+            //if (CalFileMD5work != null && CalFileMD5work.WorkerSupportsCancellation)
+            //{
+            //    CalFileMD5work?.CancelAsync();
+            //}
+            //Dispose();
+            ShowLoadingFrom slf = new ShowLoadingFrom();
+            slf.ShowDialog();
         }
 
     }

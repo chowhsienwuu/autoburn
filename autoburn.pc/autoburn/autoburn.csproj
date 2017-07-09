@@ -219,6 +219,12 @@
     <Compile Include="Ui\SaveProject.Designer.cs">
       <DependentUpon>SaveProject.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ui\ShowLoadingFrom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ui\ShowLoadingFrom.Designer.cs">
+      <DependentUpon>ShowLoadingFrom.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Resources\Pictureres.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Pictureres.Designer.cs</LastGenOutput>
@@ -252,6 +258,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Ui\SaveProject.resx">
       <DependentUpon>SaveProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ui\ShowLoadingFrom.resx">
+      <DependentUpon>ShowLoadingFrom.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="misc\raw.db" />
     <None Include="packages.config" />
@@ -295,6 +304,7 @@
     <Content Include="logoicon.ico" />
     <Content Include="Manager\projecttest.xml" />
     <Content Include="misc\rawsql.txt" />
+    <None Include="Resources\loding.gif" />
     <None Include="Resources\rightstatubackground.bmp" />
     <None Include="Resources\logo.png" />
     <None Include="Resources\Expand.png" />
