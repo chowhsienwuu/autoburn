@@ -76,13 +76,18 @@ namespace Autoburn.Ui
             _md5sum = DoCalFileMd5(_openFilePath); // this function will last some times.
         }
 
+        private ShowLoadingFrom _ShowLoadingFrom = null;
+      
         private void CalFileMD5work_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             switch (e.ProgressPercentage)
             {
                 case 1:
                     this.Cursor = Cursors.WaitCursor;
-                   // this. = false;
+                    // this. = false;
+                    _ShowLoadingFrom?.Dispose();
+                    _ShowLoadingFrom = new ShowLoadingFrom();
+                    _ShowLoadingFrom.ShowDialog();
                     break;
                 default:
                     break;
@@ -91,6 +96,7 @@ namespace Autoburn.Ui
 
         private void CalFileMD5work_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            _ShowLoadingFrom?.Dispose();
             this.Enabled = true;
             this.Cursor = Cursors.Default;
             filemd5sumlab.Text = _md5sum;
@@ -138,14 +144,18 @@ namespace Autoburn.Ui
 
         private void chacelbutton_Click(object sender, EventArgs e)
         {
-            // StateChanged?.Invoke(this, ImgBinFileInfo); // 
-            //if (CalFileMD5work != null && CalFileMD5work.WorkerSupportsCancellation)
-            //{
-            //    CalFileMD5work?.CancelAsync();
-            //}
-            //Dispose();
-            ShowLoadingFrom slf = new ShowLoadingFrom();
-            slf.ShowDialog();
+            _ShowLoadingFrom?.Dispose();
+
+            if (!string.IsNullOrEmpty(ImgBinFileInfo.ImageBinFileMD5Sum))
+            {
+                StateChanged?.Invoke(this, ImgBinFileInfo); // 
+            }
+           
+            if (CalFileMD5work != null && CalFileMD5work.WorkerSupportsCancellation)
+            {
+                CalFileMD5work?.CancelAsync();
+            }
+            Dispose();
         }
 
     }

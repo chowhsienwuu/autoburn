@@ -304,7 +304,7 @@
     <Content Include="logoicon.ico" />
     <Content Include="Manager\projecttest.xml" />
     <Content Include="misc\rawsql.txt" />
-    <None Include="Resources\loding.gif" />
+    <None Include="Resources\lp.gif" />
     <None Include="Resources\rightstatubackground.bmp" />
     <None Include="Resources\logo.png" />
     <None Include="Resources\Expand.png" />
