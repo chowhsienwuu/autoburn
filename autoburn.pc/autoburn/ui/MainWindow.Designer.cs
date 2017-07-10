@@ -308,11 +308,6 @@ namespace Autoburn.Ui
             // AccordionPanel
             // 
             this.AccordionPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.AccordionPanel.ChipinforBurner = null;
-            this.AccordionPanel.ChipinforCapcity = null;
-            this.AccordionPanel.ChipinforName = null;
-            this.AccordionPanel.ChipinforPackage = null;
-            this.AccordionPanel.ChipinfoVendor = null;
             this.tableLayoutPanel1.SetColumnSpan(this.AccordionPanel, 2);
             this.AccordionPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AccordionPanel.Location = new System.Drawing.Point(1019, 2);

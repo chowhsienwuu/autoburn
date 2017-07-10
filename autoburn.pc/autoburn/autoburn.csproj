@@ -141,11 +141,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Manager\DataBaseManager.cs" />
-    <Compile Include="Manager\ImgBinFileInfo.cs" />
-    <Compile Include="Manager\ProjectInfo.cs" />
-    <Compile Include="Manager\ChipInfo.cs" />
+    <Compile Include="Manager\MetaInfo\ImgBinFileInfo.cs" />
+    <Compile Include="Manager\MetaInfo\ProjectInfo.cs" />
+    <Compile Include="Manager\MetaInfo\ChipInfo.cs" />
     <Compile Include="Manager\ChipSupportManager.cs" />
-    <Compile Include="Manager\ConfigInfo.cs" />
+    <Compile Include="Manager\MetaInfo\ConfigInfo.cs" />
     <Compile Include="Manager\ProjectManager.cs" />
     <Compile Include="Manager\ConfigManager.cs" />
     <Compile Include="Manager\DeviceManager.cs" />
@@ -302,7 +302,6 @@
     <Content Include="chipinfo\eon\EN27XX.xml" />
     <Content Include="chipinfo\jsc\JSFXX.xml" />
     <Content Include="logoicon.ico" />
-    <Content Include="Manager\projecttest.xml" />
     <Content Include="misc\rawsql.txt" />
     <None Include="Resources\lp.gif" />
     <None Include="Resources\rightstatubackground.bmp" />

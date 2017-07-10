@@ -137,11 +137,9 @@ namespace Autoburn.Ui
         private int contentHeight = 0;
 
         #endregion
-    }
 
-    public static class ExpanderHelper
-    {
-        public static Label CreateLabelHeader(Expander expander, string text, Color backColor, Image collapsedImage = null, Image expandedImage = null, int height = 25, Font font = null)
+
+        public  Label CreateLabelHeader(Expander expander, string text, Color backColor, Image collapsedImage = null, Image expandedImage = null, int height = 25, Font font = null)
         {
             Label headerLabel = new Label();
             headerLabel.Text = text;

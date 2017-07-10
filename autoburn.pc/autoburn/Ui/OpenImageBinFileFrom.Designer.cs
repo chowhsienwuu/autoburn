@@ -33,7 +33,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.OpenFile = new System.Windows.Forms.Button();
             this.openfiletext = new System.Windows.Forms.TextBox();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label3 = new System.Windows.Forms.Label();
             this.filemd5sumlab = new System.Windows.Forms.Label();
             this.chacelbutton = new System.Windows.Forms.Button();
@@ -58,14 +57,13 @@
             this.tableLayoutPanel1.Controls.Add(this.label1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.OpenFile, 9, 0);
             this.tableLayoutPanel1.Controls.Add(this.openfiletext, 4, 0);
-            this.tableLayoutPanel1.Controls.Add(this.progressBar1, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.label3, 4, 1);
             this.tableLayoutPanel1.Controls.Add(this.filemd5sumlab, 5, 1);
             this.tableLayoutPanel1.Controls.Add(this.chacelbutton, 7, 9);
             this.tableLayoutPanel1.Controls.Add(this.okbutton, 9, 9);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 10;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
@@ -94,9 +92,9 @@
             // OpenFile
             // 
             this.OpenFile.Location = new System.Drawing.Point(614, 2);
-            this.OpenFile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.OpenFile.Margin = new System.Windows.Forms.Padding(2);
             this.OpenFile.Name = "OpenFile";
-            this.OpenFile.Size = new System.Drawing.Size(52, 18);
+            this.OpenFile.Size = new System.Drawing.Size(69, 32);
             this.OpenFile.TabIndex = 2;
             this.OpenFile.Text = "打开文件";
             this.OpenFile.UseVisualStyleBackColor = true;
@@ -106,18 +104,10 @@
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.openfiletext, 4);
             this.openfiletext.Location = new System.Drawing.Point(274, 2);
-            this.openfiletext.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.openfiletext.Margin = new System.Windows.Forms.Padding(2);
             this.openfiletext.Name = "openfiletext";
             this.openfiletext.Size = new System.Drawing.Size(268, 21);
             this.openfiletext.TabIndex = 0;
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(70, 47);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(64, 18);
-            this.progressBar1.TabIndex = 3;
             // 
             // label3
             // 
@@ -135,14 +125,14 @@
             this.filemd5sumlab.Location = new System.Drawing.Point(342, 45);
             this.filemd5sumlab.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.filemd5sumlab.Name = "filemd5sumlab";
-            this.filemd5sumlab.Size = new System.Drawing.Size(65, 24);
+            this.filemd5sumlab.Size = new System.Drawing.Size(23, 12);
             this.filemd5sumlab.TabIndex = 4;
-            this.filemd5sumlab.Text = "99999999999999";
+            this.filemd5sumlab.Text = "000";
             // 
             // chacelbutton
             // 
             this.chacelbutton.Location = new System.Drawing.Point(478, 407);
-            this.chacelbutton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chacelbutton.Margin = new System.Windows.Forms.Padding(2);
             this.chacelbutton.Name = "chacelbutton";
             this.chacelbutton.Size = new System.Drawing.Size(56, 18);
             this.chacelbutton.TabIndex = 6;
@@ -152,10 +142,11 @@
             // 
             // okbutton
             // 
+            this.okbutton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.okbutton.Location = new System.Drawing.Point(614, 407);
-            this.okbutton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.okbutton.Margin = new System.Windows.Forms.Padding(2);
             this.okbutton.Name = "okbutton";
-            this.okbutton.Size = new System.Drawing.Size(56, 18);
+            this.okbutton.Size = new System.Drawing.Size(69, 41);
             this.okbutton.TabIndex = 7;
             this.okbutton.Text = "确定";
             this.okbutton.UseVisualStyleBackColor = true;
@@ -168,7 +159,7 @@
             this.ClientSize = new System.Drawing.Size(685, 450);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "OpenImageBinFileFrom";
             this.ShowInTaskbar = false;
             this.Text = "OpenImageBinFile";
@@ -184,7 +175,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox openfiletext;
         private System.Windows.Forms.Button OpenFile;
-        private System.Windows.Forms.ProgressBar progressBar1;
 
         private System.Windows.Forms.Label filemd5sumlab;
         private System.Windows.Forms.Label label3;

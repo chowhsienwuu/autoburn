@@ -32,7 +32,6 @@ namespace Autoburn.Ui
         }
 
 
-
         private void Form1_Load(object sender, EventArgs e)
         {
            
@@ -58,11 +57,7 @@ namespace Autoburn.Ui
                 {
                     ChooseChipFrom.ChooseChipFromEventArgs args = e as ChooseChipFrom.ChooseChipFromEventArgs;
                     CurrentChooseChip = args.ChipInfo;
-                    AccordionPanel.ChipinfoVendor = CurrentChooseChip.vendor;
-                    AccordionPanel.ChipinforName = CurrentChooseChip.name;
-                    AccordionPanel.ChipinforPackage = CurrentChooseChip.package;
-                    AccordionPanel.ChipinforCapcity = "-";
-                    AccordionPanel.ChipinforBurner = CurrentChooseChip.burner;
+                    AccordionPanel.CurrentChipInfo = CurrentChooseChip;
                 };
             }
             _ChooseChipFrom.ShowDialog();
@@ -129,15 +124,14 @@ namespace Autoburn.Ui
 
         }
 
-        private ImgBinFileInfo CurrentimgBintFileInfo = null;
+        private ImgBinFileInfo CurrentimgBintFileInfo = null; //当前的镜像文件
         private void openFileDialog_Click(object sender, EventArgs e)
         {
             OpenImageBinFileFrom openimagebinfile = new OpenImageBinFileFrom();
             openimagebinfile.StateChanged += delegate(object o, EventArgs e1)
             {
                 CurrentimgBintFileInfo = e1 as ImgBinFileInfo;
-                AccordionPanel.SetFileInfo(CurrentimgBintFileInfo.ImageBinFileName,
-                    CurrentimgBintFileInfo.ImageBinFileLen, CurrentimgBintFileInfo.ImageBinFileMD5Sum);
+                AccordionPanel.CurrentimgBintFileInfo = CurrentimgBintFileInfo;
             };
 
             openimagebinfile.ShowDialog();
