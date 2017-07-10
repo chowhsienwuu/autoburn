@@ -213,11 +213,11 @@
     <Compile Include="Ui\OpenImageBinFileFrom.Designer.cs">
       <DependentUpon>OpenImageBinFileFrom.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ui\SaveProject.cs">
+    <Compile Include="Ui\SaveProjectFrom.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Ui\SaveProject.Designer.cs">
-      <DependentUpon>SaveProject.cs</DependentUpon>
+    <Compile Include="Ui\SaveProjectFrom.Designer.cs">
+      <DependentUpon>SaveProjectFrom.cs</DependentUpon>
     </Compile>
     <Compile Include="Ui\ShowLoadingFrom.cs">
       <SubType>Form</SubType>
@@ -256,8 +256,8 @@
     <EmbeddedResource Include="Ui\OpenImageBinFileFrom.resx">
       <DependentUpon>OpenImageBinFileFrom.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ui\SaveProject.resx">
-      <DependentUpon>SaveProject.cs</DependentUpon>
+    <EmbeddedResource Include="Ui\SaveProjectFrom.resx">
+      <DependentUpon>SaveProjectFrom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ui\ShowLoadingFrom.resx">
       <DependentUpon>ShowLoadingFrom.cs</DependentUpon>

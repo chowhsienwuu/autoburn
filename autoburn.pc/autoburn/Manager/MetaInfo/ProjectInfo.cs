@@ -14,8 +14,7 @@ namespace Autoburn.Manager
         public const string TYPE_COLUMN_KEY = "key";
         public const string TYPE_COLUMN_VALUE = "value";
 
-
-
+        public const string TYPE_KEY_PROJECT_WINDOWS_DIR_PATH = "windows_project_path";
 
         public const string TYPE_KEY_PROJECT_NAME = "projectname";
         public const string TYPE_KEY_CREATETIME = "createtime";

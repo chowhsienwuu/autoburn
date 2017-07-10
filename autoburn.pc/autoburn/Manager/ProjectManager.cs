@@ -54,7 +54,23 @@ namespace Autoburn.Manager
             //add a key create time.
         }
 
-       private void CreateTable()
+        public Hashtable GetCurrentProjectConfig()
+        {
+            Hashtable hashtable = new Hashtable();
+            var sql = "select * from project;";
+            SQLiteCommand command = new SQLiteCommand(sql, _dbConnection);
+            using (SQLiteDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    hashtable[reader[ProjectInfo.TYPE_COLUMN_KEY]] = reader[ProjectInfo.TYPE_COLUMN_VALUE];
+                }
+                reader.Close();
+            }
+            return hashtable;
+        }
+
+        private void CreateTable()
         {
             string sql = "CREATE TABLE \"project\"([index] INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,[key]NOT NULL, [value]);";
             SQLiteCommand command = new SQLiteCommand(sql, _dbConnection);

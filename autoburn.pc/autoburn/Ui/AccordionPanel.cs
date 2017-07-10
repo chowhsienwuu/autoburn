@@ -11,6 +11,7 @@ using Autoburn;
 using Autoburn.Ui;
 using Autoburn.util;
 using Autoburn.Manager;
+using System.Collections;
 
 namespace Autoburn.Ui
 {
@@ -37,7 +38,7 @@ namespace Autoburn.Ui
             InitChipInfoComponet();
             InitFileInfoComponet();
 
-         //   InitProductionInfoComponet();
+            InitProductionInfoComponet();
          //   InitProjectInfoComponet(); 
         }
 
@@ -88,13 +89,13 @@ namespace Autoburn.Ui
             set
             {
                 _CurrentimgBintFileInfo = value;
-                _FileInfo.Content.Text = SetFileInfo();
+                _FileInfo.Content.Text = CalFileInfoString();
             }
         }
 
 
 
-        private string SetFileInfo()
+        private string CalFileInfoString()
         {
             string tmp = "";
             tmp += "文件名称: " + _CurrentimgBintFileInfo.ImageBinFileName + Environment.NewLine;
@@ -111,23 +112,53 @@ namespace Autoburn.Ui
             Label labelContent = new Label();
             labelContent.Size = new System.Drawing.Size(_FileInfo.Width, 80);
             _FileInfo.Content = labelContent;
-            _FileInfo.Content.Text = SetFileInfo();
+            _FileInfo.Content.Text = CalFileInfoString();
 
             this.MainflowLayoutPanel.Controls.Add(_FileInfo);
         }
 
-        //private void InitProductionInfoComponet()
-        //{
-        //    _ProjectInfo = new Expander();
-        //    ExpanderHelper.CreateLabelHeader(_ProjectInfo, "工程信息", SystemColors.ActiveBorder);
+        //   private Proje
+        private Hashtable _CurrentProjectInfoHashTable = new Hashtable();
+        public Hashtable CurrentProjectInfoHashTable
+        {
+            get
+            {
+                return _CurrentProjectInfoHashTable;
+            }
 
-        //    Label labelContent = new Label();
-        //    labelContent.Text = "This is the content part. You can put any Controls here. You can use a Panel, a CustomControl, basically, anything you want.";
-        //     labelContent.Size = new System.Drawing.Size(_ProjectInfo.Width, 80);
-        //    _ProjectInfo.Content = labelContent;
+            set
+            {
+                _CurrentProjectInfoHashTable = value;
+                _ProjectInfo.Content.Text = CalProjectInfoString();
+            }
+        }
 
-        //    this.MainflowLayoutPanel.Controls.Add(_ProjectInfo); 
-        //}
+        private string CalProjectInfoString()
+        {
+            string tmp = "";
+            if (_CurrentProjectInfoHashTable.Contains(ProjectInfo.TYPE_KEY_PROJECT_NAME))
+            {
+                tmp += "工程名称: " + _CurrentProjectInfoHashTable[ProjectInfo.TYPE_KEY_PROJECT_NAME] + Environment.NewLine;
+            }
+            if (_CurrentProjectInfoHashTable.Contains(ProjectInfo.TYPE_KEY_CREATETIME))
+            {
+                tmp += "创建时间: " + _CurrentProjectInfoHashTable[ProjectInfo.TYPE_KEY_CREATETIME] + Environment.NewLine;
+            }
+            return tmp;
+        }
+
+        private void InitProductionInfoComponet()
+        {
+            _ProjectInfo = new Expander();
+            _ProjectInfo.CreateLabelHeader(_ProjectInfo, "工程信息", SystemColors.ActiveBorder);
+
+            Label labelContent = new Label();
+            labelContent.Size = new System.Drawing.Size(_ProjectInfo.Width, 80);
+            labelContent.Text = CalProjectInfoString();
+            _ProjectInfo.Content = labelContent;
+
+            this.MainflowLayoutPanel.Controls.Add(_ProjectInfo);
+        }
 
         //private void InitProjectInfoComponet()
         //{

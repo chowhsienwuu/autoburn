@@ -3,6 +3,7 @@ using Autoburn.Net;
 using Autoburn.Ui;
 using Autoburn.util;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -44,7 +45,6 @@ namespace Autoburn.Ui
             D("MainWindow_FormClosing");
         }
 
-
         #region 选择芯片
         private ChooseChipFrom _ChooseChipFrom = null;
         private ChipInfo CurrentChooseChip = null; //当前选择的芯片.
@@ -64,28 +64,17 @@ namespace Autoburn.Ui
         }
         #endregion
 
+        private Hashtable CurrentProjectInfoHashTable = new Hashtable();
         private void NewProjectStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Stream myStream;
-            //SaveFileDialog savefileDialog = new SaveFileDialog();
-
-            //savefileDialog.Title = "新建工程";
-            //savefileDialog.Filter = "工程文件|*.ccp";
-            //savefileDialog.RestoreDirectory = true;
-
-            //if (savefileDialog.ShowDialog() == DialogResult.OK)
-            //{
-            //    if ((myStream = savefileDialog.OpenFile()) != null)
-            //    {
-            //        filename = savefileDialog.FileName;
-            //        // Code to write the stream goes here.
-            //        myStream.Write(Encoding.ASCII.GetBytes(savefileDialog.FileName), 0, savefileDialog.FileName.Length);
-            //        myStream.Close();
-            //    }
-            //}
-            SaveProject sp = new SaveProject();
+            SaveProjectFrom sp = new SaveProjectFrom();
+            sp.StateChanged += delegate (object o, EventArgs e1)
+            {
+                SaveProjectFrom.ProjectInfoHashtableEventArgs args = e1 as SaveProjectFrom.ProjectInfoHashtableEventArgs;
+                CurrentProjectInfoHashTable = args.ProjectInfoHashtable;
+                AccordionPanel.CurrentProjectInfoHashTable = CurrentProjectInfoHashTable;
+            };
             sp.ShowDialog();
-
         }
 
         public string filename = "";
