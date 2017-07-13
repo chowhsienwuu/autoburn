@@ -35,7 +35,6 @@ namespace ConsoleApplication1
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.myChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.accordionPanel1 = new ConsoleApplication1.AccordionPanel();
             ((System.ComponentModel.ISupportInitialize)(this.myChart)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,30 +52,16 @@ namespace ConsoleApplication1
             this.myChart.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.myChart.Legends.Add(legend1);
-            this.myChart.Location = new System.Drawing.Point(12, 59);
+            this.myChart.Location = new System.Drawing.Point(408, 282);
             this.myChart.Name = "myChart";
             this.myChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.myChart.Series.Add(series1);
-            this.myChart.Size = new System.Drawing.Size(1113, 628);
+            this.myChart.Size = new System.Drawing.Size(717, 405);
             this.myChart.TabIndex = 2;
             this.myChart.Text = "chart1";
-            // 
-            // accordionPanel1
-            // 
-            this.accordionPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.accordionPanel1.ChipinforBurner = null;
-            this.accordionPanel1.ChipinforCapcity = null;
-            this.accordionPanel1.ChipinforName = null;
-            this.accordionPanel1.ChipinforPackage = null;
-            this.accordionPanel1.ChipinfoVendor = null;
-            this.accordionPanel1.Location = new System.Drawing.Point(582, 11);
-            this.accordionPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.accordionPanel1.Name = "accordionPanel1";
-            this.accordionPanel1.Size = new System.Drawing.Size(184, 28);
-            this.accordionPanel1.TabIndex = 0;
             // 
             // windowsform
             // 
@@ -85,7 +70,6 @@ namespace ConsoleApplication1
             this.ClientSize = new System.Drawing.Size(1137, 688);
             this.Controls.Add(this.myChart);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.accordionPanel1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "windowsform";
             this.Text = "windowsform";

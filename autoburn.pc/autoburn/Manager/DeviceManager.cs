@@ -27,6 +27,7 @@ namespace Autoburn.Manager
             _ChipSupportManager = new ChipSupportManager(this);
             _ConfigManager = new ConfigManager(this);
             _projectManager = new ProjectManager();
+            _WrapAdbManager = new WarpAdbManager(this);
             ProgLog.D(TAG, " DeviceManager end..");
         }
 
@@ -34,6 +35,9 @@ namespace Autoburn.Manager
         {
             _uaseAble = true;
         }
+
+        private WarpAdbManager _WrapAdbManager = null;
+
 
         private DataBaseManager _dataBaseManager = null;
         internal DataBaseManager DataBaseManager
@@ -81,6 +85,19 @@ namespace Autoburn.Manager
             set
             {
                 _projectManager = value;
+            }
+        }
+
+        internal WarpAdbManager WrapAdbManager
+        {
+            get
+            {
+                return _WrapAdbManager;
+            }
+
+            set
+            {
+                _WrapAdbManager = value;
             }
         }
 
