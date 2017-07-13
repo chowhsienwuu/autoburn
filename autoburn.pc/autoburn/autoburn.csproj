@@ -303,6 +303,7 @@
     <Content Include="chipinfo\jsc\JSFXX.xml" />
     <Content Include="logoicon.ico" />
     <Content Include="misc\rawsql.txt" />
+    <Content Include="misc\Readme.txt" />
     <None Include="Resources\lp.gif" />
     <None Include="Resources\rightstatubackground.bmp" />
     <None Include="Resources\logo.png" />

@@ -1,10 +1,13 @@
-﻿using System;
+﻿
+using SharpAdbClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
@@ -33,7 +36,70 @@ namespace WindowsFormsApplication1
             backgroundWorker_Combo.RunWorkerAsync();
             backgroundWorker_Combo.WorkerReportsProgress = true;
             progressBar1.Step = progressBar1.Maximum / 10;
+
+            //  testAdb();
+
+            //var devices = AdbClient.Instance.GetDevices();
+            //Console.WriteLine("..devices count is " + devices.Count);
+            //foreach (var device in devices)
+            //{
+
+            //    Console.WriteLine(" --- " + device.Name + "." + device.Usb  + ";;" + device.ToString());
+            //}
+            //  UploadFile();
+            Test();
         }
+
+        void UploadFile()
+        {
+            var device = AdbClient.Instance.GetDevices().First();
+
+            Console.WriteLine("..devices begain" + device);
+            using (SyncService service = new SyncService(device))
+            using (Stream stream = File.OpenRead(@"E:\系统镜像\LuoBo_GHOST_XP_SP3_V2016_01.iso"))
+            {
+                service.Push(stream, "/sdcard/1.iso", 0666, DateTime.Now,null
+                    , CancellationToken.None);
+            }
+            Console.WriteLine("..devices end" + device);
+        }
+        //class process : IProgress<int t>
+        //{
+
+        //}
+        void Test()
+        {
+            System.Net.IPAddress IPadr = System.Net.IPAddress.Parse("127.0.0.1");
+
+            IPEndPoint ipendpoint = new IPEndPoint(IPadr, 5037);
+            var monitor = new DeviceMonitor(new AdbSocket(ipendpoint));
+            monitor.DeviceConnected += this.OnDeviceConnected;
+            monitor.DeviceDisconnected += delegate (object o, DeviceDataEventArgs e)
+             {
+                 Console.WriteLine($"The device {e.Device.Name} has DeviceDisconnected to this PC");
+             };
+
+            monitor.Start();
+        }
+
+        void OnDeviceConnected(object sender, DeviceDataEventArgs e)
+        {
+            Console.WriteLine($"The device {e.Device.Name} has connected to this PC");
+        }
+
+        //private void testAdb()
+        //{
+
+        //    var adbhelp = AdbHelper.Instance;
+        //    var devices =  adbhelp.GetDevices(AndroidDebugBridge.SocketAddress);
+
+        //    // var devices = AdbClient.Instance.GetDevices();
+        //    Console.WriteLine("---" + devices.Count);
+        //    foreach (var device in devices)
+        //    {
+        //        Console.WriteLine("---" + device.Product);
+        //    }
+        //}
 
         private void t()
         {
