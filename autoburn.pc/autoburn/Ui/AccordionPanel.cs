@@ -178,6 +178,6 @@ namespace Autoburn.Ui
         private Expander _FileInfo;
 
         private Expander _ProjectInfo;
-        private Expander _ProductionInfo;
+      //  private Expander _ProductionInfo;
     }
 }

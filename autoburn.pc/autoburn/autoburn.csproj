@@ -90,6 +90,10 @@
       <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SharpAdbClient, Version=2.1.0.0, Culture=neutral, PublicKeyToken=d728076f5d82a2e8, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpAdbClient.2.1.0\lib\net451\SharpAdbClient.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Sockets.Plugin, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\rda.SocketsForPCL.1.2.2\lib\net45\Sockets.Plugin.dll</HintPath>
       <Private>True</Private>
@@ -150,6 +154,7 @@
     <Compile Include="Manager\ConfigManager.cs" />
     <Compile Include="Manager\DeviceManager.cs" />
     <Compile Include="Ftp\FtpInstanceServer.cs" />
+    <Compile Include="Manager\WarpAdbManager.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -302,6 +307,9 @@
     <Content Include="chipinfo\eon\EN27XX.xml" />
     <Content Include="chipinfo\jsc\JSFXX.xml" />
     <Content Include="logoicon.ico" />
+    <Content Include="misc\adb.exe" />
+    <Content Include="misc\AdbWinApi.dll" />
+    <Content Include="misc\AdbWinUsbApi.dll" />
     <Content Include="misc\rawsql.txt" />
     <Content Include="misc\Readme.txt" />
     <None Include="Resources\lp.gif" />
@@ -321,7 +329,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>xcopy /s  /y  $(ProjectDir)chipinfo   $(TargetDir)chipinfo\
-xcopy /s  /y  $(ProjectDir)misc\raw.db   $(TargetDir)</PreBuildEvent>
+xcopy /s  /y  $(ProjectDir)misc\*  $(TargetDir)</PreBuildEvent>
   </PropertyGroup>
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
