@@ -31,6 +31,12 @@ namespace Autoburn.Manager
             ProgLog.D(TAG, " DeviceManager end..");
         }
 
+        public void Stop()
+        {
+        
+            _WrapAdbManager.Stop();
+        }
+
         public void Init()
         {
             _uaseAble = true;

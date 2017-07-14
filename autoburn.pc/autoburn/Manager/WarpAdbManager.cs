@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Autoburn.Manager
@@ -19,12 +20,16 @@ namespace Autoburn.Manager
         private DeviceManager DeviceManager = null;
 
         private AdbSocket AdbSocket = null;
-        public WarpAdbManager(DeviceManager manager)
+        private void InitAdbSocket()
         {
-            DeviceManager = manager;
             IPAddress ipaddress = IPAddress.Parse("127.0.0.1");
             IPEndPoint ipendpoint = new IPEndPoint(ipaddress, 5037);//the default .
             AdbSocket = new AdbSocket(ipendpoint);
+        }
+
+        public WarpAdbManager(DeviceManager manager)
+        {
+            DeviceManager = manager;
 
             AdbServerStatus status = AdbServer.Instance.GetStatus();
 
@@ -34,21 +39,57 @@ namespace Autoburn.Manager
                 AdbServer.Instance.StartServer(adbpath, true);
             }
             status = AdbServer.Instance.GetStatus();
-
+            if (status.IsRunning)
+            {
+                InitAdbSocket();
+                Moniter();
+            }
             ProgLog.D(TAG, "" + status.Version + ".." + status.IsRunning);
+
+            //start moniter the devices plugin in/out event.
+          
         }
 
+        internal void Stop()
+        {
+            // AdbServer.Instance.Sto
+            Tools.Tools.RunCmd("adb kill-server");
+        }
+
+        //
+        public event EventHandler<DeviceDataEventArgs> DeviceStatusChanged;
 
         private void Moniter()
         {
             var monitor = new DeviceMonitor(AdbSocket);
             monitor.DeviceConnected += this.OnDeviceConnected;
+            monitor.DeviceDisconnected += this.onDeviceDisConnected;
             monitor.Start();
         }
 
         void OnDeviceConnected(object sender, DeviceDataEventArgs e)
         {
-            Console.WriteLine($"The device {e.Device.Name} has connected to this PC");
+            e.Device.State = DeviceState.Online;
+            DeviceStatusChanged?.Invoke(this, e);
+            Console.WriteLine($"The device {e.Device.Name} has connected to this PC ." + e.Device.State);
+        }
+        void onDeviceDisConnected(object sender, DeviceDataEventArgs e)
+        {
+            e.Device.State = DeviceState.Offline;
+            DeviceStatusChanged?.Invoke(this, e);
+            Console.WriteLine($"The device {e.Device.Name} has disconnected to this PC " + e.Device.State);
+        }
+
+        public DeviceData GetCurrentAdbDeviceData()
+        {
+            var devices = AdbClient.Instance.GetDevices();
+            if (devices.Count > 0)
+            {
+                return devices.First();
+            }
+            DeviceData retData = new DeviceData();
+            retData.State = DeviceState.Offline;
+            return retData;
         }
 
         void UploadFile()
@@ -58,7 +99,21 @@ namespace Autoburn.Manager
             using (SyncService service = new SyncService(AdbSocket, device))
             using (Stream stream = File.OpenRead(@"C:\MyFile.txt"))
             {
-                service.Push(stream, "/data/MyFile.txt", null, CancellationToken.None);
+                service.Push(stream, "/data/MyFile.txt", 0777, DateTime.Now, new FileUpDownProgress<int>(), CancellationToken.None);
+            }
+        }
+
+        class FileUpDownProgress<T> : IProgress<T>
+        {
+            T lastVaue;
+            public void Report(T value)
+            {
+               if (value.Equals(lastVaue))
+                {
+                    return;
+                }
+                lastVaue = value;
+                // the value is.
             }
         }
 

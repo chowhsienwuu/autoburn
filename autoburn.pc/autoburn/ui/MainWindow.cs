@@ -2,6 +2,7 @@
 using Autoburn.Net;
 using Autoburn.Ui;
 using Autoburn.util;
+using SharpAdbClient;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -28,20 +29,48 @@ namespace Autoburn.Ui
         public MainWindow()
         {
             InitializeComponent();
-
-            _HasWindowShow = true;
         }
 
+        private void BindAdbStatus()
+        {
+            // init first.
+            var adbdevicedata = DeviceManager.Instance.WrapAdbManager.GetCurrentAdbDeviceData();
+            if (adbdevicedata.State.Equals(DeviceState.Online))
+            {
+                SystemLog.I(TAG, "初始化找到ADB设备 :" + adbdevicedata.ToString());
+                AdbStatusToollable.Text = "设备已连接";
+            }
+            else if (adbdevicedata.State.Equals(DeviceState.Offline))
+            {
+                SystemLog.I(TAG, "初始化末找到ADB设备 :" + adbdevicedata.ToString());
+                AdbStatusToollable.Text = "设备已断开";
+            }
+            // add monitoer
+            DeviceManager.Instance.WrapAdbManager.DeviceStatusChanged += delegate (object sender, DeviceDataEventArgs data)
+           {
+               var devicedata = data.Device;
+               if (devicedata.State.Equals(DeviceState.Online))
+               {
+                   SystemLog.I(TAG, "设备连接 :" + devicedata.ToString());
+                   AdbStatusToollable.Text = "设备已连接";
+               }
+               else if (devicedata.State.Equals(DeviceState.Offline))
+               {
+                   SystemLog.I(TAG, "设备已断开 :" + devicedata.ToString());
+                   AdbStatusToollable.Text = "设备已断开";
+               }
+           };
+        }
 
         private void Form1_Load(object sender, EventArgs e)
-        {
-           
+        {//bind some thing.adb连接状态的监控.
+            BindAdbStatus();
+
         }
 
-        private bool _HasWindowShow = false;
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _HasWindowShow = false;
+            DeviceManager.Instance.Stop();
             D("MainWindow_FormClosing");
         }
 
@@ -82,7 +111,6 @@ namespace Autoburn.Ui
         {
             Stream myStream = null;
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
-
           //  openFileDialog1.InitialDirectory = "c:\\";
             openFileDialog1.Title = "保存工程";
             openFileDialog1.Filter = "工程文件|*.ccp";
@@ -139,7 +167,7 @@ namespace Autoburn.Ui
         private void UpdateUi(CONNECT_STATUS c, object[] o)
         {
             D("UpdateUi: " + c);
-            if (!IsHandleCreated || !_HasWindowShow)
+            if (!IsHandleCreated )
             {
                 return;
             }
@@ -147,18 +175,18 @@ namespace Autoburn.Ui
             {
                 case CONNECT_STATUS.DISCOVERY_INIT_OK:
                     Invoke((MethodInvoker)delegate () {
-                        statusdiscovery.Text = "discovery 初始化成功";
+                        AdbStatusToollable.Text = "discovery 初始化成功";
                     });
                     break;
                 case CONNECT_STATUS.DISCOVERY_INIT_ERROR:
                     Invoke((MethodInvoker)delegate () {
-                        statusdiscovery.Text = "discovery 初始化失败";
+                        AdbStatusToollable.Text = "discovery 初始化失败";
                     });
                     break;
                 case CONNECT_STATUS.DISCOVERY_GET_PCB:
                     IPEndPoint ip = (IPEndPoint)o[0];
                     Invoke((MethodInvoker)delegate () {
-                        statusdiscovery.Text = "连接: " + ip.Address;
+                        AdbStatusToollable.Text = "连接: " + ip.Address;
                     });
                     break;
                 case CONNECT_STATUS.TCP_CONNECT_OK:

@@ -170,6 +170,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>String.resx</DependentUpon>
     </Compile>
+    <Compile Include="Tools\Tools.cs" />
     <Compile Include="Ui\AboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
