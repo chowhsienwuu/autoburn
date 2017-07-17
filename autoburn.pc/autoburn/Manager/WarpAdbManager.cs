@@ -43,16 +43,41 @@ namespace Autoburn.Manager
             {
                 InitAdbSocket();
                 Moniter();
+                try
+                {
+                    CurrentDeviceData = AdbClient.Instance.GetDevices().First();
+                    SystemLog.I(TAG, "获得设备连接:" + CurrentDeviceData.Name);
+                }
+                catch
+                {
+                    SystemLog.E(TAG, "获得设备连接错误:");
+                }
             }
             ProgLog.D(TAG, "" + status.Version + ".." + status.IsRunning);
 
             //start moniter the devices plugin in/out event.
-          
+       //     test();
         }
+
+        public string GetProperty(string name)
+        {
+            if (currentDevice != null && currentDevice.IsOnline)
+            {
+                return currentDevice.GetProperty(name);
+            }
+            return string.Empty;
+        }
+
+
 
         private void test()
         {
-           // Device device = new Device(new DeviceData());
+            // Device device = new Device(new DeviceData());
+            if (currentDevice != null && currentDevice.IsOnline)
+            {
+              var dataprop =   currentDevice.GetProperty("viatel.device.excp.data");
+                ProgLog.D(TAG, ".." + dataprop);
+            }
         }
 
         internal void Stop()
@@ -60,6 +85,47 @@ namespace Autoburn.Manager
             // AdbServer.Instance.Sto
             Tools.Tools.RunCmd("adb kill-server");
         }
+
+        private DeviceData currentDeviceData = new DeviceData();
+        public DeviceData CurrentDeviceData
+        {
+            get
+            {
+                return currentDeviceData;
+            }
+            private set
+            {
+                currentDeviceData = value;
+                // 
+                if (currentDeviceData != null && currentDeviceData.State.Equals(DeviceState.Online))
+                {
+                    CurrentDevice = new Device(currentDeviceData);
+                    SystemLog.I(TAG, "..新建DEVICE:" + CurrentDevice.Product);
+                }
+                else if (currentDeviceData != null && currentDeviceData.State.Equals(DeviceState.Offline))
+                {
+                    // not connect.
+                    
+                }
+            }
+        }
+
+        public Device CurrentDevice
+        {
+            get
+            {
+                return currentDevice;
+            }
+
+            private set
+            {
+                currentDevice = value;
+            }
+        }
+
+        private Device currentDevice = null;
+
+
 
         //
         #region ADB 监听
@@ -73,15 +139,19 @@ namespace Autoburn.Manager
             monitor.Start();
         }
 
-        void OnDeviceConnected(object sender, DeviceDataEventArgs e)
+        private void OnDeviceConnected(object sender, DeviceDataEventArgs e)
         {
             e.Device.State = DeviceState.Online;
+            CurrentDeviceData = e.Device;
+
             DeviceStatusChanged?.Invoke(this, e);
             Console.WriteLine($"The device {e.Device.Name} has connected to this PC ." + e.Device.State);
         }
-        void onDeviceDisConnected(object sender, DeviceDataEventArgs e)
+        private void onDeviceDisConnected(object sender, DeviceDataEventArgs e)
         {
             e.Device.State = DeviceState.Offline;
+            CurrentDeviceData = e.Device;
+
             DeviceStatusChanged?.Invoke(this, e);
             Console.WriteLine($"The device {e.Device.Name} has disconnected to this PC " + e.Device.State);
         }

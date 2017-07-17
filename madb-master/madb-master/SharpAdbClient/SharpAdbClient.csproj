@@ -1,4 +1,5 @@
-﻿  <Project Sdk="Microsoft.NET.Sdk" >
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <Description>SharpAdbClient is a .NET library that allows .NET and .NET Core applications to communicate with Android devices.</Description>
     <AssemblyTitle>.NET client for adb, the Android Debug Bridge (SharpAdbClient)</AssemblyTitle>

@@ -159,6 +159,26 @@
     <Compile Include="Manager\DeviceManager.cs" />
     <Compile Include="Ftp\FtpInstanceServer.cs" />
     <Compile Include="Manager\WarpAdbManager.cs" />
+    <Compile Include="NUGETFIX\madbextends\BatteryInfo.cs" />
+    <Compile Include="NUGETFIX\madbextends\BusyBox.cs" />
+    <Compile Include="NUGETFIX\madbextends\Device.cs" />
+    <Compile Include="NUGETFIX\madbextends\DeviceEventArgs.cs" />
+    <Compile Include="NUGETFIX\madbextends\FileEntry.cs" />
+    <Compile Include="NUGETFIX\madbextends\FileListingService.cs" />
+    <Compile Include="NUGETFIX\madbextends\FilePermission.cs" />
+    <Compile Include="NUGETFIX\madbextends\FilePermissions.cs" />
+    <Compile Include="NUGETFIX\madbextends\FileSystem.cs" />
+    <Compile Include="NUGETFIX\madbextends\IBusyBox.cs" />
+    <Compile Include="NUGETFIX\madbextends\IDevice.cs" />
+    <Compile Include="NUGETFIX\madbextends\IFileListingService.cs" />
+    <Compile Include="NUGETFIX\madbextends\IFileSystem.cs" />
+    <Compile Include="NUGETFIX\madbextends\MountPoint.cs" />
+    <Compile Include="NUGETFIX\madbextends\Receivers\BatteryReceiver.cs" />
+    <Compile Include="NUGETFIX\madbextends\Receivers\CommandErrorReceiver.cs" />
+    <Compile Include="NUGETFIX\madbextends\Receivers\IListingReceiver.cs" />
+    <Compile Include="NUGETFIX\madbextends\Receivers\ListingServiceReceiver.cs" />
+    <Compile Include="NUGETFIX\madbextends\Receivers\MountPointReceiver.cs" />
+    <Compile Include="NUGETFIX\madbextends\ThrowIf.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -316,6 +336,7 @@
     <Content Include="misc\AdbWinApi.dll" />
     <Content Include="misc\AdbWinUsbApi.dll" />
     <Content Include="misc\rawsql.txt" />
+    <Content Include="NUGETFIX\madbextends\BusyBox.xml" />
     <None Include="Resources\lp.gif" />
     <None Include="Resources\rightstatubackground.bmp" />
     <None Include="Resources\logo.png" />
@@ -329,6 +350,8 @@
     <Folder Include="chipinfo\samsung\" />
     <Folder Include="chipinfo\sandisk\" />
     <Folder Include="chipinfo\toshiba\" />
+    <Folder Include="NUGETFIX\madbextends\Exceptions\" />
+    <Folder Include="NUGETFIX\madbextends\IO\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
