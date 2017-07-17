@@ -177,6 +177,9 @@
     <EmbeddedResource Include="CustomControl2.resx">
       <DependentUpon>CustomControl2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pictureres.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Pictureres.Designer.cs</LastGenOutput>

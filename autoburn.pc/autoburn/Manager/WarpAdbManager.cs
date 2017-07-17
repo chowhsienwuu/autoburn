@@ -50,6 +50,11 @@ namespace Autoburn.Manager
           
         }
 
+        private void test()
+        {
+           // Device device = new Device(new DeviceData());
+        }
+
         internal void Stop()
         {
             // AdbServer.Instance.Sto
@@ -57,6 +62,7 @@ namespace Autoburn.Manager
         }
 
         //
+        #region ADB 监听
         public event EventHandler<DeviceDataEventArgs> DeviceStatusChanged;
 
         private void Moniter()
@@ -82,20 +88,28 @@ namespace Autoburn.Manager
 
         public DeviceData GetCurrentAdbDeviceData()
         {
-            var devices = AdbClient.Instance.GetDevices();
-            if (devices.Count > 0)
+            try
             {
-                return devices.First();
+                var devices = AdbClient.Instance.GetDevices();
+                if (devices.Count > 0)
+                {
+                    return devices.First();
+                }
+            }
+            catch
+            {
+
             }
             DeviceData retData = new DeviceData();
             retData.State = DeviceState.Offline;
             return retData;
         }
+        #endregion
 
         void UploadFile()
         {
             var device = AdbClient.Instance.GetDevices().First();
-
+            
             using (SyncService service = new SyncService(AdbSocket, device))
             using (Stream stream = File.OpenRead(@"C:\MyFile.txt"))
             {
