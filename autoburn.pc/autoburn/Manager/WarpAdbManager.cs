@@ -47,11 +47,11 @@ namespace Autoburn.Manager
                 try
                 {
                     CurrentDeviceData = AdbClient.Instance.GetDevices().First();
-                    SystemLog.I(TAG, "获得设备连接:" + CurrentDeviceData.Name);
+                    SystemLog.I(TAG, "初始获得设备连接:" + CurrentDeviceData.Name);
                 }
                 catch
                 {
-                    SystemLog.E(TAG, "获得设备连接错误:");
+                    SystemLog.E(TAG, "初始获得设备连接错误:");
                 }
             }
             ProgLog.D(TAG, "" + status.Version + ".." + status.IsRunning);
@@ -83,11 +83,11 @@ namespace Autoburn.Manager
 
                 Tools.Tools.RunCmd("adb shell am broadcast -a NotifyServiceStart");
                 SystemLog.I(TAG, "添加ADB forward转发");
-                if (index++ == 0)
-                {
-                    Task.Run(new Action(test
-                        ));
-                }
+                //if (index++ == 0)
+                //{
+                //    Task.Run(new Action(test
+                //     ));
+                //}
             }
         }
         private int index = 0;
