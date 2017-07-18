@@ -1,4 +1,5 @@
 ﻿using Autoburn.util;
+using Echo.Client;
 using SharpAdbClient;
 using System;
 using System.Collections.Generic;
@@ -69,15 +70,39 @@ namespace Autoburn.Manager
         }
 
 
+        private void SetAdbForward()
+        {
+            if (currentDeviceData != null && currentDeviceData.State.Equals(DeviceState.Online))
+            {
+                // f
+                // stop .
+                Tools.Tools.RunCmd("adb shell am broadcast -a NotifyServiceStop");
+
+                AdbClient.Instance.RemoveAllForwards(currentDeviceData);
+                AdbClient.Instance.CreateForward(currentDeviceData, "tcp:5000", "tcp:13000", true);
+
+                Tools.Tools.RunCmd("adb shell am broadcast -a NotifyServiceStart");
+                SystemLog.I(TAG, "添加ADB forward转发");
+                if (index++ == 0)
+                {
+                    Task.Run(new Action(test
+                        ));
+                }
+            }
+        }
+        private int index = 0;
 
         private void test()
         {
+            ProgLog.D(TAG, "nettyrest");
+            MYNetttyTest.Stop();
+            MYNetttyTest.Start();
             // Device device = new Device(new DeviceData());
-            if (currentDevice != null && currentDevice.IsOnline)
-            {
-              var dataprop =   currentDevice.GetProperty("viatel.device.excp.data");
-                ProgLog.D(TAG, ".." + dataprop);
-            }
+            //if (currentDevice != null && currentDevice.IsOnline)
+            //{
+            //  var dataprop =   currentDevice.GetProperty("viatel.device.excp.data");
+            //    ProgLog.D(TAG, ".." + dataprop);
+            //}
         }
 
         internal void Stop()
@@ -101,6 +126,8 @@ namespace Autoburn.Manager
                 {
                     CurrentDevice = new Device(currentDeviceData);
                     SystemLog.I(TAG, "..新建DEVICE:" + CurrentDevice.Product);
+
+                    SetAdbForward();
                 }
                 else if (currentDeviceData != null && currentDeviceData.State.Equals(DeviceState.Offline))
                 {
