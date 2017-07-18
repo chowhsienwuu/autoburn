@@ -54,6 +54,26 @@
     <ApplicationIcon>logoicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DotNetty.Buffers, Version=0.4.5.0, Culture=neutral, PublicKeyToken=bc13ca065fa06c29, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetty.Buffers.0.4.5\lib\net45\DotNetty.Buffers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetty.Codecs, Version=0.4.5.0, Culture=neutral, PublicKeyToken=bc13ca065fa06c29, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetty.Codecs.0.4.5\lib\net45\DotNetty.Codecs.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetty.Common, Version=0.4.5.0, Culture=neutral, PublicKeyToken=bc13ca065fa06c29, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetty.Common.0.4.5\lib\net45\DotNetty.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetty.Handlers, Version=0.4.5.0, Culture=neutral, PublicKeyToken=bc13ca065fa06c29, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetty.Handlers.0.4.5\lib\net45\DotNetty.Handlers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetty.Transport, Version=0.4.5.0, Culture=neutral, PublicKeyToken=bc13ca065fa06c29, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetty.Transport.0.4.5\lib\net45\DotNetty.Transport.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -82,8 +102,24 @@
       <HintPath>..\packages\FubarDev.FtpServer.FileSystem.DotNet.1.3.5\lib\net45\FubarDev.FtpServer.FileSystem.DotNet.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.1.1.0\lib\netstandard1.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.1.1.1\lib\netstandard1.1\Microsoft.Extensions.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.1.1.1\lib\netstandard1.1\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Minimatch, Version=1.1.0.0, Culture=neutral, PublicKeyToken=0cadeb0b849c27c0, processorArchitecture=MSIL">
       <HintPath>..\packages\FubarDev.Minimatch.1.2.0\lib\portable-net45+dnxcore50+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\Minimatch.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Mono.Posix, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Posix.4.0.0.0\lib\net40\Mono.Posix.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -103,6 +139,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SQLite, Version=1.0.105.2, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
@@ -115,6 +152,12 @@
     </Reference>
     <Reference Include="System.Data.SQLite.Linq, Version=1.0.105.2, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.Linq.1.0.105.2\lib\net451\System.Data.SQLite.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.DataVisualization">
@@ -155,6 +198,26 @@
     <Compile Include="Manager\DeviceManager.cs" />
     <Compile Include="Ftp\FtpInstanceServer.cs" />
     <Compile Include="Manager\WarpAdbManager.cs" />
+    <Compile Include="NUGETFIX\madbextends\BatteryInfo.cs" />
+    <Compile Include="NUGETFIX\madbextends\BusyBox.cs" />
+    <Compile Include="NUGETFIX\madbextends\Device.cs" />
+    <Compile Include="NUGETFIX\madbextends\DeviceEventArgs.cs" />
+    <Compile Include="NUGETFIX\madbextends\FileEntry.cs" />
+    <Compile Include="NUGETFIX\madbextends\FileListingService.cs" />
+    <Compile Include="NUGETFIX\madbextends\FilePermission.cs" />
+    <Compile Include="NUGETFIX\madbextends\FilePermissions.cs" />
+    <Compile Include="NUGETFIX\madbextends\FileSystem.cs" />
+    <Compile Include="NUGETFIX\madbextends\IBusyBox.cs" />
+    <Compile Include="NUGETFIX\madbextends\IDevice.cs" />
+    <Compile Include="NUGETFIX\madbextends\IFileListingService.cs" />
+    <Compile Include="NUGETFIX\madbextends\IFileSystem.cs" />
+    <Compile Include="NUGETFIX\madbextends\MountPoint.cs" />
+    <Compile Include="NUGETFIX\madbextends\Receivers\BatteryReceiver.cs" />
+    <Compile Include="NUGETFIX\madbextends\Receivers\CommandErrorReceiver.cs" />
+    <Compile Include="NUGETFIX\madbextends\Receivers\IListingReceiver.cs" />
+    <Compile Include="NUGETFIX\madbextends\Receivers\ListingServiceReceiver.cs" />
+    <Compile Include="NUGETFIX\madbextends\Receivers\MountPointReceiver.cs" />
+    <Compile Include="NUGETFIX\madbextends\ThrowIf.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -170,6 +233,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>String.resx</DependentUpon>
     </Compile>
+    <Compile Include="test\EchoClientHandler.cs" />
+    <Compile Include="test\Program.cs" />
+    <Compile Include="Tools\Tools.cs" />
     <Compile Include="Ui\AboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -312,6 +378,7 @@
     <Content Include="misc\AdbWinUsbApi.dll" />
     <Content Include="misc\rawsql.txt" />
     <Content Include="misc\Readme.txt" />
+    <Content Include="NUGETFIX\madbextends\BusyBox.xml" />
     <None Include="Resources\lp.gif" />
     <None Include="Resources\rightstatubackground.bmp" />
     <None Include="Resources\logo.png" />
@@ -325,6 +392,8 @@
     <Folder Include="chipinfo\samsung\" />
     <Folder Include="chipinfo\sandisk\" />
     <Folder Include="chipinfo\toshiba\" />
+    <Folder Include="NUGETFIX\madbextends\Exceptions\" />
+    <Folder Include="NUGETFIX\madbextends\IO\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

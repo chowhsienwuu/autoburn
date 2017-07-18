@@ -52,7 +52,7 @@ namespace ConsoleApplication1
             this.myChart.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.myChart.Legends.Add(legend1);
-            this.myChart.Location = new System.Drawing.Point(408, 282);
+            this.myChart.Location = new System.Drawing.Point(246, 115);
             this.myChart.Name = "myChart";
             this.myChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
             series1.ChartArea = "ChartArea1";

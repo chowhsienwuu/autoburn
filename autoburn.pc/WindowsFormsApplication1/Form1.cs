@@ -33,8 +33,10 @@ namespace WindowsFormsApplication1
             this.backgroundWorker_Combo.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(backgroundWorker_Combo_RunWorkerCompleted);//当backgroundWorker做完后发生的事件
             this.backgroundWorker_Combo.ProgressChanged += new ProgressChangedEventHandler(
             backgroundWorker1_ProgressChanged);
-            backgroundWorker_Combo.RunWorkerAsync();
-            backgroundWorker_Combo.WorkerReportsProgress = true;
+            //backgroundWorker_Combo.RunWorkerAsync();
+            //backgroundWorker_Combo.WorkerReportsProgress = true;
+
+            DelayTime();
             progressBar1.Step = progressBar1.Maximum / 10;
 
             //  testAdb();
@@ -100,6 +102,13 @@ namespace WindowsFormsApplication1
         //        Console.WriteLine("---" + device.Product);
         //    }
         //}
+
+        private async void DelayTime()
+        {
+            var task = Task.Delay(2000 * 10);
+            await task;
+        }
+
 
         private void t()
         {
