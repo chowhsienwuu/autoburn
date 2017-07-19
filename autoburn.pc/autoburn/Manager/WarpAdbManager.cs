@@ -71,12 +71,12 @@ namespace Autoburn.Manager
         {
             if (currentDeviceData != null && currentDeviceData.State.Equals(DeviceState.Online))
             {
-                Tools.Tools.RunCmd("adb shell am broadcast -a NotifyServiceStop");
+            //    Tools.Tools.RunCmd("adb shell am broadcast -a NotifyServiceStop");
 
                 AdbClient.Instance.RemoveAllForwards(currentDeviceData);
                 AdbClient.Instance.CreateForward(currentDeviceData, "tcp:5000", "tcp:13000", true);
 
-                Tools.Tools.RunCmd("adb shell am broadcast -a NotifyServiceStart");
+              //  Tools.Tools.RunCmd("adb shell am broadcast -a NotifyServiceStart");
                 SystemLog.I(TAG, "添加ADB forward转发");
                 //if (index++ == 0)
                 //{
