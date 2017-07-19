@@ -23,7 +23,7 @@ namespace Autoburn.util
                 o = string.Empty;
             }
             Console.WriteLine("{0}  :  {1}", tag, o);
-            _logger.Log(LogLevel.Debug, "" + tag + o.ToString());
+            _logger.Log(LogLevel.Debug, "  " + tag + "-" +  o.ToString());
         }
     }
 }

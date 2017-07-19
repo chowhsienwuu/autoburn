@@ -13,7 +13,7 @@ using System.Xml;
 
 namespace Autoburn.Manager
 {
-    class ProjectManager
+    public class ProjectManager
     {
         public const string TAG = "ProjectManager";
         private string _configDir = ProgramInfo.CONFIGDIRPATH;

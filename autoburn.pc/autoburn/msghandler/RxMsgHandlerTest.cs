@@ -1,4 +1,5 @@
-﻿using Autoburn.Net;
+﻿using Autoburn.Manager;
+using Autoburn.Net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace Autoburn.MsgHandler
 {
     class RxMsgHandlerTest : RxMsgHandlerBase
     {
-        public RxMsgHandlerTest(DeviceNetManager d) : base(d, MSG_TYPE_TEST)
+        public RxMsgHandlerTest(DeviceManager d) : base(d, MSG_TYPE_TEST)
         {
         }
         public override void Process()

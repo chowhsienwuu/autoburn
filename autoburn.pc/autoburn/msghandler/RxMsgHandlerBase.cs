@@ -1,4 +1,5 @@
-﻿using Autoburn.Net;
+﻿using Autoburn.Manager;
+using Autoburn.Net;
 using Autoburn.util;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,10 @@ namespace Autoburn.MsgHandler
         private new string TAG = "RxMsgHandlerBase";
 
         public string Type;
-        protected DeviceNetManager devicesNetmanager;
-        public RxMsgHandlerBase(DeviceNetManager d,  string type)
+        protected DeviceManager devicesmanager;
+        public RxMsgHandlerBase(DeviceManager d,  string type)
         {
-            devicesNetmanager = d;
+            devicesmanager = d;
             Type = type;
         }
         public virtual void Process() {

@@ -1,5 +1,4 @@
 ﻿using Autoburn.util;
-using Echo.Client;
 using SharpAdbClient;
 using System;
 using System.Collections.Generic;
@@ -44,20 +43,19 @@ namespace Autoburn.Manager
             {
                 InitAdbSocket();
                 Moniter();
-                try
-                {
-                    CurrentDeviceData = AdbClient.Instance.GetDevices().First();
-                    SystemLog.I(TAG, "初始获得设备连接:" + CurrentDeviceData.Name);
-                }
-                catch
-                {
-                    SystemLog.E(TAG, "初始获得设备连接错误:");
-                }
+                
+                //不必要要此处初始化,一直连着电脑里,也会被MOniter到.
+                //try
+                //{
+                //    CurrentDeviceData = AdbClient.Instance.GetDevices().First();
+                //    SystemLog.I(TAG, "初始获得设备连接:" + CurrentDeviceData.Name);
+                //}
+                //catch
+                //{
+                //    SystemLog.E(TAG, "初始获得设备连接错误:");
+                //}
             }
             ProgLog.D(TAG, "" + status.Version + ".." + status.IsRunning);
-
-            //start moniter the devices plugin in/out event.
-       //     test();
         }
 
         public string GetProperty(string name)
@@ -69,13 +67,10 @@ namespace Autoburn.Manager
             return string.Empty;
         }
 
-
         private void SetAdbForward()
         {
             if (currentDeviceData != null && currentDeviceData.State.Equals(DeviceState.Online))
             {
-                // f
-                // stop .
                 Tools.Tools.RunCmd("adb shell am broadcast -a NotifyServiceStop");
 
                 AdbClient.Instance.RemoveAllForwards(currentDeviceData);
@@ -85,18 +80,18 @@ namespace Autoburn.Manager
                 SystemLog.I(TAG, "添加ADB forward转发");
                 //if (index++ == 0)
                 //{
-                //    Task.Run(new Action(test
-                //     ));
+                //Task.Run(new Action(
+                // ));
                 //}
             }
         }
-        private int index = 0;
+        //private int index = 0;
 
         private void test()
         {
             ProgLog.D(TAG, "nettyrest");
-            MYNetttyTest.Stop();
-            MYNetttyTest.Start();
+            //MYNetttyTest.Stop();
+            //MYNetttyTest.Start();
             // Device device = new Device(new DeviceData());
             //if (currentDevice != null && currentDevice.IsOnline)
             //{
@@ -132,7 +127,6 @@ namespace Autoburn.Manager
                 else if (currentDeviceData != null && currentDeviceData.State.Equals(DeviceState.Offline))
                 {
                     // not connect.
-                    
                 }
             }
         }
@@ -195,7 +189,6 @@ namespace Autoburn.Manager
             }
             catch
             {
-
             }
             DeviceData retData = new DeviceData();
             retData.State = DeviceState.Offline;

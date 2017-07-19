@@ -7,41 +7,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autoburn.Net;
+using Autoburn.Manager;
 
 namespace Autoburn.MsgHandler
 {
     public class RxMsgDispatch
     {
         private string TAG = "RxMsgDispatch";
-        private void D(object o)
-        {
-            ProgLog.D(TAG, o);
-        }
 
         private HashSet<string> _SupportRxMsg = new HashSet<string>();
-        private DeviceNetManager deviceNetManager;
+        private DeviceManager deviceManager;
 
         private void AddHandler()
         {
             _SupportRxMsg.Clear();
-            _SupportRxMsg.Add(new RxMsgHandlerInfo(deviceNetManager).Type);
-            _SupportRxMsg.Add(new RxMsgHandlerTest(deviceNetManager).Type);
+            _SupportRxMsg.Add(new RxMsgHandlerInfo(deviceManager).Type);
+            _SupportRxMsg.Add(new RxMsgHandlerTest(deviceManager).Type);
         }
 
-        public RxMsgDispatch()
+        private RxMsgDispatch()
         {
             AddHandler();
         }
 
-        public RxMsgDispatch(DeviceNetManager deviceNetManager):this()
+        public RxMsgDispatch(DeviceManager deviceManager) : this()
         {
-            this.deviceNetManager = deviceNetManager;
+            this.deviceManager = deviceManager;
         }
 
         public void Stop()
         {
             _SupportRxMsg?.Clear();
-
         }
 
         public void ProcessRxMsg(string str)
@@ -57,29 +53,31 @@ namespace Autoburn.MsgHandler
                 string msgtype = obj[MsgBase.MSG_TYPE_STRING].ToString();
                 if (!_SupportRxMsg.Contains(msgtype))
                 {
-                 //   return;
+                    //   return;
                 }
-                D("the msgtype is " + msgtype);
-                    switch (msgtype)
-                    {
-                        case MsgBase.MSG_TYPE_INFO:
-                            rxMsgHandler = new RxMsgHandlerInfo(deviceNetManager);
-                            
-                            break;
-                        case MsgBase.MSG_TYPE_TEST:
-                        rxMsgHandler = new RxMsgHandlerTest(deviceNetManager);
+                ProgLog.D(TAG, "the msgtype is " + msgtype);
+                switch (msgtype)
+                {
+                    case MsgBase.MSG_TYPE_INFO:
+                        rxMsgHandler = new RxMsgHandlerInfo(deviceManager);
                         break;
-                        default:
-                            break;
-                    }
-    
+                    case MsgBase.MSG_TYPE_TEST:
+                        rxMsgHandler = new RxMsgHandlerTest(deviceManager);
+                        break;
+                    default:
+                        break;
+                }
+
                 if (rxMsgHandler != null)
                 {
                     rxMsgHandler.Msg = str;
                 }
             }
-            catch { }
- 
+            catch (Exception e)
+            {
+                ProgLog.D(TAG, "ProcessRxMsg error: " + e.ToString());
+            }
+
             if (rxMsgHandler != null)
             {
                 Task.Run(new Action(rxMsgHandler.Process));

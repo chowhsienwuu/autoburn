@@ -11,7 +11,7 @@ using System.Xml;
 
 namespace Autoburn.Manager
 {
-    class ChipSupportManager
+    public class ChipSupportManager
     {
         public const string TAG = "ChipSupportManager";
         private string _chipinfodir = ProgramInfo.CHIPINFODIRPATH;

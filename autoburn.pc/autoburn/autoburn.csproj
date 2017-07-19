@@ -188,11 +188,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Manager\DataBaseManager.cs" />
+    <Compile Include="Manager\JsonStringClientHandler.cs" />
     <Compile Include="Manager\MetaInfo\ImgBinFileInfo.cs" />
     <Compile Include="Manager\MetaInfo\ProjectInfo.cs" />
     <Compile Include="Manager\MetaInfo\ChipInfo.cs" />
     <Compile Include="Manager\ChipSupportManager.cs" />
     <Compile Include="Manager\MetaInfo\ConfigInfo.cs" />
+    <Compile Include="Manager\NettyJsonCmdManager.cs" />
     <Compile Include="Manager\ProjectManager.cs" />
     <Compile Include="Manager\ConfigManager.cs" />
     <Compile Include="Manager\DeviceManager.cs" />
@@ -233,8 +235,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>String.resx</DependentUpon>
     </Compile>
-    <Compile Include="test\EchoClientHandler.cs" />
-    <Compile Include="test\Program.cs" />
     <Compile Include="Tools\Tools.cs" />
     <Compile Include="Ui\AboutBox.cs">
       <SubType>Form</SubType>
@@ -394,6 +394,7 @@
     <Folder Include="chipinfo\toshiba\" />
     <Folder Include="NUGETFIX\madbextends\Exceptions\" />
     <Folder Include="NUGETFIX\madbextends\IO\" />
+    <Folder Include="test\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

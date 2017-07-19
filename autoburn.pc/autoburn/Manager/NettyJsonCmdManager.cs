@@ -1,33 +1,61 @@
-﻿using DotNetty.Buffers;
+﻿using Autoburn.util;
+using DotNetty.Buffers;
 using DotNetty.Codecs;
 using DotNetty.Transport.Bootstrapping;
 using DotNetty.Transport.Channels;
 using DotNetty.Transport.Channels.Sockets;
 using System;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Autoburn.Manager
 {
-    class NettyJsonCmdManager
+     public class NettyJsonCmdManager : IDisposable
     {
         public const string TAG = "NettyJsonCmdManager";
         public const string DelimiterString = "$$$$$$$$$$";
+
+        public void Dispose()
+        {
+            ProgLog.D(TAG, ".Dispose called");
+            Stop();
+        }
+
         public void Stop()
         {
-
+            ProgLog.D(TAG, ".Stop called");
+            clientChannel?.CloseAsync();
+            group?.ShutdownGracefullyAsync();
         }
 
         public void Start()
         {
-
+            ProgLog.D(TAG, ".Start called");
+            RunClientAsync();
         }
 
+        private MultithreadEventLoopGroup group;
+        private IChannel clientChannel;
+        private JsonStringClientHandler JsonStringClientHandler = null;
 
-        async Task RunClientAsync()
+        public NettyJsonCmdManager()
         {
-            var group = new MultithreadEventLoopGroup();
-            string targetHost = null;
+            JsonStringClientHandler = new JsonStringClientHandler(this);
+        }
+
+        public void SendStringAppendDelimite(string args)
+        {
+            if (string.IsNullOrEmpty(args) || clientChannel == null || !clientChannel.Active)
+            {
+                //error happend.
+            }
+            clientChannel.WriteAndFlushAsync(args + DelimiterString);
+        }
+
+        private async Task RunClientAsync()
+        {
+            group = new MultithreadEventLoopGroup();
             try
             {
                 var bootstrap = new Bootstrap();
@@ -47,19 +75,17 @@ namespace Autoburn.Manager
                         pipeline.AddLast("stringDecoder", new StringDecoder(Encoding.UTF8));
                         pipeline.AddLast("stringEncoder", new StringEncoder(Encoding.UTF8));
 
-                        pipeline.AddLast("echo", new EchoClientHandler());
+                        //add string parse.
+
+                        pipeline.AddLast("JsonStringClientHandler", JsonStringClientHandler);
                     }));
 
-                IChannel clientChannel = await bootstrap.ConnectAsync(new IPEndPoint());
-
-                Console.ReadLine();
-
-                await clientChannel.CloseAsync();
+                clientChannel = await bootstrap.ConnectAsync(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8000));
             }
             finally
             {
-                await group.ShutdownGracefullyAsync(TimeSpan.FromMilliseconds(100), TimeSpan.FromSeconds(1));
             }
         }
+
     }
 }

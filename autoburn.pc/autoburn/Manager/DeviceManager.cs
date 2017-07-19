@@ -1,4 +1,5 @@
-﻿using Autoburn.util;
+﻿using Autoburn.MsgHandler;
+using Autoburn.util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Autoburn.Manager
 {
-    class DeviceManager
+    public  class DeviceManager
     {
         public const string TAG = "DeviceManager";
         public static readonly DeviceManager Instance = new DeviceManager();
@@ -31,9 +32,39 @@ namespace Autoburn.Manager
             ProgLog.D(TAG, " DeviceManager end..");
         }
 
+
+        NettyJsonCmdManager _NettyJsonCmdManager = null;
+        public NettyJsonCmdManager NettyJsonCmdManager
+        {
+            get
+            {
+                return _NettyJsonCmdManager;
+            }
+            set
+            {
+                _NettyJsonCmdManager = value;
+
+                RxMsgDispatch = new RxMsgDispatch(this);
+                //start the server.
+                // _NettyJsonCmdManager?.Start();
+            }
+        }
+
+        private RxMsgDispatch _RxmsgDispatch = null;
+        public RxMsgDispatch RxMsgDispatch
+        {
+            get
+            {
+                return _RxmsgDispatch;
+            }
+            set
+            {
+                _RxmsgDispatch = value;
+            }
+        }
+
         public void Stop()
         {
-        
             _WrapAdbManager.Stop();
         }
 
@@ -106,6 +137,8 @@ namespace Autoburn.Manager
                 _WrapAdbManager = value;
             }
         }
+
+
 
         private ProjectManager _projectManager = null;
     }

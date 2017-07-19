@@ -33,7 +33,7 @@ namespace Autoburn.Net
         public void Start()
         {
             // return;
-            _RxMsgDispatch = new RxMsgDispatch(this);
+           // _RxMsgDispatch = new RxMsgDispatch(this);
 
              _BeatHeat = new BeatHeat(ProgramInfo.PC_UDP_LISTEN_PORT);
             _BeatHeat.BeatHeatStatusChangeHandler += ProcessNetStatus;
