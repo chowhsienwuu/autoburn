@@ -12,10 +12,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "autoburn.util", "autoburn.u
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{1D44756C-FAD5-4869-BFFE-9D762ADBE2CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{684E9315-FABD-4C19-87A5-0C366A5FD6DA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApplication1", "WindowsFormsApplication1\WindowsFormsApplication1.csproj", "{1790093E-92D6-4869-9946-687613B23494}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,20 +26,8 @@ Global
 		{D45AAB95-9110-4C7A-9007-FC4486ABC777}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D45AAB95-9110-4C7A-9007-FC4486ABC777}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D45AAB95-9110-4C7A-9007-FC4486ABC777}.Release|Any CPU.Build.0 = Release|Any CPU
-		{684E9315-FABD-4C19-87A5-0C366A5FD6DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{684E9315-FABD-4C19-87A5-0C366A5FD6DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{684E9315-FABD-4C19-87A5-0C366A5FD6DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{684E9315-FABD-4C19-87A5-0C366A5FD6DA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1790093E-92D6-4869-9946-687613B23494}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1790093E-92D6-4869-9946-687613B23494}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1790093E-92D6-4869-9946-687613B23494}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1790093E-92D6-4869-9946-687613B23494}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{684E9315-FABD-4C19-87A5-0C366A5FD6DA} = {1D44756C-FAD5-4869-BFFE-9D762ADBE2CD}
-		{1790093E-92D6-4869-9946-687613B23494} = {1D44756C-FAD5-4869-BFFE-9D762ADBE2CD}
 	EndGlobalSection
 EndGlobal
