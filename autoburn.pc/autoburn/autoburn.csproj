@@ -284,6 +284,12 @@
     <Compile Include="Ui\OpenImageBinFileFrom.Designer.cs">
       <DependentUpon>OpenImageBinFileFrom.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ui\PalletPanelShow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ui\PalletPanelShow.Designer.cs">
+      <DependentUpon>PalletPanelShow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ui\SaveProjectFrom.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -326,6 +332,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Ui\OpenImageBinFileFrom.resx">
       <DependentUpon>OpenImageBinFileFrom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ui\PalletPanelShow.resx">
+      <DependentUpon>PalletPanelShow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ui\SaveProjectFrom.resx">
       <DependentUpon>SaveProjectFrom.cs</DependentUpon>

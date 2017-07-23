@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
-namespace Test
+namespace Autoburn.Ui
 {
     public partial class PalletPanelShow : UserControl
     {

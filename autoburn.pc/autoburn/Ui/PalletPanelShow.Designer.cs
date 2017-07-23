@@ -1,4 +1,4 @@
-﻿namespace Test
+﻿namespace Autoburn.Ui
 {
     partial class PalletPanelShow
     {

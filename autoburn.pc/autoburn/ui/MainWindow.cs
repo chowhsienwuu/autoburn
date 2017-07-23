@@ -207,14 +207,14 @@ namespace Autoburn.Ui
                     break;
                 case CONNECT_STATUS.TCP_CONNECT_OK:
                     Invoke((MethodInvoker)delegate () {
-                        statusTcpStatus.Text = "tcp 已经初始化成功";
+                        //statusTcpStatus.Text = "tcp 已经初始化成功";
                     });
                     break;
                 case CONNECT_STATUS.TCP_CONNECT_ERROR:
                 case CONNECT_STATUS.TCP_SEND_MSG_ERROR:
                 case CONNECT_STATUS.TCP_RECV_MSG_ERROR:
                     Invoke((MethodInvoker)delegate () {
-                        statusTcpStatus.Text = "tcp 连接断开";
+                  //      statusTcpStatus.Text = "tcp 连接断开";
                     });
                     break;
                 case CONNECT_STATUS.TCP_RECEIVE_MSG:
