@@ -22,16 +22,7 @@ namespace Autoburn.Manager
                                 "--------------------------------------------\n";
             SystemLog.I("程序", "准备启动");
             SystemLog.I("程序", startpropt);
-
-            ProgLog.D(TAG, " DeviceManager init..");
-            _dataBaseManager = new DataBaseManager(this);
-            _ChipSupportManager = new ChipSupportManager(this);
-            _ConfigManager = new ConfigManager(this);
-            _projectManager = new ProjectManager();
-            _WrapAdbManager = new WarpAdbManager(this);
-            ProgLog.D(TAG, " DeviceManager end..");
         }
-
 
         NettyJsonCmdManager _NettyJsonCmdManager = null;
         public NettyJsonCmdManager NettyJsonCmdManager
@@ -68,8 +59,21 @@ namespace Autoburn.Manager
             _WrapAdbManager.Stop();
         }
 
-        public void Init()
+        public event EventHandler<EventArgs> DeviceManagerStatusChanged;
+
+        public async void Init()
         {
+            await Task.Run(() => {
+                ProgLog.D(TAG, " DeviceManager init.." + DateTime.Now);
+                _dataBaseManager = new DataBaseManager(this);
+                _ChipSupportManager = new ChipSupportManager(this);
+                _ConfigManager = new ConfigManager(this);
+                _projectManager = new ProjectManager();
+                _WrapAdbManager = new WarpAdbManager(this);
+                ProgLog.D(TAG, " DeviceManager end.." + DateTime.Now);
+                //event 
+                DeviceManagerStatusChanged?.Invoke(this, new EventArgs());
+            });
             _uaseAble = true;
         }
 
@@ -137,8 +141,6 @@ namespace Autoburn.Manager
                 _WrapAdbManager = value;
             }
         }
-
-
 
         private ProjectManager _projectManager = null;
     }

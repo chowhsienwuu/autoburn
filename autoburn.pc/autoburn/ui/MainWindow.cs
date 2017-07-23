@@ -31,39 +31,45 @@ namespace Autoburn.Ui
             InitializeComponent();
         }
 
-        private void BindAdbStatus()
+        private async void BindAdbStatus()
         {
-            // init first.
-            var adbdevicedata = DeviceManager.Instance.WrapAdbManager.GetCurrentAdbDeviceData();
-            if (adbdevicedata.State.Equals(DeviceState.Online))
+            ProgLog.D(TAG, "aync bindadbstatus begain " + DateTime.Now);
+            await Task.Factory.StartNew(() =>
             {
-                SystemLog.I(TAG, "初始化找到ADB设备 :" + adbdevicedata.ToString());
-                AdbStatusToollable.Text = "设备已连接";
-                Task.Run(new Action(startNetty));
-            }
-            else if (adbdevicedata.State.Equals(DeviceState.Offline))
-            {
-                SystemLog.I(TAG, "初始化末找到ADB设备 :" + adbdevicedata.ToString());
-                AdbStatusToollable.Text = "设备已断开";
-                NettyJsonCmdManager?.Stop();
-            }
-            // add monitoer
-            DeviceManager.Instance.WrapAdbManager.DeviceStatusChanged += delegate (object sender, DeviceDataEventArgs data)
-           {
-               var devicedata = data.Device;
-               if (devicedata.State.Equals(DeviceState.Online))
+                // init first.
+                var adbdevicedata = DeviceManager.Instance.WrapAdbManager.GetCurrentAdbDeviceData();
+                if (adbdevicedata.State.Equals(DeviceState.Online))
+                {
+                    SystemLog.I(TAG, "初始化找到ADB设备 :" + adbdevicedata.ToString());
+                    AdbStatusToollable.Text = "设备已连接";
+                    Task.Run(new Action(startNetty));
+                }
+                else if (adbdevicedata.State.Equals(DeviceState.Offline))
+                {
+                    SystemLog.I(TAG, "初始化末找到ADB设备 :" + adbdevicedata.ToString());
+                    AdbStatusToollable.Text = "设备已断开";
+                    NettyJsonCmdManager?.Stop();
+                }
+                // add monitoer
+                DeviceManager.Instance.WrapAdbManager.DeviceStatusChanged += delegate (object sender, DeviceDataEventArgs data)
                {
-                   SystemLog.I(TAG, "设备连接 :" + devicedata.ToString());
-                   AdbStatusToollable.Text = "设备已连接";
-                   Task.Run(new Action(startNetty));
-               }
-               else if (devicedata.State.Equals(DeviceState.Offline))
-               {
-                   SystemLog.I(TAG, "设备已断开 :" + devicedata.ToString());
-                   AdbStatusToollable.Text = "设备已断开";
-                   NettyJsonCmdManager?.Stop();
-               }
-           };
+                   var devicedata = data.Device;
+                   if (devicedata.State.Equals(DeviceState.Online))
+                   {
+                       SystemLog.I(TAG, "设备连接 :" + devicedata.ToString());
+                       AdbStatusToollable.Text = "设备已连接";
+                       Task.Run(new Action(startNetty));
+                   }
+                   else if (devicedata.State.Equals(DeviceState.Offline))
+                   {
+                       SystemLog.I(TAG, "设备已断开 :" + devicedata.ToString());
+                       AdbStatusToollable.Text = "设备已断开";
+                       NettyJsonCmdManager?.Stop();
+                   }
+               };
+            });
+
+            ProgLog.D(TAG, "aync bindadbstatus end " +  DateTime.Now);
         }
 
         private void startNetty()
@@ -78,8 +84,10 @@ namespace Autoburn.Ui
         NettyJsonCmdManager NettyJsonCmdManager = null;
 
         private void Form1_Load(object sender, EventArgs e)
-        {//bind some thing.adb连接状态的监控.
-            BindAdbStatus();
+        {// DeviceMnager 初始化完成后 bind some thing.adb连接状态的监控.
+            DeviceManager.Instance.DeviceManagerStatusChanged += delegate{
+                BindAdbStatus();
+            };
         }
 
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)

@@ -146,8 +146,6 @@ namespace Autoburn.Manager
 
         private Device currentDevice = null;
 
-
-
         //
         #region ADB 监听
         public event EventHandler<DeviceDataEventArgs> DeviceStatusChanged;
