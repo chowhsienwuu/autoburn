@@ -79,7 +79,6 @@ namespace Autoburn.Manager
 
         private WarpAdbManager _WrapAdbManager = null;
 
-
         private DataBaseManager _dataBaseManager = null;
         internal DataBaseManager DataBaseManager
         {
